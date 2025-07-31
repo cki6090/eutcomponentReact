@@ -8,7 +8,7 @@ export default function Components() {
   const [menuList, setMenuList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/menuList").then((res) => {
+    axios.get("http://localhost:3001/menuComponentList").then((res) => {
       setMenuList(res.data);
     });
   }, []);

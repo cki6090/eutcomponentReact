@@ -8,7 +8,7 @@ export default function Components() {
   const [layoutList, setLayoutList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/layoutList").then((res) => {
+    axios.get("http://localhost:3001/menuLayoutList").then((res) => {
       setLayoutList(res.data);
     });
   }, []);

@@ -4,6 +4,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
+import Grid from "@/app/components/grid";
+import Table from "@/app/components/table";
+import Color from "@/app/components/color";
+
 export default function Components() {
   const [menuList, setMenuList] = useState([]);
   const [componentContents, setComponentContents] = useState([]);
@@ -11,7 +15,9 @@ export default function Components() {
 
   useEffect(() => {
     const fetchMenuList = async () => {
-      const response = await axios.get("http://localhost:3001/menuList");
+      const response = await axios.get(
+        "http://localhost:3001/menuComponentList"
+      );
       const response2 = await axios.get(
         "http://localhost:3001/componentContents"
       );
@@ -25,8 +31,22 @@ export default function Components() {
   const copyCode = () => {
     const codeElement = document.querySelector(".code-box");
     const codeText = codeElement.textContent;
-    navigator.clipboard.writeText(codeText);
-    //alert("코드가 복사되었습니다.");
+    if (
+      navigator &&
+      navigator.clipboard &&
+      typeof navigator.clipboard.writeText === "function"
+    ) {
+      navigator.clipboard.writeText(codeText);
+    } else {
+      // navigator.clipboard가 지원되지 않을 때 fallback 처리
+      const textarea = document.createElement("textarea");
+      textarea.value = codeText;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+    alert("코드가 복사되었습니다.");
 
     //data-name 해당 값이 배열 내에 존재하는지 확인하거나, 존재한다면 해당 값의 인덱스를 찾아오기
     const dataName = document
@@ -36,11 +56,9 @@ export default function Components() {
     const indexNum = menuList.findIndex((item) => item.link === dataName);
     const updatedLike = (menuList[indexNum].like || 0) + 1;
 
-    axios.patch(`http://localhost:3001/menuList/${indexNum}`, {
+    axios.patch(`http://localhost:3001/menuComponentList/${indexNum}`, {
       like: updatedLike,
     });
-
-    router.refresh();
   };
 
   //url 파라미터 가져오기
@@ -49,16 +67,23 @@ export default function Components() {
   const componentContent = componentContents.find(
     (content) => content.title === id
   );
-
+  console.log(id);
   return (
     <div className="main-layout">
       <LeftMenu title="components" menuList={menuList} />
 
       <div className="main-content">
-        <div className="page-title">{componentContent?.title}</div>
-        <div className="image-box">
-          <img src={componentContent?.image} width="80%" />
-        </div>
+        {componentContent && (
+          <div
+            className="component-view"
+            dangerouslySetInnerHTML={{ __html: componentContent.code }}
+          />
+        )}
+
+        {/* //url에서 각각gird table 일때만 grid.js table.js 파일을 인폴트 해오기 */}
+        {id === "grid" && <Grid />}
+        {id === "table" && <Table />}
+        {id === "color" && <Color />}
 
         <pre className="code-box">{componentContent?.code}</pre>
 

@@ -1,10 +1,10 @@
 {
-  "menuList": [
+  "menuComponentList": [
     {
       "id": 0,
       "title": "검색",
       "link": "search",
-      "like": 4
+      "like": 5
     },
     {
       "id": 1,
@@ -31,13 +31,12 @@
       "like": 1
     }
   ],
-
   "componentContents": [
     {
       "id": 0,
       "title": "search",
       "image": "/search.jpg",
-      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+      "code": "<div class=\"search-pnl\">\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>카테고리</label>\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>이름</label>\n    <img src=\"/globe.svg\" alt=\"search\" />\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>코드</label>\n    <img src=\"/file.svg\" alt=\"search\" />\n  </div>\n</div>"
     },
     {
       "id": 1,
@@ -64,8 +63,7 @@
       "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
     }
   ],
-
-  "layoutList": [
+  "menuLayoutList": [
     {
       "id": 0,
       "title": "검색",
@@ -103,7 +101,6 @@
       "like": 0
     }
   ],
-
   "layoutContents": [
     {
       "id": 0,
@@ -115,7 +112,7 @@
       "id": 1,
       "title": "search-footer",
       "image": "이미지2",
-      "code": "<div class=\"main-grid\">\n   <div class=\"main-title\">그리드</div>\n   <div class=\"main-grid\">\n      <Grid />\n    </div>\n</div>"
+      "code": "<div class=\"main-content\">\n  <div class=\"wrap\">\n    <div class=\"search-pnl\">서치 리스트</div>\n    <div class=\"main\">\n      <div class=\"main-content\">콘텐츠</div>\n    </div>\n    <div class=\"footer\">\n      <div class=\"footer-content\"></div>\n      <ul class=\"footer-menu\">\n        <li>\n          <button class=\"mainBtn\">메인</button>\n          <button class=\"subBtn\">서브</button>\n          <button class=\"ssubBtn\">서브서브</button>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>"
     },
     {
       "id": 2,

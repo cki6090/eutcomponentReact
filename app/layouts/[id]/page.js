@@ -1,41 +1,71 @@
 "use client";
 import LeftMenu from "@/app/leftMenu";
-import Link from "next/link";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 export default function Layouts() {
-  const [layoutList, setLayoutList] = useState([]);
+  const [menuList, setMenuList] = useState([]);
+  const [layoutContents, setLayoutContents] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
-    axios.get("http://localhost:3001/layoutList").then((res) => {
-      setLayoutList(res.data);
-    });
+    const fetchMenuList = async () => {
+      const response = await axios.get("http://localhost:3001/menuLayoutList");
+      const response2 = await axios.get("http://localhost:3001/layoutContents");
+      setMenuList(response.data);
+      setLayoutContents(response2.data);
+    };
+
+    fetchMenuList();
   }, []);
+
+  const copyCode = () => {
+    const codeElement = document.querySelector(".code-box");
+    const codeText = codeElement.textContent;
+    navigator.clipboard.writeText(codeText);
+    //alert("코드가 복사되었습니다.");
+
+    //data-name 해당 값이 배열 내에 존재하는지 확인하거나, 존재한다면 해당 값의 인덱스를 찾아오기
+    const dataName = document
+      .querySelector(".copy-button")
+      .getAttribute("data-name");
+
+    const indexNum = menuList.findIndex((item) => item.link === dataName);
+    const updatedLike = (menuList[indexNum].like || 0) + 1;
+
+    axios.patch(`http://localhost:3001/menuLayoutList/${indexNum}`, {
+      like: updatedLike,
+    });
+
+    router.refresh();
+  };
+
+  //url 파라미터 가져오기
+  const { id } = useParams();
+  //url 파라미터랑 setComponentContents 비교해서 같은 것 찾기
+  const layoutContent = layoutContents.find((content) => content.title === id);
 
   return (
     <div className="main-layout">
-      <LeftMenu title="layouts" menuList={layoutList} />
+      <LeftMenu title="layouts" menuList={menuList} />
 
       <div className="main-content">
-        <div className="wrap">
-          <div className="search-pnl">서치 리스트</div>
+        <div className="page-title">{layoutContent?.title}</div>
 
-          <div className="main">
-            <div className="main-content">콘텐츠</div>
-          </div>
-
-          <div className="footer">
-            <div className="footer-content"></div>
-            <ul className="footer-menu">
-              <li>
-                <button className="mainBtn">메인</button>
-                <button className="subBtn">서브</button>
-                <button className="ssubBtn">서브서브</button>
-              </li>
-            </ul>
-          </div>
+        <div className="image-box">
+          <img src={layoutContent?.image} width="80%" />
         </div>
+
+        <pre className="code-box">{layoutContent?.code}</pre>
+
+        <button
+          className="copy-button"
+          onClick={copyCode}
+          data-name={layoutContent?.title}
+        >
+          코드 소스 복사
+        </button>
       </div>
     </div>
   );

@@ -53,8 +53,8 @@ a {
   transform: translate(-50%, -50%);
   width: 40px;
   height: 40px;
-  border: 10px solid #fff;
-  border-top: 10px solid rgb(2, 4, 15);
+  border: 5px solid #fff;
+  border-top: 5px solid var(--grey);
   border-radius: 50em;
   transition: all 0.2s;
   animation-name: spinCircle;
@@ -84,11 +84,79 @@ a {
   border: none;
   padding: 15px;
   border-radius: 20px;
-  border-top: 4px solid #757bfa;
+  border-top: 3px solid var(--grey);
   background-color: var(--white);
   margin: 10px;
   box-sizing: border-box;
-  min-height: 150px;
+  min-height: 77px;
+  display: flex;
+  gap: 15px;
+}
+
+.search-input {
+  position: relative;
+  width: 200px;
+}
+.search-input > img {
+  bottom: 8px;
+  position: absolute;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.search-input > input {
+  font-size: 15px;
+  color: #222222;
+  width: 100%;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding: 20px 5px 5px 5px;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
+.search-input > input::placeholder {
+  color: #aaaaaa;
+}
+.search-input > input:focus {
+  outline: none;
+}
+
+.search-input > span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0%; /* right로만 바꿔주면 오 - 왼 */
+  background-color: var(--black);
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+
+.search-input > label {
+  position: absolute;
+  color: #aaa;
+  left: 5px;
+  font-size: 20px;
+  bottom: 8px;
+  transition: all 0.2s;
+}
+
+.search-input > input:focus ~ label,
+.search-input > input:valid ~ label {
+  font-size: 12px;
+  bottom: 29px;
+  color: var(--black);
+  font-weight: bold;
+}
+
+.search-input > input:focus ~ span,
+.search-input > input:valid ~ span {
+  width: 100%;
 }
 
 .main {
@@ -174,8 +242,16 @@ a {
 }
 
 .main-content .code-box {
-  padding: 20px 0px;
+  padding: 15px;
   color: var(--black);
+  background-color: var(--grey02);
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.copy-button {
+  border-radius: 10px;
+  padding: 15px;
 }
 
 .left-menu {
