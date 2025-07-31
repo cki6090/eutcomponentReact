@@ -1,0 +1,145 @@
+{
+  "menuList": [
+    {
+      "id": 0,
+      "title": "검색",
+      "link": "search",
+      "like": 4
+    },
+    {
+      "id": 1,
+      "title": "그리드",
+      "link": "grid",
+      "like": 2
+    },
+    {
+      "id": 2,
+      "title": "테이블",
+      "link": "table",
+      "like": 1
+    },
+    {
+      "id": 3,
+      "title": "버튼",
+      "link": "button",
+      "like": 1
+    },
+    {
+      "id": 4,
+      "title": "컬러",
+      "link": "color",
+      "like": 1
+    }
+  ],
+
+  "componentContents": [
+    {
+      "id": 0,
+      "title": "search",
+      "image": "/search.jpg",
+      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+    },
+    {
+      "id": 1,
+      "title": "grid",
+      "image": "/grid.png",
+      "code": "<div class=\"main-grid\">\n   <div class=\"main-title\">그리드</div>\n   <div class=\"main-grid\">\n      <Grid />\n    </div>\n</div>"
+    },
+    {
+      "id": 2,
+      "title": "table",
+      "image": "이미지3",
+      "code": "<div class=\"main\">\n    <div class=\"main-title\">테이블</div>\n    <div class=\"main-table\">\n      <Table />\n    </div>\n</div>"
+    },
+    {
+      "id": 3,
+      "title": "button",
+      "image": "이미지4",
+      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+    },
+    {
+      "id": 4,
+      "title": "color",
+      "image": "이미지5",
+      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+    }
+  ],
+
+  "layoutList": [
+    {
+      "id": 0,
+      "title": "검색",
+      "link": "search",
+      "like": 0
+    },
+    {
+      "id": 1,
+      "title": "검색 + 푸터",
+      "link": "search-footer",
+      "like": 0
+    },
+    {
+      "id": 2,
+      "title": "검색 + 그리드",
+      "link": "search-grid",
+      "like": 0
+    },
+    {
+      "id": 3,
+      "title": "검색 + 테이블",
+      "link": "search-table",
+      "like": 0
+    },
+    {
+      "id": 4,
+      "title": "검 + 테 + 그",
+      "link": "search-table-grid",
+      "like": 0
+    },
+    {
+      "id": 5,
+      "title": "검 + 그 + 테",
+      "link": "search-grid-table",
+      "like": 0
+    }
+  ],
+
+  "layoutContents": [
+    {
+      "id": 0,
+      "title": "search",
+      "image": "이미지1",
+      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+    },
+    {
+      "id": 1,
+      "title": "search-footer",
+      "image": "이미지2",
+      "code": "<div class=\"main-grid\">\n   <div class=\"main-title\">그리드</div>\n   <div class=\"main-grid\">\n      <Grid />\n    </div>\n</div>"
+    },
+    {
+      "id": 2,
+      "title": "search-grid",
+      "image": "이미지3",
+      "code": "<div class=\"main\">\n    <div class=\"main-title\">테이블</div>\n    <div class=\"main-table\">\n      <Table />\n    </div>\n</div>"
+    },
+    {
+      "id": 3,
+      "title": "search-table",
+      "image": "이미지4",
+      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+    },
+    {
+      "id": 4,
+      "title": "search-grid-table",
+      "image": "이미지4",
+      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+    },
+    {
+      "id": 5,
+      "title": "search-table-grid",
+      "image": "이미지4",
+      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+    }
+  ]
+}

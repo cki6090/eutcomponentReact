@@ -1,0 +1,5 @@
+{
+  "cursorStats.currency": "KRW",
+  "cursorStats.language": "ko",
+  "prettier.documentSelectors": ["*.css"]
+}
