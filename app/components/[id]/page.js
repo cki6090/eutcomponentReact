@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 
 import Grid from "@/app/components/grid";
 import Table from "@/app/components/table";
-import Color from "@/app/components/color";
+import Button from "@/app/components/button";
 
 export default function Components() {
   const [menuList, setMenuList] = useState([]);
@@ -83,17 +83,19 @@ export default function Components() {
         {/* //url에서 각각gird table 일때만 grid.js table.js 파일을 인폴트 해오기 */}
         {id === "grid" && <Grid />}
         {id === "table" && <Table />}
-        {id === "color" && <Color />}
+        {id === "button" && <Button />}
 
-        <pre className="code-box">{componentContent?.code}</pre>
+        <div className="code-box-container">
+          <pre className="code-box">{componentContent?.code}</pre>
 
-        <button
-          className="copy-button"
-          onClick={copyCode}
-          data-name={componentContent?.title}
-        >
-          코드 소스 복사
-        </button>
+          <button
+            className="copy-button"
+            onClick={copyCode}
+            data-name={componentContent?.title}
+          >
+            코드 소스 복사
+          </button>
+        </div>
       </div>
     </div>
   );

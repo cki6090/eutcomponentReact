@@ -35,6 +35,7 @@ li,
 a {
   color: inherit;
   text-decoration: none;
+  list-style: none;
 }
 
 .loadingBox .dim {
@@ -243,15 +244,22 @@ a {
 
 .main-content .code-box {
   padding: 15px;
-  color: var(--black);
   background-color: var(--grey02);
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin: 15px 0px;
+  min-height: 80px;
+}
+
+.code-box-container {
+  position: relative;
 }
 
 .copy-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
   border-radius: 10px;
-  padding: 15px;
+  padding: 5px 10px;
 }
 
 .left-menu {
@@ -383,4 +391,173 @@ a {
   border: none;
   border-radius: 15px;
   cursor: pointer;
+}
+
+.color-box .color-list {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 글씨 그림자 효과 */
+.color-box .color-list li {
+  width: 115px;
+  height: 170px;
+  border: 1px solid var(--grey02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+  border-radius: 10px;
+}
+
+/*버튼 css*/
+.button-box {
+  display: flex;
+  gap: 10px;
+}
+.button-box-title {
+  width: 100%;
+  margin: 40px 0px 10px 0px;
+  font-size: 20px;
+  color: var(--black);
+  font-weight: 600;
+}
+.button-box-title:first-child {
+  margin: 0px 0 10px 0px;
+}
+
+.toggleSwitch {
+  width: 40px;
+  height: 25px;
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+  margin: 0px 0px;
+}
+
+.toggleSwitch .toggleButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #f86480;
+}
+
+#toggle:checked ~ .toggleSwitch {
+  background: #f86480;
+}
+
+#toggle:checked ~ .toggleSwitch .toggleButton {
+  left: calc(100% - 24px);
+  background: #fff;
+}
+
+.toggleSwitch,
+.toggleButton {
+  transition: all 0.2s ease-in;
+}
+
+.chk_box {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  min-width: 20px;
+  height: 20px;
+}
+
+/* 기본 체크박스 숨기기 */
+.chk_box input[type="checkbox"] {
+  display: none;
+  transition: all 0.2s ease-in;
+}
+
+/* 선택되지 않은 체크박스 스타일 꾸미기 */
+.chk_box .on {
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.chk_box .check-box-text {
+  padding-left: 25px;
+}
+/* 선택된 체크박스 스타일 꾸미기 */
+.chk_box input[type="checkbox"]:checked + .on {
+  background: #f86480;
+}
+
+.chk_box .on:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.chk_box input[type="checkbox"]:checked + .on:after {
+  display: block;
+}
+.chk_box input[type="checkbox"] + .on:after {
+  width: 6px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  left: 6px;
+  top: 2px;
+}
+.chk_box input[type="radio"] + .on {
+  border-radius: 20px;
+}
+.chk_box input[type="radio"] {
+  display: none;
+  transition: all 0.2s ease-in;
+}
+.chk_box input[type="radio"]:checked + .on {
+  background: #ddd;
+  border: 6px solid #f86480;
+}
+.chk_box input[type="radio"]:checked + .on:after {
+  display: block;
+}
+
+.button-default {
+  padding: 5px 10px;
+  border-radius: 50px;
+  border: 1px solid #222222;
+  color: var(--black);
+  background: transparent;
+  cursor: pointer;
+}
+.button-default.success {
+  border: 1px solid #3f51b5;
+  background-color: #3f51b5;
+  color: #ffffff;
+}
+.button-default.warning {
+  border: 1px solid #ffc107;
+  background-color: #ffc107;
+  color: #ffffff;
+}
+.button-default.error {
+  border: 1px solid #dc3545;
+  background-color: #dc3545;
+  color: #ffffff;
 }

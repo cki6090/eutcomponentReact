@@ -57,15 +57,17 @@ export default function Layouts() {
           <img src={layoutContent?.image} width="80%" />
         </div>
 
-        <pre className="code-box">{layoutContent?.code}</pre>
+        <div className="code-box-container">
+          <pre className="code-box">{layoutContent?.code}</pre>
 
-        <button
-          className="copy-button"
-          onClick={copyCode}
-          data-name={layoutContent?.title}
-        >
-          코드 소스 복사
-        </button>
+          <button
+            className="copy-button"
+            onClick={copyCode}
+            data-name={layoutContent?.title}
+          >
+            코드 소스 복사
+          </button>
+        </div>
       </div>
     </div>
   );

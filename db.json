@@ -4,7 +4,7 @@
       "id": 0,
       "title": "검색",
       "link": "search",
-      "like": 5
+      "like": 6
     },
     {
       "id": 1,
@@ -36,7 +36,7 @@
       "id": 0,
       "title": "search",
       "image": "/search.jpg",
-      "code": "<div class=\"search-pnl\">\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>카테고리</label>\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>이름</label>\n    <img src=\"/globe.svg\" alt=\"search\" />\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>코드</label>\n    <img src=\"/file.svg\" alt=\"search\" />\n  </div>\n</div>"
+      "code": "<div class=\"search-pnl\">\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>카테고리</label>\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>달력</label>\n    <img src=\"/date.svg\" alt=\"search\" />\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>코드</label>\n    <img src=\"/file.svg\" alt=\"search\" />\n  </div>\n <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>검색</label>\n    <img src=\"/search.svg\" alt=\"search\" />\n  </div>\n</div>"
     },
     {
       "id": 1,
@@ -54,13 +54,13 @@
       "id": 3,
       "title": "button",
       "image": "이미지4",
-      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+      "code": ""
     },
     {
       "id": 4,
       "title": "color",
       "image": "이미지5",
-      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+      "code": "<div class=\"color-box\">\n  <ul class=\"color-list\">\n   <li style=\"background-color: #f5f5f5;\">\n      <p>#f5f5f5</p>\n    </li>\n    <li style=\"background-color: #e5e5e5;\">\n      <p>#e5e5e5</p>\n    </li>\n    <li style=\"background-color: #d5d5d5;\">\n      <p>#d5d5d5</p>\n    </li>\n    <li style=\"background-color: #a3a3a3;\">\n      <p>#a3a3a3</p>\n    </li>\n    <li style=\"background-color: #737373;\">\n      <p>#737373</p>\n    </li>\n    <li style=\"background-color: #525252;\">\n      <p>#525252</p>\n    </li>\n    <li style=\"background-color: #404040;\">\n      <p>#404040</p>\n    </li>\n    <li style=\"background-color: #262626;\">\n      <p>#262626</p>\n    </li>\n </ul>\n</div>"
     }
   ],
   "menuLayoutList": [
