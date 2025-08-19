@@ -54,7 +54,7 @@
       "id": 3,
       "title": "button",
       "image": "이미지4",
-      "code": ""
+      "code": "<div>\n  <div class=\"button-box-title\">버튼</div>\n  <div class=\"button-box\">\n    <button class=\"button-default\">기본 버튼</button>\n    <button class=\"button-default success\">성공 버튼</button>\n    <button class=\"button-default warning\">경고 버튼</button>\n    <button class=\"button-default error\">오류 버튼</button>\n  </div>\n\n  <div class=\"button-box-title\">토글</div>\n  <div class=\"button-box\">\n    <div class=\"toggle-box\">\n      <input type=\"checkbox\" id=\"toggle\" hidden />\n      <label for=\"toggle\" class=\"toggleSwitch\">\n        <span class=\"toggleButton\"></span>\n      </label>\n    </div>\n  </div>\n\n  <div class=\"button-box-title\">체크박스</div>\n  <div class=\"button-box\">\n    <div class=\"check-box\">\n      <label for=\"agree\" class=\"chk_box\">\n        <input type=\"checkbox\" id=\"agree\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"agree2\" class=\"chk_box\">\n        <input type=\"checkbox\" id=\"agree2\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"agree3\" class=\"chk_box\">\n        <input type=\"checkbox\" id=\"agree3\" checked />\n        <span class=\"on\"></span>\n        <span class=\"check-box-text\">이용약관에 동의합니다.</span>\n      </label>\n    </div>\n  </div>\n\n  <div class=\"button-box-title\">라디오</div>\n  <div class=\"button-box\">\n    <div class=\"check-box\">\n      <label for=\"radio\" class=\"chk_box\">\n        <input type=\"radio\" id=\"radio\" name=\"radio\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"radio2\" class=\"chk_box\">\n        <input type=\"radio\" id=\"radio2\" name=\"radio\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"radio3\" class=\"chk_box\">\n        <input type=\"radio\" id=\"radio3\" name=\"radio\" checked />\n        <span class=\"on\"></span>\n        <span class=\"check-box-text\">이용약관에 동의합니다.</span>\n      </label>\n    </div>\n  </div>\n</div>"
     },
     {
       "id": 4,
@@ -78,27 +78,9 @@
     },
     {
       "id": 2,
-      "title": "검색 + 그리드",
-      "link": "search-grid",
-      "like": 0
-    },
-    {
-      "id": 3,
-      "title": "검색 + 테이블",
-      "link": "search-table",
-      "like": 0
-    },
-    {
-      "id": 4,
-      "title": "검 + 테 + 그",
-      "link": "search-table-grid",
-      "like": 0
-    },
-    {
-      "id": 5,
-      "title": "검 + 그 + 테",
-      "link": "search-grid-table",
-      "like": 0
+      "title": "검색 + 콘텐츠",
+      "link": "search-content",
+      "like": 1
     }
   ],
   "layoutContents": [
@@ -106,37 +88,19 @@
       "id": 0,
       "title": "search",
       "image": "이미지1",
-      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+      "code": ""
     },
     {
       "id": 1,
       "title": "search-footer",
       "image": "이미지2",
-      "code": "<div class=\"main-content\">\n  <div class=\"wrap\">\n    <div class=\"search-pnl\">서치 리스트</div>\n    <div class=\"main\">\n      <div class=\"main-content\">콘텐츠</div>\n    </div>\n    <div class=\"footer\">\n      <div class=\"footer-content\"></div>\n      <ul class=\"footer-menu\">\n        <li>\n          <button class=\"mainBtn\">메인</button>\n          <button class=\"subBtn\">서브</button>\n          <button class=\"ssubBtn\">서브서브</button>\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>"
+      "code": ""
     },
     {
       "id": 2,
-      "title": "search-grid",
+      "title": "search-content",
       "image": "이미지3",
-      "code": "<div class=\"main\">\n    <div class=\"main-title\">테이블</div>\n    <div class=\"main-table\">\n      <Table />\n    </div>\n</div>"
-    },
-    {
-      "id": 3,
-      "title": "search-table",
-      "image": "이미지4",
-      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
-    },
-    {
-      "id": 4,
-      "title": "search-grid-table",
-      "image": "이미지4",
-      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
-    },
-    {
-      "id": 5,
-      "title": "search-table-grid",
-      "image": "이미지4",
-      "code": "<div class=\"search-pnl\">\n      <div class=\"search-box\">\n          <input type=\"text\" placeholder=\"검색어를 입력하세요.\" />\n          <button>검색</button>\n      </div>\n</div>"
+      "code": ""
     }
   ]
 }

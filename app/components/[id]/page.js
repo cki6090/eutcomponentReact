@@ -82,7 +82,6 @@ export default function Components() {
         {/* //url에서 각각gird table 일때만 grid.js table.js 파일을 인폴트 해오기 */}
         {id === "grid" && <Grid />}
         {id === "table" && <Table />}
-        {id === "button" && <Button />}
 
         <div className="code-box-container">
           <pre className="code-box">{componentContent?.code}</pre>
