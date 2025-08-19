@@ -24,7 +24,6 @@ export default function Components() {
       setMenuList(response.data);
       setComponentContents(response2.data);
     };
-
     fetchMenuList();
   }, []);
 

@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  max-width: 1280px;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
   background-color: var(--white);
@@ -165,7 +165,90 @@ a {
   background-color: var(--white);
 }
 
+.index-page {
+  padding: 100px 0px;
+  height: calc(100% - 50px);
+  overflow: hidden;
+  position: relative;
+}
+.index-page .index-page-content {
+  width: 100%;
+  margin: 0px auto;
+  max-width: 1236px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+.index-page .index-page-content h1 {
+  color: var(--black);
+  font-size: 40px;
+  font-weight: bold;
+}
+.index-page .index-page-content h1 span {
+  margin: 0px;
+  font: inherit;
+  letter-spacing: inherit;
+  color: rgb(55, 125, 255);
+  background: linear-gradient(transparent 82%, rgba(249, 185, 52, 0.3) 0%);
+}
+
+.index-page .index-page-content p {
+  font-size: 20px;
+  color: var(--grey);
+  margin-top: 15px;
+}
+
+.index-page .index-page-image {
+  width: 50%;
+  height: 100%;
+}
+
+.index-page .index-page-image .thumbs {
+  display: flex;
+  height: 100%;
+  gap: 10px;
+  left: 50%;
+  top: 0px;
+  position: absolute;
+  transform: rotate(-20deg) translateX(18%) translateY(-20%);
+}
+.index-page .index-page-image .thumbs li {
+  flex: 1;
+  min-width: 200px;
+  height: 100%;
+}
+.index-page .index-page-image .thumbs li img {
+  width: 100%;
+  opacity: 0;
+}
+/*indeximg1, 2, 3이 시간차로 위에서 아래로 내려오는 에니메이션*/
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.indeximg1 {
+  padding-top: 60px;
+  animation: slideDown 1s ease-out 0.6s forwards;
+}
+
+.indeximg2 {
+  animation: slideDown 1s ease-out 0.3s forwards;
+}
+
+.indeximg3 {
+  padding-top: 100px;
+  animation: slideDown 1s ease-out 0.6s forwards;
+}
+
 .footer {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -174,6 +257,8 @@ a {
 }
 
 .navbar {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -219,6 +304,7 @@ a {
 .top-menu .top-menu-list a {
   font-size: 16px;
   padding: 0px 10px;
+  color: var(--black);
 }
 .top-menu .top-menu-list a.on {
   font-weight: bold;
@@ -546,16 +632,19 @@ a {
   background: transparent;
   cursor: pointer;
 }
+
 .button-default.success {
   border: 1px solid #3f51b5;
   background-color: #3f51b5;
   color: #ffffff;
 }
+
 .button-default.warning {
   border: 1px solid #ffc107;
   background-color: #ffc107;
   color: #ffffff;
 }
+
 .button-default.error {
   border: 1px solid #dc3545;
   background-color: #dc3545;
