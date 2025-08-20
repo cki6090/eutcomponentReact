@@ -4,30 +4,42 @@
       "id": 0,
       "title": "검색",
       "link": "search",
+      "image": "/search.jpg",
       "like": 6
     },
     {
       "id": 1,
       "title": "그리드",
       "link": "grid",
+      "image": "/grid.jpg",
       "like": 2
     },
     {
       "id": 2,
       "title": "테이블",
       "link": "table",
+      "image": "/table.jpg",
       "like": 1
     },
     {
       "id": 3,
       "title": "버튼",
       "link": "button",
+      "image": "/button.jpg",
       "like": 1
     },
     {
       "id": 4,
       "title": "컬러",
       "link": "color",
+      "image": "/color.jpg",
+      "like": 1
+    },
+    {
+      "id": 5,
+      "title": "차트",
+      "link": "chart",
+      "image": "/chart.jpg",
       "like": 1
     }
   ],
@@ -42,13 +54,13 @@
       "id": 1,
       "title": "grid",
       "image": "/grid.png",
-      "code": "<div class=\"main-grid\">\n   <div class=\"main-title\">그리드</div>\n   <div class=\"main-grid\">\n      <Grid />\n    </div>\n</div>"
+      "code": "<div class=\"main-grid\">\n    <Grid />\n</div>"
     },
     {
       "id": 2,
       "title": "table",
       "image": "이미지3",
-      "code": "<div class=\"main\">\n    <div class=\"main-title\">테이블</div>\n    <div class=\"main-table\">\n      <Table />\n    </div>\n</div>"
+      "code": "<div class=\"main-table\">\n   <Table />\n</div>"
     },
     {
       "id": 3,
@@ -61,6 +73,12 @@
       "title": "color",
       "image": "이미지5",
       "code": "<div class=\"color-box\">\n  <ul class=\"color-list\">\n   <li style=\"background-color: #f5f5f5;\">\n      <p>#f5f5f5</p>\n    </li>\n    <li style=\"background-color: #e5e5e5;\">\n      <p>#e5e5e5</p>\n    </li>\n    <li style=\"background-color: #d5d5d5;\">\n      <p>#d5d5d5</p>\n    </li>\n    <li style=\"background-color: #a3a3a3;\">\n      <p>#a3a3a3</p>\n    </li>\n    <li style=\"background-color: #737373;\">\n      <p>#737373</p>\n    </li>\n    <li style=\"background-color: #525252;\">\n      <p>#525252</p>\n    </li>\n    <li style=\"background-color: #404040;\">\n      <p>#404040</p>\n    </li>\n    <li style=\"background-color: #262626;\">\n      <p>#262626</p>\n    </li>\n </ul>\n</div>"
+    },
+    {
+      "id": 5,
+      "title": "chart",
+      "image": "이미지3",
+      "code": "<div class=\"main-chart\">\n   <Chart />\n</div>"
     }
   ],
   "menuLayoutList": [
@@ -88,19 +106,19 @@
       "id": 0,
       "title": "search",
       "image": "이미지1",
-      "code": ""
+      "code": "<header>헤더</header>\n "
     },
     {
       "id": 1,
       "title": "search-footer",
       "image": "이미지2",
-      "code": ""
+      "code": "<header>헤더</header>\n<footer>\n    <div class=\"footer-menu\">\n      <ul>\n        <li>\n          <button>버튼1</button>\n          <button>버튼2</button>\n        </li>\n        <li>\n          <button>버튼1</button>\n          <button>버튼2</button>\n        </li>\n      </ul>\n    </div>\n</footer>"
     },
     {
       "id": 2,
       "title": "search-content",
       "image": "이미지3",
-      "code": ""
+      "code": "<header>헤더</header>\n<main>메인</main>\n"
     }
   ]
 }

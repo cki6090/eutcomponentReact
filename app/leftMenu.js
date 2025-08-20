@@ -29,7 +29,7 @@ export default function LeftMenu(props) {
               onClick={() => setSelectedIndex(index)}
             >
               <Link href={`/${props.title}/${menu.link}`}>
-                {menu.title} <span> 👍{menu.like}</span>
+                {menu.title} <span> 📋{menu.like}</span>
               </Link>
             </li>
           ))}

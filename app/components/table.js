@@ -18,14 +18,18 @@ export default function Table() {
         </tbody>
       </table>
 
+      <br />
+      <br />
+      <br />
+
       <table className="table">
         <colgroup>
-          <col style={{ width: "10%" }} />
-          <col style={{ width: "" }} />
-          <col style={{ width: "10%" }} />
-          <col style={{ width: "" }} />
-          <col style={{ width: "10%" }} />
-          <col style={{ width: "" }} />
+          <col style={{ width: "80px" }} />
+          <col style={{ width: "120px" }} />
+          <col style={{ width: "80px" }} />
+          <col style={{ width: "120px" }} />
+          <col style={{ width: "80px" }} />
+          <col style={{ width: "120px" }} />
         </colgroup>
         <tbody>
           <tr>
@@ -38,7 +42,7 @@ export default function Table() {
               <span>text</span>
             </th>
             <td>
-              <input type="text" />
+              <input type="text" value="text" />
             </td>
 
             <th>
@@ -46,10 +50,50 @@ export default function Table() {
             </th>
             <td>
               <input type="checkbox" />
+              체크박스
             </td>
+
+            <th>
+              <span>radio</span>
+            </th>
+            <td>
+              <div className="button-box">
+                <div className="check-box">
+                  <label htmlFor="radio" className="chk_box">
+                    <input type="radio" id="radio" name="radio" />
+                    <span className="on"></span>
+                  </label>
+                </div>
+                <div className="check-box">
+                  <label htmlFor="radio2" className="chk_box">
+                    <input type="radio" id="radio2" name="radio" />
+                    <span className="on"></span>
+                  </label>
+                </div>
+                <div className="check-box">
+                  <label htmlFor="radio3" className="chk_box">
+                    <input
+                      type="radio"
+                      id="radio3"
+                      name="radio"
+                      defaultChecked
+                    />
+                    <span className="on"></span>
+                    <span className="check-box-text">
+                      이용약관에 동의합니다.
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </td>
+            
           </tr>
         </tbody>
       </table>
+
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

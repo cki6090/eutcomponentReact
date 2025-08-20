@@ -47,26 +47,28 @@ export default function Layouts() {
   const layoutContent = layoutContents.find((content) => content.title === id);
 
   return (
-    <div className="main-layout">
+    <div className="main-layout layout">
       <LeftMenu title="layouts" menuList={menuList} />
 
       <div className="main-content">
-        <div className="page-title">{layoutContent?.title}</div>
-
-        <div className="image-box">
-          <img src={layoutContent?.image} width="80%" />
-        </div>
-
         <div className="code-box-container">
-          <pre className="code-box">{layoutContent?.code}</pre>
+          {layoutContent && (
+            <div
+              className="component-view"
+              dangerouslySetInnerHTML={{ __html: layoutContent.code }}
+            />
+          )}
+          <div className="code-box-container">
+            <pre className="code-box">{layoutContent?.code}</pre>
 
-          <button
-            className="copy-button"
-            onClick={copyCode}
-            data-name={layoutContent?.title}
-          >
-            코드 소스 복사
-          </button>
+            <button
+              className="copy-button"
+              onClick={copyCode}
+              data-name={layoutContent?.title}
+            >
+              코드 소스 복사
+            </button>
+          </div>
         </div>
       </div>
     </div>

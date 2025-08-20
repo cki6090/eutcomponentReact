@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
       <body className={`${notoSansKR.variable}`}>
         <div className="navbar">
           <Link href="/" className="logo">
-            CLT
+            LOGO
           </Link>
 
           <TopMenu />

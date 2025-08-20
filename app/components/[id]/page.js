@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 
 import Grid from "@/app/components/grid";
 import Table from "@/app/components/table";
-import Button from "@/app/components/button";
+import Chart from "@/app/components/chart";
 
 export default function Components() {
   const [menuList, setMenuList] = useState([]);
@@ -66,9 +66,9 @@ export default function Components() {
   const componentContent = componentContents.find(
     (content) => content.title === id
   );
-  console.log(id);
+
   return (
-    <div className="main-layout">
+    <div className="main-layout component-view">
       <LeftMenu title="components" menuList={menuList} />
 
       <div className="main-content">
@@ -82,6 +82,7 @@ export default function Components() {
         {/* //url에서 각각gird table 일때만 grid.js table.js 파일을 인폴트 해오기 */}
         {id === "grid" && <Grid />}
         {id === "table" && <Table />}
+        {id === "chart" && <Chart />}
 
         <div className="code-box-container">
           <pre className="code-box">{componentContent?.code}</pre>

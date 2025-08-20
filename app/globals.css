@@ -10,16 +10,11 @@ html.dark {
   --grey: #e2e2e2;
   --grey02: #f0f0f0;
 }
-
-html {
-  width: 100%;
-  height: 100%;
-}
-
+html,
 body {
   width: 100%;
   height: 100%;
-  margin: 0 auto;
+  min-height: 100%;
   background-color: var(--white);
 }
 
@@ -92,6 +87,7 @@ a {
   min-height: 77px;
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .search-input {
@@ -161,7 +157,7 @@ a {
 }
 
 .main {
-  height: calc(100% - 50px);
+  min-height: calc(100% - 50px);
   background-color: var(--white);
 }
 
@@ -250,23 +246,13 @@ a {
   animation: slideDown 1s ease-out 0.6s forwards;
 }
 
-.footer {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-  background-color: #33424f;
-}
-
 .navbar {
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px;
   border-bottom: 1px solid var(--grey02);
   height: 50px;
   background-color: var(--white);
@@ -283,6 +269,7 @@ a {
   font-size: 36px;
   font-weight: bold;
   color: var(--black);
+  letter-spacing: -5.3px;
 }
 .nav-icon {
   display: flex;
@@ -317,14 +304,16 @@ a {
   max-width: 1280px;
   margin: 0 auto;
   gap: 0px;
-  height: 100%;
+  min-height: calc(100% - 50px);
 }
-.main-layout .main-content,
+
 .main-layout .left-menu {
   height: 100%;
   padding: 10px 10px;
 }
-
+.main-layout.layout .main-content {
+  background-color: var(--grey02);
+}
 .main-content {
   width: 100%;
   padding: 10px 10px;
@@ -339,6 +328,7 @@ a {
   border-radius: 10px;
   margin: 15px 0px;
   min-height: 80px;
+  border: 1px solid var(--white);
 }
 
 .code-box-container {
@@ -379,6 +369,9 @@ a {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+}
+.left-menu-list ul li:first-child {
+  margin-top: 5px;
 }
 .left-menu-list ul li.on a {
   font-weight: bold;
@@ -428,6 +421,8 @@ a {
   width: 257px;
   height: 170px;
   background-color: #f0f0f0;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -441,12 +436,16 @@ a {
   height: 100%;
 }
 .components-list-title {
-  font-size: 14px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   opacity: 0.3;
+  text-shadow: 0px 0px 8px #000, 0px 0px 6px #000, 0px 0px 4px #000,
+    0px 0px 3px #000, 0px 0px 2px #000, 0px 0px 1px #000;
 }
 
 .table {
@@ -492,22 +491,54 @@ a {
   z-index: 1;
 }
 
-.footer {
+header {
+  width: 100%;
+  min-height: 150px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  border-top: 3px solid var(--grey);
+  background-color: var(--white);
+}
+main {
+  width: 100%;
+  padding: 10px;
+  min-height: 300px;
+  border-radius: 8px;
+  border: 0px solid var(--na-sys-light-outline-variant);
+  background-color: var(--white);
+}
+footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
   background-color: var(--white);
   border-top: 1px solid #c9c9c9;
 }
-.footer-menu {
+footer .footer-menu {
+  width: 100%;
   display: flex;
   align-items: center;
   height: 100%;
 }
-.footer-menu li {
+
+footer .footer-menu ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer .footer-menu li {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.footer-menu li button {
+footer .footer-menu li button {
   padding: 7px 16px;
   font-size: 12px;
   background-color: #33424f;
@@ -687,4 +718,9 @@ a {
   border: 1px solid #dc3545;
   background-color: #dc3545;
   color: #ffffff;
+}
+
+.chart-box-container {
+  display: flex;
+  flex-wrap: wrap;
 }
