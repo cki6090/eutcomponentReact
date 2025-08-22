@@ -69,6 +69,8 @@ export const componentContents = [
             <label>검색</label>
             <img src="/search.svg" alt="search" />
         </div>
+      
+        <button className="button-search">검색</button>
     </div>`,
   },
   {

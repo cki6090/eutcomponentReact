@@ -32,6 +32,13 @@
       "date": "2025-08-21"
     }
   ],
+  "color": [
+    {
+      "id": 0,
+      "content": "color유형을 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
   "chat": [
     {
       "id": 0,
@@ -71,6 +78,9 @@
     "like": 3
   },
   "buttonlike": {
+    "like": 4
+  },
+  "colorlike": {
     "like": 4
   },
   "chatlike": {

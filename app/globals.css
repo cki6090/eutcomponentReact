@@ -2,6 +2,9 @@
   --white: #fff;
   --black: #000;
   --grey: #acacac;
+  --bule: #33424f;
+  --yellow: #ffa500;
+  --red: #ba1a1a;
   --grey02: #f5f5f5;
   --grey03: #e9e7e7;
 }
@@ -9,6 +12,9 @@ html.dark {
   --white: #000a16;
   --black: #fff;
   --grey: #e2e2e2;
+  --bule: #d6d9dc;
+  --yellow: #ffa500;
+  --red: #ffb4ab;
   --grey02: #e9e7e7;
   --grey03: #e9e7e7;
 }
@@ -371,6 +377,7 @@ a {
   border: 1px solid var(--black);
   background-color: var(--white);
   cursor: pointer;
+  color: var(--black);
 }
 
 .left-menu {
@@ -727,30 +734,45 @@ footer .footer-menu li button {
   display: block;
 }
 
+.button-search {
+  padding: 5px 10px;
+  margin-top: 10px;
+  min-width: 80px;
+  height: 35px;
+  border-radius: 50px;
+  border: 1px solid var(--black);
+  color: var(--black);
+  background: transparent;
+  cursor: pointer;
+  border: 1px solid var(--bule);
+  background-color: var(--bule);
+  color: var(--white);
+}
+
 .button-default {
   padding: 5px 10px;
   border-radius: 50px;
-  border: 1px solid #222222;
+  border: 1px solid var(--black);
   color: var(--black);
   background: transparent;
   cursor: pointer;
 }
 
 .button-default.success {
-  border: 1px solid #3f51b5;
-  background-color: #3f51b5;
+  border: 1px solid var(--bule);
+  background-color: var(--bule);
   color: #ffffff;
 }
 
 .button-default.warning {
-  border: 1px solid #ffc107;
-  background-color: #ffc107;
+  border: 1px solid var(--yellow);
+  background-color: var(--yellow);
   color: #ffffff;
 }
 
 .button-default.error {
-  border: 1px solid #dc3545;
-  background-color: #dc3545;
+  border: 1px solid var(--red);
+  background-color: var(--red);
   color: #ffffff;
 }
 

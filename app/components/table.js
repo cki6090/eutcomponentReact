@@ -42,7 +42,7 @@ export default function Table() {
               <span>text</span>
             </th>
             <td>
-              <input type="text" value="text" />
+              <input type="text" defaultValue="text" />
             </td>
 
             <th>
