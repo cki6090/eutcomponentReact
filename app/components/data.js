@@ -96,7 +96,7 @@ export const componentContents = [
     title: "button",
     image: "이미지4",
     code: `
-    div>
+    <div>
         <div className="button-box-title">버튼</div>
         <div className="button-box">
             <button className="button-default">기본 버튼</button>

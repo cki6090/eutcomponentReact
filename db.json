@@ -46,30 +46,26 @@
       "date": "2025-08-21"
     }
   ],
-
   "header": [
     {
       "content": "header 좀 더 추가해주세요",
       "date": "2025-08-21"
     }
   ],
-
   "headerfooter": [
     {
       "content": "footer 좀 더 추가해주세요",
       "date": "2025-08-21"
     }
   ],
-
   "headermain": [
     {
       "content": "main 좀 더 추가해주세요",
       "date": "2025-08-21"
     }
   ],
-
   "searchlike": {
-    "like": 6
+    "like": 7
   },
   "gridlike": {
     "like": 2
