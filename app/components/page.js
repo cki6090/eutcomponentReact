@@ -1,25 +1,16 @@
 "use client";
 import LeftMenu from "@/app/leftMenu";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { menuComponentList } from "@/app/components/data";
 
 export default function Components() {
-  const [menuList, setMenuList] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/menuComponentList").then((res) => {
-      setMenuList(res.data);
-    });
-  }, []);
-
   return (
     <div className="main-layout">
-      <LeftMenu title="components" menuList={menuList} />
+      <LeftMenu title="components" menuList={menuComponentList} />
 
       <div className="main-content">
         <div className="components-list">
-          {menuList.map((menu, index) => (
+          {menuComponentList.map((menu, index) => (
             <div
               key={index}
               style={{

@@ -1,28 +1,27 @@
 "use client";
 import LeftMenu from "@/app/leftMenu";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { menuLayoutList } from "@/app/layouts/data";
 
-export default function Components() {
-  const [layoutList, setLayoutList] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/menuLayoutList").then((res) => {
-      setLayoutList(res.data);
-    });
-  }, []);
-
+export default function Layouts() {
   return (
     <div className="main-layout">
-      <LeftMenu title="layouts" menuList={layoutList} />
+      <LeftMenu title="layouts" menuList={menuLayoutList} />
 
       <div className="main-content">
         <div className="components-list">
-          {layoutList.map((layout, index) => (
-            <div key={index}>
-              <Link href={`/layouts/${layout.link}`}>
-                <div className="components-list-title">{layout.title}</div>
+          {menuLayoutList.map((menu, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundImage: `url(${menu.image})`,
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            >
+              <Link href={`/layouts/${menu.link}`}>
+                <div className="components-list-title">{menu.title}</div>
               </Link>
             </div>
           ))}

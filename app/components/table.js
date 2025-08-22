@@ -49,8 +49,14 @@ export default function Table() {
               <span>checkbox</span>
             </th>
             <td>
-              <input type="checkbox" />
-              체크박스
+              <div className="button-box">
+                <div className="check-box">
+                  <label htmlFor="agree" className="chk_box">
+                    <input type="checkbox" id="agree" />
+                    <span className="on"></span>
+                  </label>
+                </div>
+              </div>
             </td>
 
             <th>
@@ -59,17 +65,12 @@ export default function Table() {
             <td>
               <div className="button-box">
                 <div className="check-box">
-                  <label htmlFor="radio" className="chk_box">
-                    <input type="radio" id="radio" name="radio" />
-                    <span className="on"></span>
-                  </label>
-                </div>
-                <div className="check-box">
                   <label htmlFor="radio2" className="chk_box">
                     <input type="radio" id="radio2" name="radio" />
                     <span className="on"></span>
                   </label>
                 </div>
+
                 <div className="check-box">
                   <label htmlFor="radio3" className="chk_box">
                     <input
@@ -86,7 +87,6 @@ export default function Table() {
                 </div>
               </div>
             </td>
-            
           </tr>
         </tbody>
       </table>

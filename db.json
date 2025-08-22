@@ -1,124 +1,88 @@
 {
-  "menuComponentList": [
+  "search": [
     {
       "id": 0,
-      "title": "검색",
-      "link": "search",
-      "image": "/search.jpg",
-      "like": 6
+      "content": "search검색 좀 더 추가해주세요",
+      "date": "2025-08-21"
     },
     {
-      "id": 1,
-      "title": "그리드",
-      "link": "grid",
-      "image": "/grid.jpg",
-      "like": 2
-    },
-    {
-      "id": 2,
-      "title": "테이블",
-      "link": "table",
-      "image": "/table.jpg",
-      "like": 1
-    },
-    {
-      "id": 3,
-      "title": "버튼",
-      "link": "button",
-      "image": "/button.jpg",
-      "like": 1
-    },
-    {
-      "id": 4,
-      "title": "컬러",
-      "link": "color",
-      "image": "/color.jpg",
-      "like": 1
-    },
-    {
-      "id": 5,
-      "title": "차트",
-      "link": "chart",
-      "image": "/chart.jpg",
-      "like": 1
+      "content": "이건 자주 쓰면 좋겠어요",
+      "date": "2025-08-21",
+      "id": 1
     }
   ],
-  "componentContents": [
+  "grid": [
     {
       "id": 0,
-      "title": "search",
-      "image": "/search.jpg",
-      "code": "<div class=\"search-pnl\">\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>카테고리</label>\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>달력</label>\n    <img src=\"/date.svg\" alt=\"search\" />\n  </div>\n  <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>코드</label>\n    <img src=\"/file.svg\" alt=\"search\" />\n  </div>\n <div class=\"search-input\">\n    <input type=\"text\" />\n    <label>검색</label>\n    <img src=\"/search.svg\" alt=\"search\" />\n  </div>\n</div>"
-    },
-    {
-      "id": 1,
-      "title": "grid",
-      "image": "/grid.png",
-      "code": "<div class=\"main-grid\">\n    <Grid />\n</div>"
-    },
-    {
-      "id": 2,
-      "title": "table",
-      "image": "이미지3",
-      "code": "<div class=\"main-table\">\n   <Table />\n</div>"
-    },
-    {
-      "id": 3,
-      "title": "button",
-      "image": "이미지4",
-      "code": "<div>\n  <div class=\"button-box-title\">버튼</div>\n  <div class=\"button-box\">\n    <button class=\"button-default\">기본 버튼</button>\n    <button class=\"button-default success\">성공 버튼</button>\n    <button class=\"button-default warning\">경고 버튼</button>\n    <button class=\"button-default error\">오류 버튼</button>\n  </div>\n\n  <div class=\"button-box-title\">토글</div>\n  <div class=\"button-box\">\n    <div class=\"toggle-box\">\n      <input type=\"checkbox\" id=\"toggle\" hidden />\n      <label for=\"toggle\" class=\"toggleSwitch\">\n        <span class=\"toggleButton\"></span>\n      </label>\n    </div>\n  </div>\n\n  <div class=\"button-box-title\">체크박스</div>\n  <div class=\"button-box\">\n    <div class=\"check-box\">\n      <label for=\"agree\" class=\"chk_box\">\n        <input type=\"checkbox\" id=\"agree\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"agree2\" class=\"chk_box\">\n        <input type=\"checkbox\" id=\"agree2\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"agree3\" class=\"chk_box\">\n        <input type=\"checkbox\" id=\"agree3\" checked />\n        <span class=\"on\"></span>\n        <span class=\"check-box-text\">이용약관에 동의합니다.</span>\n      </label>\n    </div>\n  </div>\n\n  <div class=\"button-box-title\">라디오</div>\n  <div class=\"button-box\">\n    <div class=\"check-box\">\n      <label for=\"radio\" class=\"chk_box\">\n        <input type=\"radio\" id=\"radio\" name=\"radio\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"radio2\" class=\"chk_box\">\n        <input type=\"radio\" id=\"radio2\" name=\"radio\" />\n        <span class=\"on\"></span>\n      </label>\n    </div>\n    <div class=\"check-box\">\n      <label for=\"radio3\" class=\"chk_box\">\n        <input type=\"radio\" id=\"radio3\" name=\"radio\" checked />\n        <span class=\"on\"></span>\n        <span class=\"check-box-text\">이용약관에 동의합니다.</span>\n      </label>\n    </div>\n  </div>\n</div>"
-    },
-    {
-      "id": 4,
-      "title": "color",
-      "image": "이미지5",
-      "code": "<div class=\"color-box\">\n  <ul class=\"color-list\">\n   <li style=\"background-color: #f5f5f5;\">\n      <p>#f5f5f5</p>\n    </li>\n    <li style=\"background-color: #e5e5e5;\">\n      <p>#e5e5e5</p>\n    </li>\n    <li style=\"background-color: #d5d5d5;\">\n      <p>#d5d5d5</p>\n    </li>\n    <li style=\"background-color: #a3a3a3;\">\n      <p>#a3a3a3</p>\n    </li>\n    <li style=\"background-color: #737373;\">\n      <p>#737373</p>\n    </li>\n    <li style=\"background-color: #525252;\">\n      <p>#525252</p>\n    </li>\n    <li style=\"background-color: #404040;\">\n      <p>#404040</p>\n    </li>\n    <li style=\"background-color: #262626;\">\n      <p>#262626</p>\n    </li>\n </ul>\n</div>"
-    },
-    {
-      "id": 5,
-      "title": "chart",
-      "image": "이미지3",
-      "code": "<div class=\"main-chart\">\n   <Chart />\n</div>"
+      "content": "grid검색 좀 더 추가해주세요",
+      "date": "2025-08-21"
     }
   ],
-  "menuLayoutList": [
+  "table": [
     {
       "id": 0,
-      "title": "검색",
-      "link": "search",
-      "like": 0
-    },
-    {
-      "id": 1,
-      "title": "검색 + 푸터",
-      "link": "search-footer",
-      "like": 0
-    },
-    {
-      "id": 2,
-      "title": "검색 + 콘텐츠",
-      "link": "search-content",
-      "like": 1
+      "content": "table샘플 좀 더 추가해주세요",
+      "date": "2025-08-21"
     }
   ],
-  "layoutContents": [
+  "button": [
     {
       "id": 0,
-      "title": "search",
-      "image": "이미지1",
-      "code": "<header>헤더</header>\n "
-    },
-    {
-      "id": 1,
-      "title": "search-footer",
-      "image": "이미지2",
-      "code": "<header>헤더</header>\n<footer>\n    <div class=\"footer-menu\">\n      <ul>\n        <li>\n          <button>버튼1</button>\n          <button>버튼2</button>\n        </li>\n        <li>\n          <button>버튼1</button>\n          <button>버튼2</button>\n        </li>\n      </ul>\n    </div>\n</footer>"
-    },
-    {
-      "id": 2,
-      "title": "search-content",
-      "image": "이미지3",
-      "code": "<header>헤더</header>\n<main>메인</main>\n"
+      "content": "button유형을 좀 더 추가해주세요",
+      "date": "2025-08-21"
     }
-  ]
+  ],
+  "chat": [
+    {
+      "id": 0,
+      "content": "chat 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
+
+  "header": [
+    {
+      "content": "header 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
+
+  "headerfooter": [
+    {
+      "content": "footer 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
+
+  "headermain": [
+    {
+      "content": "main 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
+
+  "searchlike": {
+    "like": 6
+  },
+  "gridlike": {
+    "like": 2
+  },
+  "tablelike": {
+    "like": 3
+  },
+  "buttonlike": {
+    "like": 4
+  },
+  "chatlike": {
+    "like": 5
+  },
+  "headerlike": {
+    "like": 7
+  },
+  "headerfooterlike": {
+    "like": 2
+  },
+  "headermainlike": {
+    "like": 1
+  }
 }

@@ -8,11 +8,10 @@ export default function Home() {
           <span>Component Page</span>
         </h1>
         <p>
-          This page is a service that helps anyone create a homepage easily and{" "}
+          Technology stack <br></br>
+          React, Next.js, TypeScript, CSS
           <br></br>
-          quickly. With an intuitive interface, you can immediately implement{" "}
-          <br></br>
-          the design you want.
+          json-server, axios, recharts
         </p>
       </div>
 

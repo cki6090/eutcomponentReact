@@ -28,9 +28,7 @@ export default function LeftMenu(props) {
               className={selectedIndex === index ? "on" : ""}
               onClick={() => setSelectedIndex(index)}
             >
-              <Link href={`/${props.title}/${menu.link}`}>
-                {menu.title} <span> 📋{menu.like}</span>
-              </Link>
+              <Link href={`/${props.title}/${menu.link}`}>{menu.title}</Link>
             </li>
           ))}
         </ul>
