@@ -25,7 +25,12 @@ export default function LeftMenu(props) {
           {menuList.map((menu, index) => (
             <li
               key={index}
-              className={selectedIndex === index ? "on" : ""}
+              className={
+                selectedIndex === index &&
+                pathname === `/${props.title}/${menu.link}`
+                  ? "on"
+                  : ""
+              }
               onClick={() => setSelectedIndex(index)}
             >
               <Link href={`/${props.title}/${menu.link}`}>{menu.title}</Link>
