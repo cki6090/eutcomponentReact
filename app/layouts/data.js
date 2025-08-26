@@ -20,6 +20,13 @@ export const menuLayoutList = [
     image: "/header-main.jpg",
     like: 1,
   },
+  {
+    id: 3,
+    title: "해더 + 메인 + 푸터",
+    link: "headermainfooter",
+    image: "/header-main-footer.jpg",
+    like: 1,
+  },
 ];
 
 export const layoutContents = [
@@ -58,6 +65,15 @@ export const layoutContents = [
   {
     id: 2,
     title: "headermain",
+    image: "이미지3",
+    code: `
+    <header></header>
+    <main></main>
+    `,
+  },
+  {
+    id: 3,
+    title: "headermainfooter",
     image: "이미지3",
     code: `
     <header></header>

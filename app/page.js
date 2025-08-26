@@ -11,7 +11,7 @@ export default function Home() {
           Technology stack <br></br>
           React, Next.js, TypeScript, CSS
           <br></br>
-          json-server, axios, recharts
+          NextAuth.js, json-server, axios, recharts,
         </p>
       </div>
 

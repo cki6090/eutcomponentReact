@@ -309,6 +309,7 @@ a {
   gap: 10px;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 .nav-icon a {
   color: var(--black);
@@ -324,6 +325,38 @@ a {
   border-radius: 50%;
 }
 
+.login-btn {
+  position: relative;
+}
+.login-btn:hover .login-info {
+  display: block;
+}
+.login-btn .login-info {
+  display: none;
+  width: 300px;
+  overflow: auto;
+  background: var(--white);
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid var(--bule);
+  position: absolute;
+  top: 46px;
+  right: -12px;
+  z-index: 99;
+}
+
+.login-btn .login-info > div {
+  /* 자동 줄바꿈 */
+  word-wrap: break-word;
+  color: var(--black);
+}
+.login-btn > button {
+  background-color: transparent;
+  color: var(--black);
+  padding: 15px 0px;
+  border: 0px;
+  cursor: pointer;
+}
 .top-menu .top-menu-list a {
   font-size: 16px;
   padding: 0px 10px;
@@ -423,31 +456,19 @@ a {
   display: flex;
   align-items: center;
   gap: 5px;
+  width: 100%;
 }
 .left-menu-list ul li:hover a {
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .left-menu-list ul li:hover:after {
   content: "👻";
   display: block;
-  position: absolute;
-  top: 5px;
-  right: 0px;
   z-index: 10;
   padding-left: 10px;
   background-color: var(--white);
-}
-.left-menu-list ul li:hover::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 14px;
-  left: 10%;
-  width: 90%;
-  height: 10px;
-  border-top: 1px dotted var(--grey);
-  z-index: 5;
 }
 
 .components-list {
@@ -544,7 +565,7 @@ main {
   width: 100%;
   padding: 10px;
   min-height: 300px;
-  border-radius: 8px;
+  border-radius: 8px 8px 0px 0px;
   border: 0px solid var(--na-sys-light-outline-variant);
   background-color: var(--white);
 }

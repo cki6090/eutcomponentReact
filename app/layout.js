@@ -2,8 +2,10 @@ import Link from "next/link";
 
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
+import Providers from "./providers";
 import DarkLightMode from "./darkLightMode";
 import TopMenu from "./topMenu";
+import LoginBtn from "./loginbtn";
 
 const notoSansKR = Noto_Sans_KR({
   variable: "--font-geist-sans",
@@ -11,7 +13,7 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata = {
-  title: "EUT",
+  title: "EUT Component Page",
   description: "EUT Component Page",
 };
 
@@ -19,20 +21,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${notoSansKR.variable}`}>
-        <div className="navbar">
-          <Link href="/" className="logo">
-            LOGO
-          </Link>
+        <Providers>
+          <div className="navbar">
+            <Link href="/" className="logo">
+              LOGO
+            </Link>
 
-          <TopMenu />
+            <TopMenu />
 
-          <div className="nav-icon">
-            <DarkLightMode />
-            <Link href="/login">Login</Link>
+            <div className="nav-icon">
+              <DarkLightMode />
+              <LoginBtn />
+            </div>
           </div>
-        </div>
 
-        {children}
+          {children}
+        </Providers>
       </body>
     </html>
   );

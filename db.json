@@ -2,13 +2,8 @@
   "search": [
     {
       "id": 0,
-      "content": "search검색 좀 더 추가해주세요",
+      "content": "데이터 아이콘도 추가해주세요",
       "date": "2025-08-21"
-    },
-    {
-      "content": "이건 자주 쓰면 좋겠어요",
-      "date": "2025-08-21",
-      "id": 1
     }
   ],
   "grid": [
@@ -54,13 +49,19 @@
   ],
   "headerfooter": [
     {
-      "content": "footer 좀 더 추가해주세요",
+      "content": "headerfooter 좀 더 추가해주세요",
       "date": "2025-08-21"
     }
   ],
   "headermain": [
     {
-      "content": "main 좀 더 추가해주세요",
+      "content": "headermain 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
+  "headermainfooter": [
+    {
+      "content": "headermainfooter 좀 더 추가해주세요",
       "date": "2025-08-21"
     }
   ],
@@ -89,6 +90,9 @@
     "like": 2
   },
   "headermainlike": {
+    "like": 1
+  },
+  "headermainfooterlike": {
     "like": 1
   }
 }
