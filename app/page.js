@@ -25,6 +25,7 @@ export default function Home() {
           </li>
           <li>
             <img src="/indeximg3.jpg" className="indeximg3" />
+            <img src="/indeximg3.jpg" className="indeximg3" />
           </li>
         </ul>
       </div>
