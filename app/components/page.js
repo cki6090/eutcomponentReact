@@ -1,7 +1,7 @@
 "use client";
-import LeftMenu from "@/app/leftMenu";
+import LeftMenu from "../leftMenu";
 import Link from "next/link";
-import { menuComponentList } from "@/app/components/data";
+import { menuComponentList } from "./data";
 
 export default function Components() {
   return (

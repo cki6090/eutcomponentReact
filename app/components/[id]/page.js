@@ -1,13 +1,13 @@
 "use client";
-import LeftMenu from "@/app/leftMenu";
+import LeftMenu from "../../leftMenu";
 import { useParams } from "next/navigation";
-import { menuComponentList, componentContents } from "@/app/components/data";
+import { menuComponentList, componentContents } from "../../components/data";
 
-import Grid from "@/app/components/grid";
-import Table from "@/app/components/table";
-import Chart from "@/app/components/chart";
-import Comment from "@/app/comment";
-import CopyButton from "@/app/codecopy";
+import Grid from "../../components/grid";
+import Table from "../../components/table";
+import Chart from "../../components/chart";
+import Comment from "../../comment";
+import CopyButton from "../../codecopy";
 
 export default function Components() {
   const { id } = useParams();

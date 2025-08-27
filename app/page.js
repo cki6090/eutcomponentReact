@@ -8,10 +8,10 @@ export default function Home() {
           <span>Component Page</span>
         </h1>
         <p>
-          Technology stack <br></br>
+          TECHNOLOGY STACK <br></br>
           React, Next.js, TypeScript, CSS
           <br></br>
-          NextAuth.js, json-server, axios, recharts,
+          NextAuth.js, json-server, axios, recharts
         </p>
       </div>
 

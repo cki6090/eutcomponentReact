@@ -1,10 +1,10 @@
 "use client";
-import LeftMenu from "@/app/leftMenu";
+import LeftMenu from "../../leftMenu";
 import { useParams } from "next/navigation";
-import { menuLayoutList, layoutContents } from "@/app/layouts/data";
+import { menuLayoutList, layoutContents } from "../../layouts/data";
 
-import Comment from "@/app/comment";
-import CopyButton from "@/app/codecopy";
+import Comment from "../../comment";
+import CopyButton from "../../codecopy";
 
 export default function Components() {
   const { id } = useParams();

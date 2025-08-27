@@ -10,21 +10,21 @@ export const menuLayoutList = [
     id: 1,
     title: "해더 + 푸터",
     link: "headerfooter",
-    image: "/header-footer.jpg",
+    image: "/headerfooter.jpg",
     like: 2,
   },
   {
     id: 2,
     title: "해더 + 메인",
     link: "headermain",
-    image: "/header-main.jpg",
+    image: "/headermain.jpg",
     like: 1,
   },
   {
     id: 3,
     title: "해더 + 메인 + 푸터",
     link: "headermainfooter",
-    image: "/header-main-footer.jpg",
+    image: "/headermainfooter.jpg",
     like: 1,
   },
 ];
@@ -33,7 +33,6 @@ export const layoutContents = [
   {
     id: 0,
     title: "header",
-    image: "/header.jpg",
     code: `
     <header></header>
     `,
@@ -41,7 +40,6 @@ export const layoutContents = [
   {
     id: 1,
     title: "headerfooter",
-    image: "/grid.png",
     code: `
     <header></header>
     <footer>
@@ -65,7 +63,6 @@ export const layoutContents = [
   {
     id: 2,
     title: "headermain",
-    image: "이미지3",
     code: `
     <header></header>
     <main></main>
@@ -74,7 +71,6 @@ export const layoutContents = [
   {
     id: 3,
     title: "headermainfooter",
-    image: "이미지3",
     code: `
     <header></header>
     <main></main>

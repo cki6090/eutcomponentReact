@@ -1,7 +1,7 @@
 "use client";
-import LeftMenu from "@/app/leftMenu";
+import LeftMenu from "../leftMenu";
 import Link from "next/link";
-import { menuLayoutList } from "@/app/layouts/data";
+import { menuLayoutList } from "./data";
 
 export default function Layouts() {
   return (
