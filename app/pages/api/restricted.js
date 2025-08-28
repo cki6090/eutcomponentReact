@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./auth/[...nextauth]";
 
+// 로그인 후 접근 가능한 페이지
 export default async (req, res) => {
   const session = await getServerSession(req, res, authOptions);
 

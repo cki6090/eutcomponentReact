@@ -495,6 +495,10 @@ a {
   font-weight: bold;
   position: relative;
   cursor: pointer;
+
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+  animation-delay: calc(var(--time) * 0.2s);
 }
 .components-list > div > a {
   width: 100%;
@@ -837,4 +841,78 @@ footer .footer-menu li button {
 .comment-input-box input {
   padding: 5px 10px;
   flex: 1;
+}
+
+/* 탭 */
+.QnA-tab {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.QnA-tab > div {
+  font-size: 16px;
+  font-weight: 500;
+}
+.QnA-tab > div.on {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.QnA-list-content-item {
+  border-radius: 5px;
+  background-color: var(--grey02);
+  padding: 20px;
+  margin-bottom: 10px;
+
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 0.5s forwards;
+  animation-delay: calc(var(--time) * 0.2s);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.QnA-list-content-item .QnA-list-content-title {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.QnA-list-content-item .QnA-list-content-content {
+}
+
+.QnA-form-box {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.QnA-form-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.QnA-form-box .QnA-form-input input {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.QnA-form-box .QnA-form-textarea textarea {
+  font-size: 15px;
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+}
+
+.QnA-form-button {
+  padding: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }

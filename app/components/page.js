@@ -18,6 +18,7 @@ export default function Components() {
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
+                "--time": index,
               }}
             >
               <Link href={`/components/${menu.link}`}>

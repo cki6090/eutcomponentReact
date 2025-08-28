@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Comment({ url }) {
   const [commentList, setCommentList] = useState([]);
   const [comment, setComment] = useState("");
+
   // useEffect가 handleSubmit가 실행될때도 한번 실행하기
   useEffect(() => {
     const fetchMenuList = async () => {
@@ -20,8 +21,8 @@ export default function Comment({ url }) {
       alert("댓글을 입력해주세요.");
       return;
     } else {
-      const res = fetch(`http://localhost:3001/${id}`, {
-        method: "PATCH",
+      const res = fetch(`http://localhost:3001/${url}`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
