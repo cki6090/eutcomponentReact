@@ -266,7 +266,6 @@ a {
 }
 
 .indeximg1 {
-  padding-top: 0px;
   animation: slideDown 1s ease-out 0.6s forwards;
 }
 
@@ -275,7 +274,6 @@ a {
 }
 
 .indeximg3 {
-  padding-top: 0px;
   animation: slideDown 1s ease-out 0.6s forwards;
 }
 
@@ -381,11 +379,11 @@ a {
 }
 .main-layout.layout .main-content {
   background-color: var(--grey03);
-  border-left: 1px solid var(--grey02);
 }
 .main-content {
   width: 100%;
   padding: 10px 10px;
+  border-left: 1px solid var(--grey02);
 }
 .main-content .image-box img {
   border: 1px solid var(--grey02);
@@ -855,17 +853,17 @@ footer .footer-menu li button {
 .QnA-tab > div {
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 }
 .QnA-tab > div.on {
   text-decoration: underline;
   text-underline-offset: 4px;
-  cursor: pointer;
 }
 
 .QnA-list-content-item {
   border-radius: 5px;
   background-color: var(--grey02);
-  padding: 20px;
+  padding: 15px;
   margin-bottom: 10px;
 
   opacity: 0;
@@ -883,14 +881,22 @@ footer .footer-menu li button {
 
 .QnA-list-content-item .QnA-list-content-title {
   font-size: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  font-weight: 600;
 }
+
+.QnA-list-content-item .QnA-list-content-title .QnA-list-content-date {
+  margin-left: auto;
+}
+
 .QnA-list-content-item .QnA-list-content-content {
+  font-size: 14px;
 }
 
 .QnA-form-box {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 .QnA-form-title {
   font-size: 18px;
@@ -901,7 +907,7 @@ footer .footer-menu li button {
   width: 100%;
   font-size: 14px;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .QnA-form-box .QnA-form-textarea textarea {
   font-size: 15px;

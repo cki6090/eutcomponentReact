@@ -11,20 +11,6 @@
       "id": 1
     }
   ],
-  "grid": [
-    {
-      "id": 0,
-      "content": "grid검색 좀 더 추가해주세요",
-      "date": "2025-08-21"
-    }
-  ],
-  "table": [
-    {
-      "id": 0,
-      "content": "table샘플 좀 더 추가해주세요",
-      "date": "2025-08-21"
-    }
-  ],
   "button": [
     {
       "id": 0,
@@ -39,10 +25,24 @@
       "date": "2025-08-21"
     }
   ],
-  "chat": [
+  "chart": [
     {
       "id": 0,
       "content": "chat 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
+  "grid": [
+    {
+      "id": 0,
+      "content": "grid검색 좀 더 추가해주세요",
+      "date": "2025-08-21"
+    }
+  ],
+  "table": [
+    {
+      "id": 0,
+      "content": "table샘플 좀 더 추가해주세요",
       "date": "2025-08-21"
     }
   ],
@@ -73,20 +73,20 @@
   "searchlike": {
     "like": 7
   },
-  "gridlike": {
-    "like": 2
-  },
-  "tablelike": {
-    "like": 3
-  },
   "buttonlike": {
     "like": 4
   },
   "colorlike": {
     "like": 4
   },
-  "chatlike": {
+  "chartlike": {
     "like": 5
+  },
+  "gridlike": {
+    "like": 2
+  },
+  "tablelike": {
+    "like": 3
   },
   "headerlike": {
     "like": 7
@@ -103,24 +103,17 @@
   "QnA": [
     {
       "id": 0,
-      "title": "디비에서 내려오는 QnA 제목",
-      "content": "디비에서 내려오는 QnA 내용",
+      "title": "디비에서 내려오는 QnA 질문 제목",
+      "content": "디비에서 내려오는 QnA 질문 내용",
       "date": "2025-08-21",
-      "answer": "디비에서 내려오는 QnA 답변"
+      "answer": "질문 답변 내용"
     },
     {
-      "title": "123213",
-      "content": "123123",
+      "title": "소스복사",
+      "content": "html 적용하는 방법을 모르겠어요",
       "date": "2025-08-28",
       "answer": "",
       "id": 1
-    },
-    {
-      "title": "123123123",
-      "content": "123123123",
-      "date": "2025-08-28",
-      "answer": "",
-      "id": 2
     }
   ]
 }

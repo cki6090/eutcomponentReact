@@ -21,7 +21,7 @@ export default function TopMenu() {
           Layouts
         </Link>
         <Link href="/QnA" className={pathname.startsWith("/QnA") ? "on" : ""}>
-          Q&A센터
+          Contact us
         </Link>
       </div>
     </div>

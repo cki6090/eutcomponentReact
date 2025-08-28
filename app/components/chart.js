@@ -61,7 +61,7 @@ const data = [
 
 export default function Chart() {
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="400px">
       <div className="chart-box-container">
         <div className="chart-box">
           <LineChart

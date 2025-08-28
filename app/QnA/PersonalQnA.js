@@ -50,7 +50,7 @@ export default function PersonalQnA() {
 
   return (
     <div className="QnA-form">
-      <div className="QnA-form-title">✅ 1:1 문의하기</div>
+      <div className="QnA-form-title">🤔 1:1 문의하기</div>
 
       <div className="QnA-form-box">
         <div className="QnA-form-input">
@@ -87,9 +87,10 @@ export default function PersonalQnA() {
         {QnAList.map((item, index) => (
           <div className="QnA-list-content-item" key={index}>
             <div className="QnA-list-content-title">
-              {item.title} 📅 {item.date}
+              {item.title}{" "}
+              <div className="QnA-list-content-date">📅 {item.date}</div>
             </div>
-            <div className="QnA-list-content-content">➡️ {item.content}</div>
+            <div className="QnA-list-content-content">⁉️ {item.content}</div>
             <div className="QnA-list-content-answer">
               {item.answer
                 ? `✅ ${item.answer}`

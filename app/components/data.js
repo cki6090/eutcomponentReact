@@ -8,37 +8,37 @@ export const menuComponentList = [
   },
   {
     id: 1,
-    title: "그리드",
-    link: "grid",
-    image: "/grid.jpg",
-    like: 2,
-  },
-  {
-    id: 2,
-    title: "테이블",
-    link: "table",
-    image: "/table.jpg",
-    like: 1,
-  },
-  {
-    id: 3,
     title: "버튼",
     link: "button",
     image: "/button.jpg",
     like: 1,
   },
   {
-    id: 4,
+    id: 2,
     title: "컬러",
     link: "color",
     image: "/color.jpg",
     like: 1,
   },
   {
-    id: 5,
+    id: 3,
     title: "차트",
     link: "chart",
     image: "/chart.jpg",
+    like: 1,
+  },
+  {
+    id: 4,
+    title: "그리드",
+    link: "grid",
+    image: "/grid.jpg",
+    like: 2,
+  },
+  {
+    id: 5,
+    title: "테이블",
+    link: "table",
+    image: "/table.jpg",
     like: 1,
   },
 ];
@@ -75,24 +75,6 @@ export const componentContents = [
   },
   {
     id: 1,
-    title: "grid",
-    image: "/grid.png",
-    code: `
-    <div className="main-grid">
-        <Grid/>
-    </div>`,
-  },
-  {
-    id: 2,
-    title: "table",
-    image: "이미지3",
-    code: `
-    <div className="main-table">
-        <Table />
-    </div>`,
-  },
-  {
-    id: 3,
     title: "button",
     image: "이미지4",
     code: `
@@ -165,7 +147,7 @@ export const componentContents = [
     </div>`,
   },
   {
-    id: 4,
+    id: 2,
     title: "color",
     image: "이미지5",
     code: `
@@ -198,14 +180,31 @@ export const componentContents = [
         </ul>
     </div>`,
   },
-
   {
-    id: 5,
+    id: 3,
     title: "chart",
     image: "이미지3",
     code: `
     <div className="main-chart">
         <Chart />
+    </div>`,
+  },
+  {
+    id: 4,
+    title: "grid",
+    image: "/grid.png",
+    code: `
+    <div className="main-grid">
+        <Grid/>
+    </div>`,
+  },
+  {
+    id: 5,
+    title: "table",
+    image: "이미지3",
+    code: `
+    <div className="main-table">
+        <Table />
     </div>`,
   },
 ];
