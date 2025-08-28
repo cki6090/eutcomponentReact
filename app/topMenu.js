@@ -12,16 +12,25 @@ export default function TopMenu() {
           href="/components"
           className={pathname.startsWith("/components") ? "on" : ""}
         >
-          Components
+          <div className="title-box">
+            <div className="titleEng">Components</div>
+            <div className="titleKor">컴포넌트</div>
+          </div>
         </Link>
         <Link
           href="/layouts"
           className={pathname.startsWith("/layouts") ? "on" : ""}
         >
-          Layouts
+          <div className="title-box">
+            <div className="titleEng">Layouts</div>
+            <div className="titleKor">레이아웃</div>
+          </div>
         </Link>
         <Link href="/QnA" className={pathname.startsWith("/QnA") ? "on" : ""}>
-          Contact us
+          <div className="title-box">
+            <div className="titleEng">Contact us</div>
+            <div className="titleKor">문의하기</div>
+          </div>
         </Link>
       </div>
     </div>
