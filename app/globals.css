@@ -374,6 +374,7 @@ a {
   font-size: 16px;
   padding: 0px 10px;
   color: var(--black);
+  font-weight: 600;
 }
 .top-menu .top-menu-list a.on > .title-box > div {
   font-weight: bold;
@@ -481,6 +482,7 @@ a {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
+
 .left-menu-list ul li a {
   text-decoration: none;
   color: var(--black);
@@ -496,10 +498,12 @@ a {
 .left-menu-list ul li:hover a {
   font-weight: bold;
   text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
+.left-menu-list ul li.on:after,
 .left-menu-list ul li:hover:after {
-  content: "👻";
+  content: "❣️";
   display: block;
   z-index: 10;
   padding-left: 10px;
@@ -535,6 +539,7 @@ a {
   width: 100%;
   height: 100%;
 }
+
 .components-list-title {
   color: #ffffff;
   font-size: 12px;
@@ -543,8 +548,24 @@ a {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  text-shadow: 0px 0px 10px #252525, 0px 0px 8px #252525, 0px 0px 6px #252525,
-    0px 0px 4px #252525, 0px 0px 2px #252525, 0px 0px 2px #252525;
+  opacity: 0;
+  animation: textshadow 1s forwards;
+  animation-delay: calc(var(--time) * 0.2s);
+}
+
+@keyframes textshadow {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0px 0px 0px #252525;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0px 0px 10px #252525, 0px 0px 8px #252525, 0px 0px 6px #252525,
+      0px 0px 4px #252525, 0px 0px 2px #252525;
+  }
 }
 
 .table {
@@ -959,13 +980,14 @@ footer .footer-menu li button {
 .ai-box {
   width: 450px;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 .ai-box .ai-box-title {
   position: relative;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 .ai-box .ai-box-title h2 {
   font-size: 20px;
@@ -975,21 +997,24 @@ footer .footer-menu li button {
   flex-basis: 30px;
   position: relative;
   text-align: center;
+  color: var(--black);
 }
+
 .ai-box .ai-box-title h2:hover::after {
   content: "💭";
   position: absolute;
-  top: -17px;
-  right: -19px;
+  top: -20px;
+  right: -20px;
+  text-shadow: 0px 0px 10px var(--black);
 }
 .ai-box .ai-box-title .ai-box-input {
   width: 100%;
 }
 .ai-box .ai-box-title .ai-box-input input {
   width: 100%;
-  height: 35px;
+  height: 30px;
   border-radius: 0px;
-  padding: 0px 10px;
+  padding: 0px 5px;
   font-weight: bold;
   border: 1px solid var(--grey);
   border: 0px;
@@ -1000,6 +1025,7 @@ footer .footer-menu li button {
   border-bottom: 2px solid var(--black);
   outline: none;
 }
+
 .ai-box .ai-box-title .ai-box-input input::placeholder {
   color: var(--grey);
 }

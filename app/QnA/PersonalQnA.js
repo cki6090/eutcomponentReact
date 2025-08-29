@@ -85,7 +85,11 @@ export default function PersonalQnA() {
 
       <div className="QnA-list-content">
         {QnAList.map((item, index) => (
-          <div className="QnA-list-content-item" key={index}>
+          <div
+            className="QnA-list-content-item"
+            key={index}
+            style={{ "--time": index }}
+          >
             <div className="QnA-list-content-title">
               {item.title}{" "}
               <div className="QnA-list-content-date">📅 {item.date}</div>
