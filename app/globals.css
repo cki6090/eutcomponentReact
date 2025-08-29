@@ -559,12 +559,12 @@ a {
   }
   50% {
     opacity: 1;
-    text-shadow: 0px 0px 0px #252525;
+    text-shadow: 0px 0px 0px #8a8a8a;
   }
   100% {
     opacity: 1;
-    text-shadow: 0px 0px 10px #252525, 0px 0px 8px #252525, 0px 0px 6px #252525,
-      0px 0px 4px #252525, 0px 0px 2px #252525;
+    text-shadow: 0px 0px 10px #3d3d3d, 0px 0px 8px #3d3d3d, 0px 0px 6px #3d3d3d,
+      0px 0px 4px #3d3d3d, 0px 0px 2px #3d3d3d;
   }
 }
 
@@ -998,14 +998,33 @@ footer .footer-menu li button {
   position: relative;
   text-align: center;
   color: var(--black);
+  background-color: transparent;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0); /* 초기 그림자 없음 */
+  transform-style: preserve-3d;
+  animation: fullAnim 1.5s ease forwards;
+  animation-delay: 3s;
+}
+
+@keyframes fullAnim {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+    text-shadow: 0 0 17px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .ai-box .ai-box-title h2:hover::after {
   content: "💭";
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: -15px;
+  right: -12px;
   text-shadow: 0px 0px 10px var(--black);
+  font-size: 14px;
 }
 .ai-box .ai-box-title .ai-box-input {
   width: 100%;
