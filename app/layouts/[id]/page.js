@@ -26,7 +26,7 @@ export default function Components() {
 
         <div className="code-box-container">
           <pre className="code-box">{layoutContent.code}</pre>
-          <CopyButton code={layoutContent.code} />
+          <CopyButton code={layoutContent.code} id={id} />
         </div>
 
         <Comment url={id} />
