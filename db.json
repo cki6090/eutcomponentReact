@@ -52,6 +52,11 @@
       "id": 0,
       "content": "grid검색 좀 더 추가해주세요",
       "date": "2025-08-21"
+    },
+    {
+      "content": "123",
+      "date": "2025-09-02",
+      "id": 1
     }
   ],
   "table": [
@@ -86,7 +91,7 @@
     }
   ],
   "searchlike": {
-    "like": 7
+    "like": 103
   },
   "buttonlike": {
     "like": 4

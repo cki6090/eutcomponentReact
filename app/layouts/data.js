@@ -4,28 +4,24 @@ export const menuLayoutList = [
     title: "해더",
     link: "header",
     image: "/header.jpg",
-    like: 7,
   },
   {
     id: 1,
     title: "해더 + 푸터",
     link: "headerfooter",
     image: "/headerfooter.jpg",
-    like: 2,
   },
   {
     id: 2,
     title: "해더 + 메인",
     link: "headermain",
     image: "/headermain.jpg",
-    like: 1,
   },
   {
     id: 3,
     title: "해더 + 메인 + 푸터",
     link: "headermainfooter",
     image: "/headermainfooter.jpg",
-    like: 1,
   },
 ];
 
@@ -33,6 +29,7 @@ export const layoutContents = [
   {
     id: 0,
     title: "header",
+    like: 15,
     code: `
     <header></header>
     `,
@@ -40,6 +37,7 @@ export const layoutContents = [
   {
     id: 1,
     title: "headerfooter",
+    like: 2,
     code: `
     <header></header>
     <footer>
@@ -63,6 +61,7 @@ export const layoutContents = [
   {
     id: 2,
     title: "headermain",
+    like: 2,
     code: `
     <header></header>
     <main></main>
@@ -71,6 +70,7 @@ export const layoutContents = [
   {
     id: 3,
     title: "headermainfooter",
+    like: 3,
     code: `
     <header></header>
     <main></main>
@@ -78,3 +78,30 @@ export const layoutContents = [
     `,
   },
 ];
+
+export const comment = {
+  header: [
+    {
+      content: "header 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+  ],
+  headerfooter: [
+    {
+      content: "headerfooter 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+  ],
+  headermain: [
+    {
+      content: "headermain 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+  ],
+  headermainfooter: [
+    {
+      content: "headermainfooter 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+  ],
+};

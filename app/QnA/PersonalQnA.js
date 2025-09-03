@@ -1,39 +1,31 @@
 "use client";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { ContactUs } from "./data";
 
 export default function PersonalQnA() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [QnAList, setQnAList] = useState([]);
+  const [QnAList, setQnAList] = useState(ContactUs);
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchMenuList = async () => {
-      const response = await axios.get(`http://localhost:3001/QnA`);
-      setQnAList(response.data);
-    };
-    fetchMenuList();
-  }, [loading]);
+  // useEffect 제거 - 더 이상 API 호출이 필요하지 않음
 
   const handleSubmit = () => {
     if (!title.trim() || !content.trim()) {
       alert("제목과 내용을 입력해주세요.");
       return;
     } else {
-      const res = fetch(`http://localhost:3001/QnA`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: title,
-          content: content,
-          date: new Date().toISOString().slice(0, 10),
-          answer: answer,
-        }),
-      });
+      // 새로운 QnA 항목을 로컬 상태에 추가
+      const newQnA = {
+        id: QnAList.length,
+        title: title,
+        content: content,
+        date: new Date().toISOString().slice(0, 10),
+        answer: answer,
+      };
+
+      setQnAList([...QnAList, newQnA]);
 
       //초기화 부분
       setTitle("");

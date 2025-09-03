@@ -25,3 +25,20 @@ export const QnAList = [
       "네, 비회원도 주문이 가능하지만, 주문 내역 확인 및 다양한 혜택을 받으시려면 회원가입을 추천드립니다.",
   },
 ];
+
+export const ContactUs = [
+  {
+    id: 0,
+    title: "디비에서 내려오는 QnA 질문 제목",
+    content: "디비에서 내려오는 QnA 질문 내용",
+    date: "2025-08-21",
+    answer: "질문 답변 내용",
+  },
+  {
+    title: "소스복사",
+    content: "html 적용하는 방법을 모르겠어요",
+    date: "2025-08-28",
+    answer: "",
+    id: 1,
+  },
+];

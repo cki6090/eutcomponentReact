@@ -4,42 +4,36 @@ export const menuComponentList = [
     title: "검색",
     link: "search",
     image: "/search.jpg",
-    like: 7,
   },
   {
     id: 1,
     title: "버튼",
     link: "button",
     image: "/button.jpg",
-    like: 1,
   },
   {
     id: 2,
     title: "컬러",
     link: "color",
     image: "/color.jpg",
-    like: 1,
   },
   {
     id: 3,
     title: "차트",
     link: "chart",
     image: "/chart.jpg",
-    like: 1,
   },
   {
     id: 4,
     title: "그리드",
     link: "grid",
     image: "/grid.jpg",
-    like: 2,
   },
   {
     id: 5,
     title: "테이블",
     link: "table",
     image: "/table.jpg",
-    like: 1,
   },
 ];
 
@@ -48,6 +42,7 @@ export const componentContents = [
     id: 0,
     title: "search",
     image: "/search.jpg",
+    like: 10,
     code: `
     <div className="search-pnl">
         <div className="search-input">
@@ -77,6 +72,7 @@ export const componentContents = [
     id: 1,
     title: "button",
     image: "이미지4",
+    like: 2,
     code: `
     <div>
         <div className="button-box-title">버튼</div>
@@ -150,6 +146,7 @@ export const componentContents = [
     id: 2,
     title: "color",
     image: "이미지5",
+    like: 3,
     code: `
     <div className="color-box">
         <ul className="color-list">
@@ -184,6 +181,7 @@ export const componentContents = [
     id: 3,
     title: "chart",
     image: "이미지3",
+    like: 4,
     code: `
     <div className="main-chart">
         <Chart />
@@ -193,6 +191,7 @@ export const componentContents = [
     id: 4,
     title: "grid",
     image: "/grid.png",
+    like: 5,
     code: `
     <div className="main-grid">
         <Grid/>
@@ -202,9 +201,70 @@ export const componentContents = [
     id: 5,
     title: "table",
     image: "이미지3",
+    like: 5,
     code: `
     <div className="main-table">
         <Table />
     </div>`,
   },
 ];
+
+export const comment = {
+  search: [
+    {
+      id: 0,
+      content: "데이터 아이콘도 추가해주세요",
+      date: "2025-08-21",
+    },
+    {
+      id: 1,
+      content: "다른 것도 추가해 주면 좋을 거 같아요",
+      date: "2025-08-28",
+    },
+  ],
+  button: [
+    {
+      id: 0,
+      content: "button유형을 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+    {
+      id: 1,
+      content: "버트 필요해",
+      date: "2025-09-02",
+    },
+  ],
+  color: [
+    {
+      id: 0,
+      content: "color유형을 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+    {
+      id: 1,
+      content: "밝은 컬러도 추가해주세요",
+      date: "2025-08-29",
+    },
+  ],
+  chart: [
+    {
+      id: 0,
+      content: "chat 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+  ],
+  grid: [
+    {
+      id: 0,
+      content: "grid검색 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+  ],
+  table: [
+    {
+      id: 0,
+      content: "table샘플 좀 더 추가해주세요",
+      date: "2025-08-21",
+    },
+  ],
+};

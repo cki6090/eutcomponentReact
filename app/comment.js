@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { comment as componentComments } from "./components/data.js";
+import { comment as layoutComments } from "./layouts/data.js";
 
 export default function Comment({ url }) {
   const [commentList, setCommentList] = useState([]);
@@ -9,32 +10,45 @@ export default function Comment({ url }) {
 
   // useEffect가 handleSubmit가 실행될때도 한번 실행하기
   useEffect(() => {
-    const fetchMenuList = async () => {
-      const response = await axios.get(`http://localhost:3001/${url}`);
-      setCommentList(response.data);
+    const fetchCommentList = () => {
+      // components와 layouts 데이터에서 해당 url의 댓글 찾기
+      let comments = [];
+      if (componentComments[url]) {
+        comments = componentComments[url];
+      } else if (layoutComments[url]) {
+        comments = layoutComments[url];
+      }
+      setCommentList(comments);
+      console.log(comments);
     };
-    fetchMenuList();
-  }, [comment]);
+
+    fetchCommentList();
+  }, []);
 
   const handleSubmit = () => {
     if (!comment.trim()) {
       alert("댓글을 입력해주세요.");
       return;
     } else {
-      const res = fetch(`http://localhost:3001/${url}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          content: comment,
-          date: new Date().toISOString().slice(0, 10),
-        }),
-      });
+      // 새로운 댓글을 리스트에 추가
+      const newComment = {
+        id: commentList.length,
+        content: comment,
+        date: new Date().toISOString().slice(0, 10),
+      };
 
-      //초기화 부분
+      // setCommentList를 함수형 업데이트로 변경 (최신 상태 보장)
+      // newComment를 배열에 추가해줍니다.
+      const updatedList = [...commentList, newComment];
+      setCommentList(updatedList);
+
+      console.log(setCommentList);
+
+      // 입력값 초기화
       setComment("");
-      document.getElementById("comment-input").value = "";
+      if (document.getElementById("comment-input")) {
+        document.getElementById("comment-input").value = "";
+      }
     }
   };
 
