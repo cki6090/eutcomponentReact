@@ -222,18 +222,7 @@ export const comment = {
       date: "2025-08-28",
     },
   ],
-  button: [
-    {
-      id: 0,
-      content: "button유형을 좀 더 추가해주세요",
-      date: "2025-08-21",
-    },
-    {
-      id: 1,
-      content: "버트 필요해",
-      date: "2025-09-02",
-    },
-  ],
+  button: [],
   color: [
     {
       id: 0,

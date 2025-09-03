@@ -58,7 +58,7 @@ export default function Comment({ url }) {
       <div className="comment-box">
         <div className="comment-list">
           {(!commentList || commentList.length === 0) && (
-            <div style={{ textAlign: "center" }}>댓글을 로딩중입니다.</div>
+            <div style={{ textAlign: "center" }}>댓글이 없습니다.</div>
           )}
           {commentList &&
             commentList.map((item, index) => (

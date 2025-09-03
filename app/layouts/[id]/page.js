@@ -17,14 +17,14 @@ export default function Components() {
     // 클립보드 복사
     await navigator.clipboard.writeText(layoutContent.code);
     setIsCopied(true);
-    console.log("코드가 클립보드에 복사되었습니다!");
 
     // 좋아요 업데이트 작성부분
     setLike(like + 1);
+
     // 복사 상태 초기화
     setTimeout(() => {
       setIsCopied(false);
-    }, 2000);
+    }, 500);
   };
 
   return (
