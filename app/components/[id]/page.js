@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 import { menuComponentList, componentContents } from "../../components/data";
 
 import Grid from "../../components/grid";
-import Table from "../../components/table";
 import Chart from "../../components/chart";
 import Comment from "../../comment";
 
@@ -48,7 +47,6 @@ export default function Components() {
         />
         {/* //url에서 각각gird table 일때만 grid.js table.js 파일을 인폴트 해오기 */}
         {id === "grid" && <Grid />}
-        {id === "table" && <Table />}
         {id === "chart" && <Chart />}
         <div className="code-box-container">
           <pre className="code-box">{componentContent.code}</pre>

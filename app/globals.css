@@ -43,6 +43,14 @@ a {
   list-style: none;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #c6c6c6;
+  border-radius: 3px;
+}
+
 .color-gray01 {
   background-color: #f5f5f5;
 }
@@ -337,6 +345,101 @@ a {
   color: var(--black);
   font-size: 16px;
 }
+
+.navbar .MenuButtonBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.navbar .MenuButtonBox .MenuButton {
+  position: relative;
+}
+.navbar .MenuButtonBox .MenuButton .btn {
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.MenuButton .menulist {
+  position: absolute;
+  top: 44px;
+  left: 0px;
+  z-index: 9999;
+  background-color: #ffffff;
+  min-width: max-content;
+  width: 600px;
+  max-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #666666;
+  overflow: auto;
+}
+
+.MenuButton .menulist ul.menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px 30px;
+  background: #e7e7e7;
+  overflow: auto;
+}
+.MenuButton .menulist ul.menu li {
+  width: 100%;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+ul.menu > li > .menu-title {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-title.has-children {
+  font-weight: bold;
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.submenu.open {
+  max-height: 1000px; /* 충분히 큰 값 */
+}
+
+.arrow {
+  content: "11";
+}
+
+/* 1단계 메뉴 */
+.menu-item.depth-0 > .menu-title {
+  font-weight: 600;
+  padding: 15px 20px;
+  font-size: 24px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+}
+
+/* 2단계 메뉴 */
+.menu-item.depth-1 > .menu-title {
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.menu-item.depth-1:hover {
+  border-bottom: 1px solid var(--grey);
+}
+
 .logo {
   font-size: 27px;
   font-weight: bold;
@@ -944,6 +1047,7 @@ footer .footer-menu li button {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  color: var(--black);
 }
 .QnA-tab > div.on {
   text-decoration: underline;

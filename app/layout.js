@@ -6,6 +6,7 @@ import Providers from "./providers";
 import DarkLightMode from "./darkLightMode";
 import TopMenu from "./topMenu";
 import LoginBtn from "./loginbtn";
+import MenuItem from "./MenuItem";
 
 const notoSansKR = Noto_Sans_KR({
   variable: "--font-geist-sans",
@@ -23,9 +24,13 @@ export default function RootLayout({ children }) {
       <body className={`${notoSansKR.variable}`}>
         <Providers>
           <div className="navbar">
-            <Link href="/" className="logo">
-              LOGO
-            </Link>
+            <div className="MenuButtonBox">
+              <MenuItem />
+
+              <Link href="/" className="logo">
+                LOGO
+              </Link>
+            </div>
 
             <TopMenu />
 
