@@ -1198,3 +1198,23 @@ footer .footer-menu li button {
 .ai-box .tip.active {
   height: 75px;
 }
+
+.live-code-container {
+  display: flex;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+.live-code-container .live-editor,
+.live-code-container .live-preview {
+  flex: 1;
+  max-height: 100%;
+  overflow: auto;
+}
+.live-code-container .live-editor {
+  background-color: rgb(1, 22, 39);
+}
+
+.live-code-container .live-preview {
+  background-color: var(--grey03);
+}

@@ -26,10 +26,21 @@ export default function TopMenu() {
             <div className="titleKor">레이아웃</div>
           </div>
         </Link>
+
         <Link href="/QnA" className={pathname.startsWith("/QnA") ? "on" : ""}>
           <div className="title-box">
             <div className="titleEng">Contact us</div>
             <div className="titleKor">문의하기</div>
+          </div>
+        </Link>
+
+        <Link
+          href="/liveCode"
+          className={pathname.startsWith("/QnA") ? "on" : ""}
+        >
+          <div className="title-box">
+            <div className="titleEng">Test Live Code</div>
+            <div className="titleKor">실시간 프리뷰</div>
           </div>
         </Link>
       </div>

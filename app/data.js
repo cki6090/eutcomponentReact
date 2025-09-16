@@ -29,4 +29,9 @@ export const menuData = [
       { id: 32, title: "문의하기" },
     ],
   },
+  {
+    id: 4,
+    title: "liveCode",
+    children: [{ id: 41, title: "실시간 프리뷰" }],
+  },
 ];
