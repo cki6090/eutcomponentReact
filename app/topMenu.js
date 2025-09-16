@@ -36,7 +36,7 @@ export default function TopMenu() {
 
         <Link
           href="/liveCode"
-          className={pathname.startsWith("/QnA") ? "on" : ""}
+          className={pathname.startsWith("/liveCode") ? "on" : ""}
         >
           <div className="title-box">
             <div className="titleEng">Test Live Code</div>

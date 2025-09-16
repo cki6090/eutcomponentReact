@@ -4,7 +4,7 @@ import InOutTextBox from "./InOutTextBox";
 export default function Home() {
   return (
     <div className="index-page">
-     <div className="index-ci">
+      <div className="index-ci">
         <div className="index-page-content">
           <h1>
             Project Name
@@ -15,11 +15,11 @@ export default function Home() {
             TECHNOLOGY STACK <br></br>
             React, Next.js, TypeScript, CSS
             <br></br>
-            NextAuth.js, json-server, axios, recharts
+            NextAuth.js, json-server, axios, recharts, react-live
           </p>
           <AiBbox />
         </div>
-  
+
         <div className="index-page-image">
           <ul className="thumbs">
             <li>
@@ -30,11 +30,10 @@ export default function Home() {
             </li>
             <li>
               <img src="/indeximg3.jpg" className="indeximg3" />
-              <img src="/indeximg3.jpg" className="indeximg3" />
             </li>
           </ul>
         </div>
-     </div>
+      </div>
 
       <InOutTextBox />
     </div>

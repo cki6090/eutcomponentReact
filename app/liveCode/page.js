@@ -35,18 +35,15 @@ export default function LiveCode() {
   return (
     <LiveProvider code={code} noInline={false}>
       <div className="live-code-container">
-        {/* 코드 에디터 */}
         <div className="live-editor">
           <LiveEditor />
         </div>
 
-        {/* 프리뷰 (렌더링 결과) */}
         <div className="live-preview">
           <LivePreview />
         </div>
       </div>
 
-      {/* 에러 메시지 */}
       <LiveError
         style={{
           color: "red",
