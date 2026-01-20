@@ -1,7 +1,7 @@
 "use client";
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import "../globals.css"; // globals.css import 추가
+import "../globals.css";
 
 const code = `
 <div className="main-layout">

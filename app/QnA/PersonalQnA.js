@@ -36,7 +36,7 @@ export default function PersonalQnA() {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-      }, 1500);
+      }, 1000);
     }
   };
 
@@ -86,7 +86,9 @@ export default function PersonalQnA() {
               {item.title}{" "}
               <div className="QnA-list-content-date">📅 {item.date}</div>
             </div>
+
             <div className="QnA-list-content-content">⁉️ {item.content}</div>
+
             <div className="QnA-list-content-answer">
               {item.answer
                 ? `✅ ${item.answer}`

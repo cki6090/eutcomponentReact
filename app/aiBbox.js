@@ -19,8 +19,6 @@ export default function AiBbox() {
   const [aiInput, setAiInput] = useState("");
 
   const handleSubmit = (e) => {
-    // aiInput값을 가져와서 searchWord에 값이랑 비교해서 3글자연속으로 있는지 확인
-
     const found = searchWord.find((item) => item.includes(aiInput));
     if (found) {
       // found가 button, color 일땐는 페이지 이동
@@ -37,7 +35,6 @@ export default function AiBbox() {
         window.location.href = `/layouts/${found}`;
       }
     } else {
-      alert("no match");
       setTip(true);
     }
   };
@@ -46,7 +43,6 @@ export default function AiBbox() {
     <div className="ai-box">
       <div className="ai-box-title">
         <h2 onClick={() => setTip(!tip)}>AI</h2>
-
         <div className="ai-box-input">
           <input
             type="text"

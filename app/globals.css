@@ -8,6 +8,7 @@
   --grey02: #f5f5f5;
   --grey03: #ececec;
 }
+
 html.dark {
   --white: #000a16;
   --black: #fff;
@@ -18,6 +19,7 @@ html.dark {
   --grey02: #e9e7e7;
   --grey03: #ececec;
 }
+
 html,
 body {
   width: 100%;
@@ -75,6 +77,8 @@ a {
 .color-gray08 {
   background-color: #262626;
 }
+
+.fixed{position: fixed;}
 
 .loadingBox .dim {
   position: fixed;
@@ -206,13 +210,13 @@ a {
 
 .index-page {
   min-height: calc(100% - 50px);
-  overflow: hidden;
+  height: 4000px;
   position: relative;
 }
 .index-ci {
   padding: 100px 0px;
   box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 50px);
 }
 .index-page .index-page-content {
@@ -242,60 +246,36 @@ a {
 }
 
 .index-page .index-page-image {
-  width: 50%;
-  height: 100%;
-  right: -5%;
-  top: -5%;
-  position: absolute;
-  transform: rotate(-18deg);
+  padding: 1%;
+  width: 840px;
+  right: 0%;
+  top: 130px;
+  position: fixed;
+ box-shadow: 0px 4px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.2);
 }
 
 .index-page .index-page-image .thumbs {
   display: flex;
-  height: 100%;
-  gap: 10px;
-  width: 85%;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .index-page .index-page-image .thumbs li {
-  flex: 1;
-  min-width: 200px;
-  height: 100%;
+  width: calc(49% - 8px);
+  height: auto;
+  max-height: 200px;
+  overflow: hidden;
+  transition: transform 0.35s ease;
+  will-change: transform;
+  border-radius: 5px;
 }
 
-.index-page .index-page-image .thumbs li img {
-  width: 100%;
-  opacity: 0;
-  transform: scale(1.2);
-  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.3);
+.index-page .index-page-image .thumbs li:nth-child(1) {
+  width: 39%;
 }
 
-/*indeximg1, 2, 3이 시간차로 위에서 아래로 내려오는 에니메이션*/
-@keyframes slideDown {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
-.indeximg1 {
-  animation: slideDown 1s ease-out 0.6s forwards;
-}
-
-.indeximg2 {
-  animation: slideDown 2s ease-out 0.3s forwards;
-}
-
-.indeximg3 {
-  animation: slideDown 1s ease-out 0.6s forwards;
-}
+.index-page .index-page-image .thumbs li img{width: 100%;}
 
 .InOutTextBox {
   display: none;
@@ -1150,7 +1130,7 @@ footer .footer-menu li button {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.4);
+    transform: scale(1.2);
     text-shadow: 0 0 17px rgba(0, 0, 0, 0.5);
   }
   100% {
@@ -1158,17 +1138,10 @@ footer .footer-menu li button {
   }
 }
 
-.ai-box .ai-box-title h2:hover::after {
-  content: "💭";
-  position: absolute;
-  top: -15px;
-  right: -12px;
-  text-shadow: 0px 0px 10px var(--black);
-  font-size: 14px;
-}
 .ai-box .ai-box-title .ai-box-input {
   width: 100%;
 }
+
 .ai-box .ai-box-title .ai-box-input input {
   width: 100%;
   height: 30px;
@@ -1218,3 +1191,8 @@ footer .footer-menu li button {
 .live-code-container .live-preview {
   background-color: var(--grey03);
 }
+
+
+
+.progress-wrapper{position: relative;}
+.progress-value{position: absolute;top: 0px; left: 0px;}
