@@ -1,3 +1,7 @@
+html {
+  font-size: 13px;
+}
+
 :root {
   --white: #fff;
   --black: #000;
@@ -20,6 +24,14 @@ html.dark {
   --grey03: #ececec;
 }
 
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+}
+
 html,
 body {
   width: 100%;
@@ -27,13 +39,8 @@ body {
   min-height: 100%;
   background-color: var(--white);
 }
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-size: 13px;
-  font-weight: 300;
+body{
+ font-size: 14px;
 }
 strong {
   font-weight: bold;
@@ -151,7 +158,7 @@ a {
 }
 
 .search-input > input {
-  font-size: 15px;
+  font-size: 1.1538rem;
   color: #222222;
   width: 100%;
   border: none;
@@ -185,14 +192,14 @@ a {
   position: absolute;
   color: #aaa;
   left: 5px;
-  font-size: 20px;
+  font-size: 1.5385rem;
   bottom: 8px;
   transition: all 0.2s;
 }
 
 .search-input > input:focus ~ label,
 .search-input > input:valid ~ label {
-  font-size: 12px;
+  font-size: 0.9231rem;
   bottom: 29px;
   color: var(--black);
   font-weight: bold;
@@ -210,7 +217,6 @@ a {
 
 .index-page {
   min-height: calc(100% - 50px);
-  height: 4000px;
   position: relative;
 }
 .index-ci {
@@ -225,10 +231,11 @@ a {
   max-width: 1236px;
   padding-top: 64px;
   padding-bottom: 64px;
+  text-align: center;
 }
 .index-page .index-page-content h1 {
   color: var(--black);
-  font-size: 45px;
+  font-size: 3.4615rem;
   font-weight: bold;
 }
 .index-page .index-page-content h1 span {
@@ -240,71 +247,11 @@ a {
 }
 
 .index-page .index-page-content p {
-  font-size: 20px;
+  font-size: 1.5385rem;
   color: var(--grey);
   margin-top: 15px;
 }
 
-.index-page .index-page-image {
-  padding: 1%;
-  width: 840px;
-  right: 0%;
-  top: 130px;
-  position: fixed;
- box-shadow: 0px 4px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.2);
-}
-
-.index-page .index-page-image .thumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.index-page .index-page-image .thumbs li {
-  width: calc(49% - 8px);
-  height: auto;
-  max-height: 200px;
-  overflow: hidden;
-  transition: transform 0.35s ease;
-  will-change: transform;
-  border-radius: 5px;
-}
-
-.index-page .index-page-image .thumbs li:nth-child(1) {
-  width: 39%;
-}
-
-
-.index-page .index-page-image .thumbs li img{width: 100%;}
-
-.InOutTextBox {
-  display: none;
-  width: 100%;
-  height: 3000px; /* 스크롤 길이 */
-  position: relative;
-}
-
-.InOutText {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 0;
-  font-size: 3rem;
-  font-weight: bold;
-  transition: opacity 1s ease, transform 1s ease;
-  white-space: nowrap;
-}
-
-.InOutText.active {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.InOutText.out {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.95);
-}
 
 .navbar {
   max-width: 1280px;
@@ -323,7 +270,7 @@ a {
 }
 .nav-menu a {
   color: var(--black);
-  font-size: 16px;
+  font-size: 1.2308rem;
 }
 
 .navbar .MenuButtonBox {
@@ -336,7 +283,7 @@ a {
   position: relative;
 }
 .navbar .MenuButtonBox .MenuButton .btn {
-  font-size: 28px;
+  font-size: 2.1538rem;
   cursor: pointer;
 }
 
@@ -403,7 +350,7 @@ ul.menu > li > .menu-title {
 .menu-item.depth-0 > .menu-title {
   font-weight: 600;
   padding: 15px 20px;
-  font-size: 24px;
+  font-size: 1.8462rem;
   border-bottom: 1px solid #000;
   margin-bottom: 15px;
 }
@@ -411,7 +358,7 @@ ul.menu > li > .menu-title {
 /* 2단계 메뉴 */
 .menu-item.depth-1 > .menu-title {
   padding: 8px 20px;
-  font-size: 16px;
+  font-size: 1.2308rem;
   font-weight: 600;
   box-sizing: border-box;
 }
@@ -421,7 +368,7 @@ ul.menu > li > .menu-title {
 }
 
 .logo {
-  font-size: 27px;
+  font-size: 2.0769rem;
   font-weight: bold;
   color: var(--black);
   letter-spacing: -5.3px;
@@ -489,7 +436,7 @@ ul.menu > li > .menu-title {
   overflow: hidden;
 }
 .top-menu .top-menu-list a > .title-box > div {
-  font-size: 16px;
+  font-size: 1.2308rem;
   padding: 0px 10px;
   color: var(--black);
   font-weight: 600;
@@ -528,6 +475,7 @@ ul.menu > li > .menu-title {
 .main-layout .left-menu {
   height: 100%;
   padding: 10px 10px;
+  display: block;
 }
 .main-layout.layout .main-content {
   background-color: var(--grey03);
@@ -573,7 +521,7 @@ ul.menu > li > .menu-title {
 }
 
 .left-menu-title {
-  font-size: 24px;
+  font-size: 1.8462rem;
   font-weight: bold;
   color: var(--black);
 }
@@ -604,7 +552,7 @@ ul.menu > li > .menu-title {
 .left-menu-list ul li a {
   text-decoration: none;
   color: var(--black);
-  font-size: 14px;
+  font-size: 1.0769rem;
   background-color: var(--white);
   z-index: 10;
   padding-right: 10px;
@@ -644,7 +592,7 @@ ul.menu > li > .menu-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 1.8462rem;
   font-weight: bold;
   position: relative;
   cursor: pointer;
@@ -660,7 +608,7 @@ ul.menu > li > .menu-title {
 
 .components-list-title {
   color: #ffffff;
-  font-size: 12px;
+  font-size: 0.9231rem;
   font-weight: 600;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -779,7 +727,7 @@ footer .footer-menu li {
 }
 footer .footer-menu li button {
   padding: 7px 16px;
-  font-size: 12px;
+  font-size: 0.9231rem;
   background-color: #33424f;
   color: var(--white);
   border: none;
@@ -816,7 +764,7 @@ footer .footer-menu li button {
 .button-box-title {
   width: 100%;
   margin: 40px 0px 10px 0px;
-  font-size: 20px;
+  font-size: 1.5385rem;
   color: var(--black);
   font-weight: 600;
 }
@@ -1024,7 +972,7 @@ footer .footer-menu li button {
   gap: 10px;
 }
 .QnA-tab > div {
-  font-size: 16px;
+  font-size: 1.2308rem;
   font-weight: 500;
   cursor: pointer;
   color: var(--black);
@@ -1054,7 +1002,7 @@ footer .footer-menu li button {
 }
 
 .QnA-list-content-item .QnA-list-content-title {
-  font-size: 15px;
+  font-size: 1.1538rem;
   margin-bottom: 5px;
   display: flex;
   font-weight: 600;
@@ -1065,7 +1013,11 @@ footer .footer-menu li button {
 }
 
 .QnA-list-content-item .QnA-list-content-content {
-  font-size: 14px;
+  font-size: 1.0769rem;
+}
+.QnA-list-content-item .QnA-list-content-answer{
+  font-size: 1.3769rem;
+  margin-top: 5px;
 }
 
 .QnA-form-box {
@@ -1073,18 +1025,18 @@ footer .footer-menu li button {
   margin-bottom: 5px;
 }
 .QnA-form-title {
-  font-size: 18px;
+  font-size: 1.3846rem;
   font-weight: 600;
   margin-bottom: 15px;
 }
 .QnA-form-box .QnA-form-input input {
   width: 100%;
-  font-size: 14px;
+  font-size: 1.0769rem;
   padding: 10px;
   margin-bottom: 10px;
 }
 .QnA-form-box .QnA-form-textarea textarea {
-  font-size: 15px;
+  font-size: 1.1538rem;
   width: 100%;
   height: 150px;
   padding: 10px;
@@ -1100,7 +1052,8 @@ footer .footer-menu li button {
 .ai-box {
   width: 450px;
   border-radius: 10px;
-  margin-top: 25px;
+  margin: 25px auto;
+  
 }
 .ai-box .ai-box-title {
   position: relative;
@@ -1110,7 +1063,7 @@ footer .footer-menu li button {
   gap: 5px;
 }
 .ai-box .ai-box-title h2 {
-  font-size: 20px;
+  font-size: 1.5385rem;
   font-weight: bold;
   cursor: pointer;
   width: 30px;
@@ -1196,3 +1149,11 @@ footer .footer-menu li button {
 
 .progress-wrapper{position: relative;}
 .progress-value{position: absolute;top: 0px; left: 0px;}
+
+ @media (max-width: 1280px) {
+    html {font-size: 10px; }
+  .main-layout .left-menu{display: none ;}
+  .top-menu .top-menu-list a > .title-box .titleEng {
+      margin-top: 17px;
+  }
+}

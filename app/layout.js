@@ -31,15 +31,12 @@ export default function RootLayout({ children }) {
                 LOGO
               </Link>
             </div>
-
             <TopMenu />
-
             <div className="nav-icon">
               <DarkLightMode />
               <LoginBtn />
             </div>
           </div>
-
           {children}
         </Providers>
       </body>

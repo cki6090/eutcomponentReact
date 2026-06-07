@@ -1,19 +1,25 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ContactUs } from "./data";
 
 export default function PersonalQnA() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [QnAList, setQnAList] = useState(ContactUs);
-  const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // useEffect 제거 - 더 이상 API 호출이 필요하지 않음
 
   const handleSubmit = () => {
+  
     if (!title.trim() || !content.trim()) {
-      alert("제목과 내용을 입력해주세요.");
+      //포커스 가서 보더 빨간색 처리
+      if (!title.trim()) {
+        document.getElementById("title-input").style.border = "1px solid red";
+      }
+      
+      if (!content.trim()) {
+        document.getElementById("textarea-input").style.border = "1px solid red";
+      }
       return;
     } else {
       // 새로운 QnA 항목을 로컬 상태에 추가
@@ -22,7 +28,7 @@ export default function PersonalQnA() {
         title: title,
         content: content,
         date: new Date().toISOString().slice(0, 10),
-        answer: answer,
+        answer: "",
       };
 
       setQnAList([...QnAList, newQnA]);

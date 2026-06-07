@@ -4,7 +4,7 @@ import { QnAList } from "./data";
 import PersonalQnA from "./PersonalQnA";
 
 export default function QnA() {
-  const [tab, setTab] = useState("자주하는 질문");
+  const [tab, setTab] = useState("문의하기");
   const QnAtitle = ["자주하는 질문", "문의하기"];
 
   return (
