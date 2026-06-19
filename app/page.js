@@ -1,5 +1,6 @@
 "use client";
 import AiBbox from "./aiBbox";
+import Scroll from "./scroll";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
           </p>
           <AiBbox />
         </div>
-
+        <Scroll />
       </div>
     </div>
   );

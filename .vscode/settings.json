@@ -1,5 +1,16 @@
 {
   "cursorStats.currency": "KRW",
   "cursorStats.language": "ko",
-  "prettier.documentSelectors": ["*.css"]
+  "prettier.documentSelectors": ["*.css"],
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "args": [
+        "-NoExit",
+        "-Command",
+        "Set-Alias -Name npm -Value npm.cmd -Force; Set-Alias -Name npx -Value npx.cmd -Force"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
 }

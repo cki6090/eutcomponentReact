@@ -220,7 +220,6 @@ a {
   position: relative;
 }
 .index-ci {
-  padding: 100px 0px;
   box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 50px);
@@ -1046,7 +1045,7 @@ footer .footer-menu li button {
   padding: 10px 0px;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .ai-box {
