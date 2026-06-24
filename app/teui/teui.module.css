@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
-.teui-page {
+.teuiPage {
   min-height: calc(100vh - 60px);
   padding: 16px 20px 32px;
   background: #f5f7fa;
@@ -9,7 +9,7 @@
   gap: 16px;
 }
 
-.color-palette-component {
+.colorPaletteComponent {
   width: 100%;
   margin: 0 auto;
   padding: 16px 18px;
@@ -18,45 +18,45 @@
   border: 1px solid #e5eaf0;
 }
 
-.color-palette-component.is-dark {
+.colorPaletteComponent.isDark {
   background: #000000;
   border-color: #2a2a2a;
   color: #ffffff;
 }
 
-.color-palette-component.is-dark .color-palette-description {
+.colorPaletteComponent.isDark .colorPaletteDescription {
   color: #cbd5e1;
 }
 
-.color-palette-component.is-dark .color-palette-theme-tabs {
+.colorPaletteComponent.isDark .colorPaletteThemeTabs {
   border-color: #333333;
   background: #111111;
 }
 
-.color-palette-component.is-dark .color-palette-theme-tab {
+.colorPaletteComponent.isDark .colorPaletteThemeTab {
   color: #94a3b8;
 }
 
-.color-palette-component.is-dark .color-palette-theme-tab.is-active {
+.colorPaletteComponent.isDark .colorPaletteThemeTab.isActive {
   background: #ffffff;
   color: #000000;
 }
 
-.color-palette-component.is-dark .color-palette-theme-tab:hover:not(.is-active) {
+.colorPaletteComponent.isDark .colorPaletteThemeTab:hover:not(.isActive) {
   background: #222222;
   color: #ffffff;
 }
 
-.color-palette-component.is-dark .color-palette-block {
+.colorPaletteComponent.isDark .colorPaletteBlock {
   border-color: #2a2a2a;
   background: #111111;
 }
 
-.color-palette-component.is-dark .color-palette-group-title {
+.colorPaletteComponent.isDark .colorPaletteGroupTitle {
   color: #ffffff;
 }
 
-.color-palette-header {
+.colorPaletteHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,19 +64,19 @@
   margin-bottom: 12px;
 }
 
-.color-palette-header-text h1,
-.color-palette-description {
+.colorPaletteHeaderText h1,
+.colorPaletteDescription {
   display: inline;
   font-size: inherit;
   font-weight: bold;
 }
 
-.color-palette-description {
+.colorPaletteDescription {
   margin-left: 6px;
   color: inherit;
 }
 
-.color-palette-theme-tabs {
+.colorPaletteThemeTabs {
   display: inline-flex;
   flex-shrink: 0;
   gap: 4px;
@@ -86,7 +86,7 @@
   background: #f8fafc;
 }
 
-.color-palette-theme-tab {
+.colorPaletteThemeTab {
   padding: 6px 14px;
   border: none;
   border-radius: 6px;
@@ -98,23 +98,23 @@
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.color-palette-theme-tab.is-active {
+.colorPaletteThemeTab.isActive {
   background: #0f172a;
   color: #ffffff;
 }
 
-.color-palette-theme-tab:hover:not(.is-active) {
+.colorPaletteThemeTab:hover:not(.isActive) {
   background: #edf2f7;
   color: #0f172a;
 }
 
-.color-palette-group {
+.colorPaletteGroup {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
-.color-palette-block {
+.colorPaletteBlock {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -125,27 +125,27 @@
   background: #fbfcfd;
 }
 
-.color-palette-group-title {
+.colorPaletteGroupTitle {
   color: #0f172a;
   font-size: 12px;
   font-weight: 700;
 }
 
-.color-palette-colors {
+.colorPaletteColors {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 6px;
 }
 
-.color-palette-empty {
+.colorPaletteEmpty {
   margin: 0;
   color: #94a3b8;
   font-size: 11px;
   line-height: 52px;
 }
 
-.color-swatch {
+.colorSwatch {
   position: relative;
   width: 52px;
   height: 52px;
@@ -156,18 +156,18 @@
   cursor: pointer;
 }
 
-.color-swatch.is-transparent {
+.colorSwatch.isTransparent {
   background: repeating-conic-gradient(#e5e7eb 0% 25%, #ffffff 0% 50%) 50% /
     8px 8px;
 }
 
-.color-swatch-fill {
+.colorSwatchFill {
   position: absolute;
   inset: 0;
 }
 
-.color-swatch span.dark-text,
-.color-swatch span.light-text {
+.colorSwatch .darkText,
+.colorSwatch .lightText {
   position: absolute;
   right: 4px;
   bottom: 4px;
@@ -180,17 +180,17 @@
   line-height: 1.2;
 }
 
-.color-swatch span.dark-text {
+.colorSwatch .darkText {
   background: rgba(255, 255, 255, 0.75);
   color: #0f172a;
 }
 
-.color-swatch span.light-text {
+.colorSwatch .lightText {
   background: rgba(15, 23, 42, 0.45);
   color: #ffffff;
 }
 
-.color-swatch-copy {
+.colorSwatchCopy {
   position: absolute;
   top: 0;
   left: 0;
@@ -209,11 +209,11 @@
   font-weight: 700;
   text-transform: lowercase;
   line-height: 1;
-  animation: copy-fade 1s ease forwards;
+  animation: copyFade 1s ease forwards;
   pointer-events: none;
 }
 
-@keyframes copy-fade {
+@keyframes copyFade {
   0% {
     opacity: 0;
   }
@@ -229,27 +229,27 @@
 }
 
 @media (max-width: 768px) {
-  .teui-page {
+  .teuiPage {
     padding: 12px 12px 24px;
   }
 
-  .color-palette-header {
+  .colorPaletteHeader {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .color-palette-group {
+  .colorPaletteGroup {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .color-palette-group {
+  .colorPaletteGroup {
     grid-template-columns: 1fr;
   }
 }
 
-.text-styles-component {
+.textStylesComponent {
   width: 100%;
   margin: 0 auto;
   padding: 16px 18px;
@@ -260,29 +260,29 @@
     sans-serif;
 }
 
-.text-styles-header {
+.textStylesHeader {
   margin-bottom: 12px;
 }
 
-.text-styles-header h1,
-.text-styles-description {
+.textStylesHeader h1,
+.textStylesDescription {
   display: inline;
   font-size: inherit;
   font-weight: bold;
 }
 
-.text-styles-description {
+.textStylesDescription {
   margin-left: 6px;
   color: inherit;
 }
 
-.text-styles-group {
+.textStylesGroup {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
-.text-styles-block {
+.textStylesBlock {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -293,19 +293,19 @@
   background: #fbfcfd;
 }
 
-.text-styles-group-title {
+.textStylesGroupTitle {
   color: #0f172a;
   font-size: 12px;
   font-weight: 700;
 }
 
-.text-styles-list {
+.textStylesList {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.text-style-item {
+.textStyleItem {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -313,37 +313,37 @@
   border-bottom: 1px solid #edf1f5;
 }
 
-.text-style-item:last-child {
+.textStyleItem:last-child {
   padding-bottom: 0;
   border-bottom: none;
 }
 
-.text-style-spec {
+.textStyleSpec {
   color: #64748b;
   font-size: 10px;
   font-weight: 500;
   line-height: 1.3;
 }
 
-.text-style-preview {
+.textStylePreview {
   color: #0f172a;
   line-height: 1.4;
   word-break: break-all;
 }
 
 @media (max-width: 768px) {
-  .text-styles-group {
+  .textStylesGroup {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .text-styles-group {
+  .textStylesGroup {
     grid-template-columns: 1fr;
   }
 }
 
-.effect-styles-component {
+.effectStylesComponent {
   width: 100%;
   margin: 0 auto;
   padding: 16px 18px;
@@ -352,28 +352,28 @@
   border: 1px solid #e5eaf0;
 }
 
-.effect-styles-header {
+.effectStylesHeader {
   margin-bottom: 12px;
 }
 
-.effect-styles-header h1,
-.effect-styles-description {
+.effectStylesHeader h1,
+.effectStylesDescription {
   display: inline;
   font-size: inherit;
   font-weight: bold;
 }
 
-.effect-styles-description {
+.effectStylesDescription {
   margin-left: 6px;
   color: inherit;
 }
 
-.effect-styles-group {
+.effectStylesGroup {
   display: grid;
   gap: 10px;
 }
 
-.effect-styles-block {
+.effectStylesBlock {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -384,32 +384,32 @@
   background: #fbfcfd;
 }
 
-.effect-styles-group-title {
+.effectStylesGroupTitle {
   color: #0f172a;
   font-size: 12px;
   font-weight: 700;
 }
 
-.effect-styles-list {
+.effectStylesList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.effect-style-item {
+.effectStyleItem {
   display: flex;
   flex-direction: column;
   padding-right: 12px;
   border-right: 1px solid #edf1f5;
 }
 
-.effect-style-item:last-child {
+.effectStyleItem:last-child {
   padding-right: 0;
   border-right: none;
 }
 
-.effect-style-spec {
+.effectStyleSpec {
   color: #64748b;
   font-size: 10px;
   font-weight: 500;
@@ -417,16 +417,15 @@
   font-family: Consolas, Monaco, "Courier New", monospace;
 }
 
-.effect-style-preview-wrap {
+.effectStylePreviewWrap {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
 }
 
-.effect-style-preview {
+.effectStylePreview {
   width: 200px;
   height: 150px;
   flex-shrink: 0;
 }
-
