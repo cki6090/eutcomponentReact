@@ -1,6 +1,7 @@
 "use client";
 import AiBbox from "./aiBbox";
-import Scroll from "./scroll";
+import Scroll from "./scroll/scroll";
+import ScrollDownArrowIcon from "./scrollDownArrowIcon";
 
 export default function Home() {
   return (
@@ -22,6 +23,9 @@ export default function Home() {
             NextAuth.js, json-server, axios, recharts, react-live
           </p>
           <AiBbox />
+          <div className="scrollDownArrow">
+            <ScrollDownArrowIcon />
+          </div>
         </div>
         <Scroll />
       </div>

@@ -6,9 +6,9 @@ body{ overflow-x: clip;}
 .section0{background:#ffffff; min-height:200vh;}
 .section1{background:#ffffff; min-height:500vh; }
 .section2{background:rgba(234, 238, 242, 1); min-height:500vh; cursor: none}
-.section3{background:#fff; padding: 300px 0px 0px 0px; min-height:300vh;}
-.section4{background:#fff;  min-height:700vh;}
-.section5{background:#fff;}
+.section3{background:#fff; padding: 300px 0px 0px 0px; min-height:200vh;}
+.section4{background:#fff;  min-height:500vh;}
+.section5{background:#fff; min-height:300vh;}
 
 /* section0 전체 스크롤 구간만큼 래퍼를 키워야 sticky가 유효 구간을 가짐 */
 .section0 .svgWrap{  display: flex; justify-content: center;  align-items: flex-start;  width: 100%;  min-height: inherit;position: relative;  padding-top: calc(50vh - 78px);  box-sizing: border-box;
@@ -24,13 +24,14 @@ body{ overflow-x: clip;}
 .section1 .textBox>p.active{opacity:1; font-size: 27px; font-weight: bold;}
 
 .section1 .textBox{width: 50%;}
-.section1 .boxWrap{position:sticky; top:calc(50% - 210px); left: 0px; flex: 1; height: 410px; display: flex; justify-content: flex-start; align-items: center; padding-bottom: 100px;}
+.section1 .boxWrap{position:sticky; top:calc(50% - 210px); left: 0px; flex: 1; height: 550px; display: flex; justify-content: flex-start; align-items: center; padding-bottom: 100px;}
 .section1 .boxWrap.offscreen{opacity:0; transition:0.4s;}
 .section1 .boxWrap img{position:absolute; top:0px; left: 100%; width: 845px;}
 .section1 .boxWrap img:nth-child(4){left: 0%; opacity:0;}
 
-.videoWrap{width: 100%; height: 100vh; position: sticky; top: 0px; left: 0px;     display: flex;align-items: center;justify-content: center;}
-.videoWrap .scrollVideo{width: 80%;  object-fit: fill;}
+.videoWrap{width: 100%; height: 100vh; position: sticky; top: 0px; left: 0px; display: flex; align-items: center; justify-content: center; background-color: rgba(234, 238, 242, 1); transition: background-color 0.35s ease;}
+.videoWrap .scrollVideoCanvas{width: 100%; height: auto; max-height: 100vh; display: block;}
+.videoWrap .scrollVideoSource{display: none;}
 
 .section3 .themeBoxtitle{text-align: center; width: 100%; height: 100%; position: sticky; top: 50%; left: 0px;  z-index: 99; transform: translateY(-50%);}
 .section3 .themeBoxtitle p{font-size: 70px; font-weight: bold;  }
@@ -52,14 +53,15 @@ body{ overflow-x: clip;}
 .section4 .layer-card {
     position: absolute;
     inset: 0;
-    border-radius: 6px;
     overflow: hidden;
-    clip-path: circle(0% at 50% 50%);
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+}
+.section4 .layer-card:first-child {
+    clip-path: inset(0);
 }
 .section4 .layer-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: block;
 }
 .section4 .layer-card:nth-child(1)  { z-index: 1; box-shadow: 0 0px 60px rgba(0, 0, 0, 0.3); }
@@ -75,7 +77,14 @@ body{ overflow-x: clip;}
 .section4 .layer-card:nth-child(11) { z-index: 11; }
 .section4 .layer-card:nth-child(12) { z-index: 12; }
 
-.section5 .titleTextWrap{position: sticky; top: 50%; left: 0px; transform: translateY(-50%); height: 500px; opacity: 0; transition:0.4s;}
+.section5 .titleTextWrap{position: sticky; top: 50%; left: 0px; transform: translateY(-50%);  opacity: 0; transition:0.4s;}
 .section5 .titleTextWrap>div{width: 600px; margin: 0 auto;}
-.section5 .titleText{font-size: 45px; font-weight: bold;  text-align: center;  margin-bottom: 30px;}
+.section5 .titleText{font-size: 45px; font-weight: bold; text-align: center; margin-bottom: 20px; transition: opacity 0.3s;}
+.section5 .localeTabs{display: flex; justify-content: center; gap: 10px; margin-bottom: 28px;}
+.section5 .localeTab{display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; color: #999; background: #f4f4f4; transition: 0.35s;}
+.section5 .localeTab.active{color: #fff; background: #439BFF; box-shadow: 0 4px 16px rgba(67, 155, 255, 0.35); transform: scale(1.05);}
+.section5 .localeFlag{font-size: 16px; line-height: 1;}
+.section5 .titleTextContentWrap{position: relative; min-height: 180px;}
 .section5 .titleTextContent{font-size: 20px; font-weight: bold;  text-align: left; line-height: 45px;}
+.section5 .titleTextContent.ghost{position: absolute; inset: 0; opacity: 0.1; pointer-events: none;}
+.section5 .titleTextContent.active{position: relative; z-index: 1;}
