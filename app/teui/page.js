@@ -178,7 +178,7 @@ const EFFECT_STYLES = {
 // 2. 유틸 함수
 // ─────────────────────────────────────────
 
-// className 여러 개를 합칠 때 사용
+// className 여러 개를 공백으로 이어 붙이는 헬퍼
 function classNames(...names) {
   return names.filter(Boolean).join(" ");
 }
