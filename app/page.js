@@ -2,6 +2,7 @@
 import AiBbox from "./aiBbox";
 import Scroll from "./scroll/scroll";
 import ScrollDownArrowIcon from "./scrollDownArrowIcon";
+import ScrollToTopButton from "./scrollToTopButton";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         </div>
         <Scroll />
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }

@@ -47,6 +47,8 @@ function fadePhase(p, inStart, inEnd, outStart, outEnd) {
   return 0;
 }
 
+const TITLE_WORDS = ["Empowering", "innovators", "worldwide", "with"];
+
 const STATS = [
   { label: "고객", value: 35, suffix: "" },
   { label: "하루평균 사용시간", value: 151810, suffix: "분" },
@@ -79,6 +81,7 @@ function LogoItem({ logo, colored, onActivate }) {
       <span className="section6-logoTooltip" role="tooltip">
         {logo.name}
       </span>
+      
       <img src={`/logo/${logo.file}`} alt={logo.name} draggable={false} />
     </div>
   );
@@ -99,13 +102,28 @@ export default function Section6() {
   };
 
   const titleOpacity = fadePhase(scrollPercent, 0, 8, 28, 38);
-  const titleY = (1 - Math.min(1, titleOpacity)) * 32;
 
   const statsOpacity = fadePhase(scrollPercent, 32, 42, 62, 72);
   const counterProgress = easeOutCubic(mapRange(scrollPercent, 42, 62));
 
   const logosOpacity =
     scrollPercent < 68 ? 0 : scrollPercent < 78 ? (scrollPercent - 68) / 10 : 1;
+
+  const [titleRevealed, setTitleRevealed] = useState(false);
+
+  useEffect(() => {
+    if (titleOpacity > 0.15) {
+      setTitleRevealed(true);
+    } else if (titleOpacity < 0.05) {
+      setTitleRevealed(false);
+    }
+  }, [titleOpacity]);
+
+  useEffect(() => {
+    if (logosOpacity < 0.05) {
+      setColoredLogos(new Set());
+    }
+  }, [logosOpacity]);
 
   return (
     <div className="section section6" ref={sectionRef}>
@@ -115,13 +133,24 @@ export default function Section6() {
           className="section6-phase section6-titlePhase"
           style={{
             opacity: titleOpacity,
-            transform: `translateY(${titleY}px)`,
             pointerEvents: titleOpacity > 0 ? "auto" : "none",
           }}
         >
-          <h2 className="section6-title">
-            Empowering innovators worldwide with <span className="section6-titleHighlight">our technology</span>.
-       
+          <h2 className={`section6-title${titleRevealed ? " is-revealed" : ""}`}>
+            <span className="section6-titleLine">
+              {TITLE_WORDS.map((word, i) => (
+                <span
+                  key={word}
+                  className="section6-titleWord"
+                  style={{ "--w": i }}
+                >
+                  {word}
+                </span>
+              ))}
+            </span>
+            <span className="section6-titleLine section6-titleLineAccent">
+              <span className="section6-titleHighlight">our technology</span>.
+            </span>
           </h2>
         </div>
 

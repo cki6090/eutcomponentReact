@@ -49,7 +49,7 @@ const IMAGES = [
 /* ── 컴포넌트 ── */
 export default function Section1() {
   const { sectionRef, scrollPercent } = useSectionScroll();
-  const thresholds = [21, 44, 70, 94];
+  const thresholds = [21, 50, 73, 96];
   const active = thresholds.map((t, i) => (scrollPercent > t ? i + 1 : -1)).filter((i) => i >= 0);
 
   const imgStyle = (i) => {
@@ -59,18 +59,21 @@ export default function Section1() {
       if (v <= 10) v = 0; else if (v >= 90) v = 100;
       return { left: `${Math.round(v)}%`, opacity: 1 };
     }
+
     if (i === 1 && scrollPercent >= 50) return { left: "0%", opacity: 1 };
     if (i === 1 && scrollPercent >= 27 && scrollPercent < 50) {
       let v = 100 - ((scrollPercent - 27) / 23) * 110;
       if (v <= 10) v = 0; else if (v >= 90) v = 100;
       return { left: `${Math.round(v)}%`, opacity: 1 };
     }
+
     if (i === 2 && scrollPercent >= 75) return { left: "0%", opacity: 1 };
     if (i === 2 && scrollPercent >= 50 && scrollPercent < 75) {
       let v = 100 - ((scrollPercent - 50) / 25) * 110;
       if (v <= 10) v = 0; else if (v >= 90) v = 100;
       return { left: `${Math.round(v)}%`, opacity: 1 };
     }
+    
     if (i === 3 && scrollPercent >= 100) return { opacity: 1 };
     if (i === 3 && scrollPercent >= 75) {
       let v = (scrollPercent - 75) / 25;
