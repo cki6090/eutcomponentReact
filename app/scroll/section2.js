@@ -33,12 +33,12 @@ function useSectionScroll() {
 
 /* ── SCRIPT : 스크롤 비디오 ── */
 const VIDEO_DURATION = 10;
-const FRAME_COUNT = 120;
+const FRAME_COUNT = 130;
 
 function useScrollVideo(videoSrc, scrollPercent) {
   const sourceRef = useRef(null);
   const canvasRef = useRef(null);
-  const wrapRef = useRef(null);
+  const wrapRef = useRef(null);1
   const framesRef = useRef([]);
   const colorsRef = useRef([]);
   const lastFrameRef = useRef(-1);
@@ -115,7 +115,7 @@ function useScrollVideo(videoSrc, scrollPercent) {
 }
 
 /* ── 컴포넌트 ── */
-export default function Section2({ videoSrc = "/video/scroller3.mp4" }) {
+export default function Section2({ videoSrc = "/video/scroller3_1.mp4" }) {
   const { sectionRef, scrollPercent } = useSectionScroll();
   const { sourceRef, canvasRef, wrapRef } = useScrollVideo(videoSrc, scrollPercent);
 

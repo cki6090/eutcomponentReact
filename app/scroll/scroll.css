@@ -5,10 +5,10 @@ body{ overflow-x: clip;}
 .number>div{text-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 15px #fff, 0px 0px 20px #fff, 0px 0px 1px #fff}
 .section0{background:#ffffff; min-height:200vh;}
 .section1{background:#ffffff; min-height:500vh; }
-.section2{background:rgba(234, 238, 242, 1); min-height:500vh; cursor: none}
+.section2{background:rgba(234, 238, 242, 1); min-height:800vh; cursor: none}
 .section3{background:#fff; padding: 300px 0px 0px 0px; min-height:200vh;}
-.section4{background:#fff;  min-height:500vh;}
-.section5{background:#fff; min-height:300vh;}
+.section4{background:#fff;  min-height:700vh;}
+.section5{background:#fff; min-height:500vh;}
 
 /* section0 전체 스크롤 구간만큼 래퍼를 키워야 sticky가 유효 구간을 가짐 */
 .section0 .svgWrap{  display: flex; justify-content: center;  align-items: flex-start;  width: 100%;  min-height: inherit;position: relative;  padding-top: calc(50vh - 78px);  box-sizing: border-box;
@@ -26,7 +26,7 @@ body{ overflow-x: clip;}
 .section1 .textBox{width: 50%;}
 .section1 .boxWrap{position:sticky; top:calc(50% - 210px); left: 0px; flex: 1; height: 550px; display: flex; justify-content: flex-start; align-items: center; padding-bottom: 100px;}
 .section1 .boxWrap.offscreen{opacity:0; transition:0.4s;}
-.section1 .boxWrap img{position:absolute; top:0px; left: 100%; width: 845px;}
+.section1 .boxWrap img{position:absolute; top:0px; left: 100%; width: 90%;}
 .section1 .boxWrap img:nth-child(4){left: 0%; opacity:0;}
 
 .videoWrap{width: 100%; height: 100vh; position: sticky; top: 0px; left: 0px; display: flex; align-items: center; justify-content: center; background-color: rgba(234, 238, 242, 1); transition: background-color 0.35s ease;}
@@ -88,3 +88,37 @@ body{ overflow-x: clip;}
 .section5 .titleTextContent{font-size: 20px; font-weight: bold;  text-align: left; line-height: 45px;}
 .section5 .titleTextContent.ghost{position: absolute; inset: 0; opacity: 0.1; pointer-events: none;}
 .section5 .titleTextContent.active{position: relative; z-index: 1;}
+
+.section6{background: linear-gradient(180deg, #fff 0%, #f8fafc 50%, #fff 100%); min-height: 500vh;}
+.section6-sticky{position: sticky; top: 0; height: 100vh; overflow: visible;}
+.section6-phase{position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 24px; box-sizing: border-box; transition: opacity 0.35s ease;}
+.section6-titlePhase{z-index: 1;}
+.section6-statsPhase{z-index: 2;}
+.section6-logosPhase{z-index: 3; overflow: visible;}
+.section6-title{max-width: 820px; font-size: clamp(28px, 5vw, 52px); font-weight: 200; text-align: center; color: #1e293b; text-transform: uppercase;}
+.section6-titleHighlight{color: #570df8; font-weight: bold;}
+.section6-stats{display: flex; flex-wrap: wrap; justify-content: center; gap: 48px 64px; list-style: none; max-width: 960px; width: 100%;}
+.section6-stat{text-align: center; min-width: 180px;}
+.section6-statLabel{font-size: 15px; font-weight: 500; color: #64748b; margin-bottom: 12px;}
+.section6-statValue{font-size: clamp(36px, 6vw, 56px); font-weight: 800; letter-spacing: -0.04em; color: #0f172a; font-variant-numeric: tabular-nums;}
+.section6-statSuffix{font-size: 0.45em; font-weight: 600; margin-left: 4px; color: #64748b;}
+.section6-logosLabel{font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-bottom: 20px;}
+.section6-logoGrid{display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 720px;}
+.section6-logoItem{position: relative; display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 14px; background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(148, 163, 184, 0.2); cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease;}
+.section6-logoItem img{width: 42px; height: 42px; object-fit: contain; transform: scale(1); transform-origin: center; filter: grayscale(1); opacity: 0.55; transition: filter 0.4s ease, opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);}
+.section6-logoItem:hover{border-color: rgba(87, 13, 248, 0.25); box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);}
+.section6-logoItem.colored>img,
+.section6-logoItem:hover>img{filter: grayscale(0); opacity: 1;}
+.section6-logoItem.colored{border-color: rgba(87, 13, 248, 0.18); box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);}
+.section6-logoItem:hover>img{animation: section6-logoPop 0.5s cubic-bezier(0.34, 1.4, 0.64, 1);}
+.section6-logoTooltip{position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(6px); padding: 6px 12px; background: #1e293b; color: #fff; font-size: 12px; font-weight: 600; line-height: 1; border-radius: 8px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; z-index: 2;}
+.section6-logoTooltip::after{content: ""; position: absolute; left: 50%; top: 100%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #1e293b;}
+.section6-logoItem:hover .section6-logoTooltip{opacity: 1; transform: translateX(-50%) translateY(0);}
+@keyframes section6-logoPop{
+  0%{transform: scale(1);}
+  45%{transform: scale(1.2);}
+  100%{transform: scale(1);}
+}
+@media (max-width: 640px){
+  .section6-logoGrid{grid-template-columns: repeat(2, 1fr); max-width: 320px;}
+}

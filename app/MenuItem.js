@@ -33,7 +33,7 @@ export default function Menu() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="MenuButton">
-      <div
+      {/* <div
         onClick={() => {
           setMenuOpen(!menuOpen);
         }}
@@ -43,7 +43,7 @@ export default function Menu() {
         ) : (
           <div className="btn">🍔</div>
         )}
-      </div>
+      </div> */}
 
       {menuOpen ? (
         <div className="menulist">

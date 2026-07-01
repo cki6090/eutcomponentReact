@@ -5,10 +5,7 @@ import ScrollDownArrowIcon from "./scrollDownArrowIcon";
 
 export default function Home() {
   return (
-    <div
-      className="index-page"
-      onScroll={() => console.log("index-page scroll")}
-    >
+    <div className="index-page">
       <div className="index-ci">
         <div className="index-page-content">
           <h1>

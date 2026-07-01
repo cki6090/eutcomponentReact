@@ -8,6 +8,7 @@ export default function TopMenu() {
   return (
     <div className="top-menu">
       <div className="top-menu-list">
+        
         <Link
           href="/components"
           className={pathname.startsWith("/components") ? "on" : ""}
@@ -17,6 +18,7 @@ export default function TopMenu() {
             <div className="titleKor">컴포넌트</div>
           </div>
         </Link>
+
         <Link
           href="/layouts"
           className={pathname.startsWith("/layouts") ? "on" : ""}
@@ -43,6 +45,7 @@ export default function TopMenu() {
             <div className="titleKor">실시간 프리뷰</div>
           </div>
         </Link>
+
       </div>
     </div>
   );
