@@ -115,7 +115,7 @@ function useScrollVideo(videoSrc, scrollPercent) {
 }
 
 /* ── 컴포넌트 ── */
-export default function Section2({ videoSrc = "/video/scroller3_1.mp4" }) {
+export default function Section2({ videoSrc = "/video/scroller3.mp4" }) {
   const { sectionRef, scrollPercent } = useSectionScroll();
   const { sourceRef, canvasRef, wrapRef } = useScrollVideo(videoSrc, scrollPercent);
 
