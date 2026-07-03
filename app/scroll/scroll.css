@@ -1,8 +1,6 @@
 *{ margin: 0px; padding: 0px;}
 body{ overflow-x: clip;}
-.section{ min-height:400vh; position:relative;}
-.number{position:fixed; top:0px; right:10px; font-size: 20px; font-weight: bold; z-index: 99; display: flex; gap: 20px;}
-.number>div{text-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 15px #fff, 0px 0px 20px #fff, 0px 0px 1px #fff}
+.section{ position:relative;}
 .section0{background:#ffffff; min-height:200vh;}
 .section1{background:#ffffff; min-height:500vh; }
 .section2{background:rgba(234, 238, 242, 1); min-height:1000vh; cursor: none}
@@ -25,7 +23,6 @@ body{ overflow-x: clip;}
 
 .section1 .textBox{width: 50%;}
 .section1 .boxWrap{position:sticky; top:calc(50% - 210px); left: 0px; flex: 1; height: 550px; display: flex; justify-content: flex-start; align-items: center; padding-bottom: 100px;}
-.section1 .boxWrap.offscreen{opacity:0; transition:0.4s;}
 .section1 .boxWrap img{position:absolute; top:0px; left: 100%; width: 90%;}
 .section1 .boxWrap img:nth-child(4){left: 0%; opacity:0;}
 
@@ -34,7 +31,6 @@ body{ overflow-x: clip;}
 .videoWrap .scrollVideoSource{display: none;}
 
 .section3 .themeBoxtitle{text-align: center; width: 100%; height: 100%; position: sticky; top: 50%; left: 0px;  z-index: 99; transform: translateY(-50%);}
-.section3 .themeBoxtitle p{font-size: 70px; font-weight: bold;  }
 .section3 .themeBoxtitle span{font-size: 70px; font-weight: bold;  opacity: 0.1; margin: 0 10px; text-transform: uppercase;letter-spacing: -5px;  }
 
 .section4 .layer-sticky {

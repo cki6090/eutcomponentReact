@@ -38,7 +38,7 @@ const FRAME_COUNT = 130;
 function useScrollVideo(videoSrc, scrollPercent) {
   const sourceRef = useRef(null);
   const canvasRef = useRef(null);
-  const wrapRef = useRef(null);1
+  const wrapRef = useRef(null);
   const framesRef = useRef([]);
   const colorsRef = useRef([]);
   const lastFrameRef = useRef(-1);

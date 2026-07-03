@@ -19,7 +19,6 @@ export default function Scroll() {
       <Section4 />
       <Section5 />
       <Section6 />
-      
     </>
   );
 }
