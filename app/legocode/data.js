@@ -60,7 +60,6 @@ export const mainSectionContents = [
                             <tr>
                                
                             </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>

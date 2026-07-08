@@ -1,5 +1,17 @@
 header{background: transparent; min-height: 77px;}
 main{flex: 1 1;}
+.search-input > label >input{
+    font-size: 12px;
+    font-weight: 500;
+}
+.search-input > input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #8a8a8a;
+    border-radius: 4px;
+    margin: 24px 5px 5px 5px;
+    padding: 0px;
+}
 .legocode-page-legoZone .main-content {
     display: flex;
     flex-direction: column;
@@ -24,7 +36,21 @@ main{flex: 1 1;}
 .search-pnl {
     margin: 0px;
     border-top: 3px solid #757bfa;
+    display: grid;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    column-gap: 8px;
+    padding: 4px 0 0 0;
+    align-items: center;
+    align-content: space-between;
+    grid-gap: 0 8px;
+    margin-bottom: 0;
 }
+
+.search-pnl > * {
+    grid-column: span 2;
+}
+
+
 .main-layout{max-width: 100%; height: 100%;}
 
 .legocode-page {

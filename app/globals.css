@@ -133,7 +133,7 @@ a {
 .search-pnl {
   border: none;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 8px;
   border-top: 3px solid var(--grey);
   background-color: var(--white);
   margin: 10px;
@@ -146,7 +146,7 @@ a {
 
 .search-input {
   position: relative;
-  width: 200px;
+  width: 100%;
 }
 .search-input > img {
   bottom: 8px;
@@ -199,8 +199,9 @@ a {
 .search-input > label >input,
 .search-input > input:focus ~ label,
 .search-input > input:valid ~ label {
-  font-size: 0.9231rem;
-  bottom: 29px;
+  width: 100%;
+  font-size: 14px;
+  bottom: 24px;
   color: var(--black);
   font-weight: bold;
   z-index: 99;
