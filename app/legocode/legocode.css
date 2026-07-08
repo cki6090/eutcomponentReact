@@ -55,6 +55,95 @@ main{flex: 1 1;}
 .footer-menu ul li:first-child{justify-content: flex-start;}
 .footer-menu ul li:last-child{justify-content: flex-end;}
 
+
+
+
+.main-section .main-section-Column{min-height: 40px; height: 100%; display: grid; gap: 10px; min-width: 0; width: 100%;}
+.main-section .main-section-Column-Item{
+    min-height: 100%;
+    min-width: 0;
+    border: 1px solid #e7e7e7;
+    overflow: hidden;
+}
+.main-section .main-section-1Column {
+grid-template-columns: 1fr;
+}
+
+.main-section .main-section-2Column {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.main-section .main-section-3Column {
+grid-template-columns: repeat(3, 1fr);
+}
+
+.main-section .main-section-4Column {
+grid-template-columns: repeat(4, 1fr);
+}
+
+.main-section .main-section-Column-Item .table-pnl{height: 100%; width: 100%; overflow: hidden;}
+.main-section .main-section-Column-Item .table-pnl table{ width: 100%; max-width: 100%;  min-height: 48px;  height: 100%;  border-collapse: collapse; table-layout: fixed;}
+.main-section .main-section-Column-Item .table-pnl table tbody tr{min-height: 48px;}
+.main-section .main-section-Column-Item .table-pnl table tbody tr th,
+.main-section .main-section-Column-Item .table-pnl table tbody tr td{ overflow: hidden; vertical-align: middle; box-sizing: border-box; position: relative;
+}
+.main-section .main-section-Column-Item .table-pnl table tbody tr th{ text-align: left;position: relative;}
+.main-section .main-section-Column-Item .table-pnl table tbody tr td{width: auto;}
+.main-section .main-section-Column-Item .table-pnl table tbody tr th::before { display: block;  content: "";   position: absolute; left: 4px; top: 50%; width: calc(100% - 10px); height: 0; border-top: 1px dashed #8a8a8a; z-index: 1;}
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th.th-title{
+    position: relative;
+    white-space: nowrap;
+}
+.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-label{
+    line-height: 0.9;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    background-color: #ffffff;
+    padding-left: 0;
+    padding-right: 8px;
+    z-index: 10;
+    font-weight: 600;
+    color: #1c1c1c;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-input{
+    display: none;
+    position: relative;
+    outline: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-input:focus{
+    outline: none;
+    border: none;
+}
+.main-section .main-section-Column-Item .table-pnl table tbody tr th.th-title.is-editing .th-title-input{
+    display: inline-block;
+}
+
+.main-item-input{
+    margin: 0 2px;
+    outline: none;
+    border: none;
+}
+.main-item-input input{
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.main-item-input .input{  border: 1px solid #8a8a8a; border-radius: 4px;}
+
+
 .legocode-toast-container {
     position: fixed;
     bottom: 32px;

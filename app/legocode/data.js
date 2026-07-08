@@ -46,16 +46,189 @@ export const headerContents = [
   ];
 
 
-  export const mainContents = [
+export const mainSectionContents = [
+{
+    title: "Column 1/1",
+    zone:"main",
+    target: "section",
+    code: `
+        <div className="main-section-Column main-section-1Column">
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `,
+},
+{
+    title: "Column 1/2",   
+    zone:"main",
+    target: "section",
+    code: `
+        <div className="main-section-Column main-section-2Column">
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `,
+},
+{
+    title: "Column 1/3",
+    zone:"main",
+    target: "section",
+    code: `
+        <div className="main-section-Column main-section-3Column"> 
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `,
+},
+{
+    title: "Column 1/4",
+    zone:"main",
+    target: "section",
+    code: `
+        <div className="main-section-Column main-section-4Column">
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>    
+
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="main-section-Column-Item">
+                <div className="table-pnl">
+                    <table>
+                        <tbody>
+                            <tr>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `,
+},
+];
+
+export const mainContents = [
     {
-        title: "main",
+        title: "타이틀 + 인풋",
         zone:"main",
+        target: "tr",
         code: `
-            <h1>메인 영역</h1>
-            <p>이곳은 메인 콘텐츠가 들어갑니다.</p>
+        <th class="th-title">
+            <span class="th-title-label">제목작성</span>
+            <input type="text" class="th-title-input" placeholder="제목 작성" />
+        </th>
+        <td>  
+            <div className="main-item-input">
+                <input type="text" />
+            </div>
+        </td>
         `,
-    }
-  ];
+    },
+    {
+        title: "인풋",
+        zone:"main",
+        target: "tr",
+        code: `
+        <td>  
+            <div className="main-item-input">
+                <input type="text" />
+            </div>
+        </td>
+        `,
+    },
+];
+
 
   export const footerContents = [     {
         title: "기본 버튼",

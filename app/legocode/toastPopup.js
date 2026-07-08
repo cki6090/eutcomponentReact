@@ -2,10 +2,17 @@
 
 import { useEffect } from "react";
 
+// 토스트 1개
 function ToastItem({ message, onClose, duration = 2500 }) {
+  // duration(ms) 후 자동으로 닫기
   useEffect(() => {
-    const timer = setTimeout(onClose, duration);
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      onClose();
+    }, duration);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [onClose, duration]);
 
   return (
@@ -21,8 +28,9 @@ function ToastItem({ message, onClose, duration = 2500 }) {
   );
 }
 
+// 토스트 여러 개를 아래에서 위로 쌓아서 보여줌
 export default function ToastPopup({ toasts, onClose, duration = 2500 }) {
-  if (!toasts.length) return null;
+  if (toasts.length === 0) return null;
 
   return (
     <div className="legocode-toast-container">
