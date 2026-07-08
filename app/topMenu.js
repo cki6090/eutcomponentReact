@@ -46,7 +46,16 @@ export default function TopMenu() {
           </div>
         </Link>
 
-      </div>
-    </div>
-  );
+        <Link
+          href="/legocode"
+          className={pathname.startsWith("/legocode") ? "on" : ""}
+        >
+          <div className="title-box">
+              <div className="titleEng">Legocode</div>
+              <div className="titleKor">페이지 조립</div>
+        </div>
+      </Link>
+  </div>
+</div>
+);
 }

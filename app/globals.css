@@ -196,14 +196,17 @@ a {
   bottom: 8px;
   transition: all 0.2s;
 }
-
+.search-input > label >input,
 .search-input > input:focus ~ label,
 .search-input > input:valid ~ label {
   font-size: 0.9231rem;
   bottom: 29px;
   color: var(--black);
   font-weight: bold;
+  z-index: 99;
 }
+.search-input > label >input {border: none;} 
+.search-input > label >input:focus {outline: none;}
 
 .search-input > input:focus ~ span,
 .search-input > input:valid ~ span {
@@ -719,10 +722,7 @@ ul.menu > li > .menu-title {
 header {
   width: 100%;
   min-height: 150px;
-  padding: 15px;
   margin-bottom: 15px;
-  border-radius: 20px;
-  border-top: 3px solid var(--grey);
   background-color: var(--white);
 }
 main {

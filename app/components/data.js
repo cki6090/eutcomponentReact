@@ -43,29 +43,31 @@ export const componentContents = [
     title: "search",
     image: "/search.jpg",
     like: 10,
+    zone:"header",
     code: `
     <div className="search-pnl">
         <div className="search-input">
             <input type="text" />
             <label>카테고리</label>
         </div>
+
         <div className="search-input">
             <input type="text" />
             <label>달력</label>
             <img src="/date.svg" alt="search" />
         </div>
+
         <div className="search-input">
             <input type="text" />
             <label>코드</label>
             <img src="/file.svg" alt="search" />
         </div>
+        
         <div className="search-input">
             <input type="text" />
             <label>검색</label>
             <img src="/search.svg" alt="search" />
         </div>
-      
-        <button className="button-search">검색</button>
     </div>`,
   },
   {
