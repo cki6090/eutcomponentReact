@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import "./legocode.css";
 import { headerContents, mainContents, footerContents } from "./data";
+import ToastPopup from "./toastPopup";
 
 function toHtml(code) {
   return code.trim().replace(/className=/g, "class=");
@@ -43,6 +44,15 @@ export default function Legocode() {
     footerLeft: "",
     footerRight: "",
   });
+  const [toasts, setToasts] = useState([]);
+
+  const showToast = (message) => {
+    setToasts((prev) => [...prev, { id: Date.now() + Math.random(), message }]);
+  };
+
+  const removeToast = (id) => {
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  };
 
   const onDragStart = (e, item) => {
     e.dataTransfer.setData("text/plain", JSON.stringify(item));
@@ -53,7 +63,7 @@ export default function Legocode() {
     e.stopPropagation();
 
     if (!hasLayout(mainRef.current)) {
-      alert("main-content 안에 header, main, footer가 필요합니다.");
+      showToast("main-content 안에 header, main, footer가 필요합니다.");
       return;
     }
 
@@ -62,7 +72,7 @@ export default function Legocode() {
 
     const item = JSON.parse(e.dataTransfer.getData("text/plain"));
     if (item.zone !== zone) {
-      alert(`zone 불일치 (${item.zone} → ${zone})`);
+      showToast(`컴포넌트 zone(${item.zone})과 드롭 영역(${zone})이 일치하지 않습니다.`);
       return;
     }
 
@@ -139,8 +149,6 @@ export default function Legocode() {
 
               <main>
                 <div className="main-section">
-                  <h1>메인 영역</h1>
-                  <p>이곳은 메인 콘텐츠가 들어갑니다.</p>
                   <div dangerouslySetInnerHTML={{ __html: html.main }} />
                 </div>
               </main>
@@ -157,6 +165,7 @@ export default function Legocode() {
           </div>
         </div>
       </div>
+      <ToastPopup toasts={toasts} onClose={removeToast} />
     </>
   );
 }
