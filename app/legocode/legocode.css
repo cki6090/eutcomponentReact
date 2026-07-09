@@ -256,6 +256,11 @@ main{flex: 1 1;}
 
 
 
+.main-section .main-section-title{border: 0px; outline: none; padding: 0; margin-left: 8px; font-weight: 600;
+    font-size: 14px; color: #33424f; position: relative; cursor: pointer;}
+.main-section h2{display: flex; position: relative; align-items: center; height: 28px; }
+.main-section h2::before{content: ""; display: block; width: 4px;height: 16px; background-color: #33424f; }
+
 
 .main-section .main-section-Column{min-height: 40px; height: 100%; display: grid; gap: 10px; min-width: 0; width: 100%;}
 .main-section .main-section-Column-Item{

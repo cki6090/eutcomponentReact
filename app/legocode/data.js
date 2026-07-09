@@ -47,154 +47,158 @@ export const headerContents = [
 
 
 export const mainSectionContents = [
-{
-    title: "Column 1/1",
-    zone:"main",
-    target: "section",
-    code: `
-        <div className="main-section-Column main-section-1Column">
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                    </table>
+    {
+        title: "Column 1/1",
+        zone:"main",
+        target: "section",
+        code: `
+            <h2><input className="main-section-title" type="text" placeholder="섹션 제목 작성" /></h2>
+            <div className="main-section-Column main-section-1Column">
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    `,
-},
-{
-    title: "Column 1/2",   
-    zone:"main",
-    target: "section",
-    code: `
-        <div className="main-section-Column main-section-2Column">
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
+        `,
+    },
+    {
+        title: "Column 1/2",   
+        zone:"main",
+        target: "section",
+        code: `
+             <h2><input className="main-section-title" type="text" placeholder="섹션 제목 작성" /></h2>
+            <div className="main-section-Column main-section-2Column">
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
+        `,
+    },
+    {
+        title: "Column 1/3",
+        zone:"main",
+        target: "section",
+        code: `
+            <h2><input className="main-section-title" type="text" placeholder="섹션 제목 작성" /></h2>
+            <div className="main-section-Column main-section-3Column"> 
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    `,
-},
-{
-    title: "Column 1/3",
-    zone:"main",
-    target: "section",
-    code: `
-        <div className="main-section-Column main-section-3Column"> 
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
+        `,
+    },
+    {
+        title: "Column 1/4",
+        zone:"main",
+        target: "section",
+        code: `
+         <h2><input className="main-section-title" type="text" placeholder="섹션 제목 작성" /></h2>
+            <div className="main-section-Column main-section-4Column">
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>  
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    `,
-},
-{
-    title: "Column 1/4",
-    zone:"main",
-    target: "section",
-    code: `
-        <div className="main-section-Column main-section-4Column">
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>    
+                
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>    
 
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <div className="main-section-Column-Item">
-                <div className="table-pnl">
-                    <table>
-                        <tbody>
-                            <tr>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className="main-section-Column-Item">
+                    <div className="table-pnl">
+                        <table>
+                            <tbody>
+                                <tr>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    `,
-},
+        `,
+    },
 ];
 
 export const mainContents = [
@@ -223,6 +227,16 @@ export const mainContents = [
             <div className="main-item-input">
                 <input type="text" />
             </div>
+        </td>
+        `,
+    },
+    {
+        title: "빈공간",
+        zone:"main",
+        target: "tr",
+        code: `
+        <td>  
+           
         </td>
         `,
     },

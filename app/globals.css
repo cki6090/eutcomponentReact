@@ -31,7 +31,7 @@ html.dark {
   margin: 0;
   font-weight: 300;
 }
-
+::placeholder{color: #bbbbbb;}
 html,
 body {
   width: 100%;
