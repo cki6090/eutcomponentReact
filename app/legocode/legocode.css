@@ -287,7 +287,10 @@ grid-template-columns: repeat(4, 1fr);
 
 .main-section .main-section-Column-Item .table-pnl{height: 100%; width: 100%; overflow: hidden;}
 .main-section .main-section-Column-Item .table-pnl table{ width: 100%; max-width: 100%;  min-height: 48px;  height: 100%;  border-collapse: collapse; table-layout: fixed;}
-.main-section .main-section-Column-Item .table-pnl table tbody tr{min-height: 48px;}
+.main-section .main-section-Column-Item .table-pnl table tbody tr{
+    height: 48px;
+    min-height: 48px;
+}
 .main-section .main-section-Column-Item .table-pnl table tbody tr th,
 .main-section .main-section-Column-Item .table-pnl table tbody tr td{ overflow: hidden; vertical-align: middle; box-sizing: border-box; position: relative;
 }

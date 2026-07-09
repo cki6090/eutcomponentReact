@@ -58,9 +58,8 @@ export const mainSectionContents = [
                     <div className="table-pnl">
                         <table>
                             <tbody>
-                                <tr>
-                                
-                                </tr>
+                                <tr></tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -202,6 +201,14 @@ export const mainSectionContents = [
 ];
 
 export const mainContents = [
+    {
+        title: "tr 추가(한줄추가용)",
+        zone: "main",
+        target: "tbody",
+        code: `
+        <tr></tr>
+        `,
+    },
     {
         title: "타이틀 + 인풋",
         zone:"main",

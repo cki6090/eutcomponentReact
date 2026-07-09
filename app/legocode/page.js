@@ -74,6 +74,28 @@ function wrapMainRowItemHtml(item, rowKey) {
   return container.querySelector("tr").innerHTML;
 }
 
+/**
+ * tr에 mainRow 아이템 삽입
+ * placeholder 빈 td만 있으면 교체, 이미 내용 있으면 뒤에 추가
+ */
+function applyRowItems(row, rowItems, rowKey) {
+  if (!rowItems.length) return;
+
+  const cellHtml = rowItems.map((item) => wrapMainRowItemHtml(item, rowKey)).join("");
+  const isEmptyPlaceholderRow =
+    row.children.length === 1 &&
+    row.children[0].tagName === "TD" &&
+    row.children[0].children.length === 0 &&
+    !row.children[0].textContent.trim();
+
+  if (isEmptyPlaceholderRow) {
+    row.innerHTML = cellHtml;
+    return;
+  }
+
+  row.insertAdjacentHTML("beforeend", cellHtml);
+}
+
 /** 아이템 배열 → HTML 문자열로 합치기 (wrapFn으로 각각 감싼 뒤 이어 붙임) */
 function itemsToHtml(items, wrapFn) {
   return items.map(wrapFn).join("");
@@ -130,56 +152,128 @@ function isMainSectionArea(dropTarget) {
   return Boolean(dropTarget.closest("main") || dropTarget.closest(".main-section"));
 }
 
-/** table tbody > tr 영역(메인 아이템 드롭 가능 구역)인지 확인 */
-function isTableRowArea(dropTarget) {
-  return Boolean(
-    dropTarget.closest(".main-section .main-section-Column-Item .table-pnl table tbody tr") ||
-      dropTarget.closest(".main-section .main-section-Column-Item .table-pnl table tbody") ||
-      dropTarget.closest(".main-section .main-section-Column-Item .table-pnl table") ||
-      dropTarget.closest(".main-section .main-section-Column-Item .table-pnl")
-  );
-}
+const TABLE_TBODY_SELECTOR =
+  ".main-section .main-section-Column-Item .table-pnl table tbody";
+const TABLE_SELECTOR = ".main-section .main-section-Column-Item .table-pnl table";
+const TABLE_PNL_SELECTOR = ".main-section .main-section-Column-Item .table-pnl";
+const COLUMN_ITEM_SELECTOR = ".main-section .main-section-Column-Item";
 
-/** 드롭한 위치에서 해당 table row(tr) 요소를 찾습니다 */
-function findTableRow(mainContentElement, dropTarget) {
-  const row = dropTarget.closest(
-    ".main-section .main-section-Column-Item .table-pnl table tbody tr"
-  );
-  if (row) return row;
+/** 요소 기준으로 가장 가까운 tbody 찾기 (table-pnl, table 빈 영역도 포함) */
+function getTbodyFromElement(element) {
+  if (!element?.closest) return null;
 
-  const tbody = dropTarget.closest(
-    ".main-section .main-section-Column-Item .table-pnl table tbody"
-  );
-  if (tbody) return tbody.querySelector("tr");
+  const tbodyDirect = element.closest(TABLE_TBODY_SELECTOR);
+  if (tbodyDirect) return tbodyDirect;
 
-  const table = dropTarget.closest(
-    ".main-section .main-section-Column-Item .table-pnl table"
-  );
-  if (table) return table.querySelector("tbody tr");
+  const table = element.closest(TABLE_SELECTOR);
+  if (table) return table.querySelector("tbody");
+
+  const tablePnl = element.closest(TABLE_PNL_SELECTOR);
+  if (tablePnl) return tablePnl.querySelector("table tbody");
+
+  const columnItem = element.closest(COLUMN_ITEM_SELECTOR);
+  if (columnItem) return columnItem.querySelector(".table-pnl table tbody");
 
   return null;
 }
 
 /**
- * 몇 번째 테이블의 몇 번째 행인지 key 생성 (예: "0-0", "1-0")
- * mainRow 상태에서 "어느 행에 넣었는지" 구분할 때 사용
+ * 드롭 좌표 기준 tbody 찾기
+ * table / table-pnl 빈 공간에 드롭해도 tbody를 찾을 수 있게 elementsFromPoint 사용
  */
-function findRowKey(mainContentElement, dropTarget) {
-  const row = findTableRow(mainContentElement, dropTarget);
-  if (!row) return null;
+function findTableTbody(event, mainContentElement, dropTarget) {
+  const elements = document.elementsFromPoint(event.clientX, event.clientY);
 
-  const tbody = row.closest("tbody");
+  for (const element of elements) {
+    if (!mainContentElement?.contains(element)) continue;
+
+    const tbody = getTbodyFromElement(element);
+    if (tbody && mainContentElement.contains(tbody)) return tbody;
+  }
+
+  const fallbackTbody = getTbodyFromElement(dropTarget);
+  if (fallbackTbody && mainContentElement.contains(fallbackTbody)) return fallbackTbody;
+
+  return null;
+}
+
+/** table tbody 영역(tr 추가 드롭 가능 구역)인지 확인 */
+function isTableTbodyArea(event, mainContentElement, dropTarget) {
+  return Boolean(findTableTbody(event, mainContentElement, dropTarget));
+}
+
+/** table tbody > tr 영역(메인 아이템 드롭 가능 구역)인지 확인 */
+function isTableRowArea(event, mainContentElement, dropTarget) {
+  const elements = document.elementsFromPoint(event.clientX, event.clientY);
+
+  for (const element of elements) {
+    if (!mainContentElement?.contains(element)) continue;
+    if (element.closest?.(`${TABLE_TBODY_SELECTOR} tr`)) return true;
+  }
+
+  if (dropTarget.closest(`${TABLE_TBODY_SELECTOR} tr`)) return true;
+
+  const tbody = findTableTbody(event, mainContentElement, dropTarget);
+  return Boolean(tbody?.querySelector(":scope > tr"));
+}
+
+/** 드롭한 tbody의 index key (예: "0", "1") */
+function findTbodyKey(mainContentElement, event, dropTarget) {
+  const tbody = findTableTbody(event, mainContentElement, dropTarget);
   if (!tbody) return null;
 
-  const allTbodies = mainContentElement.querySelectorAll(
-    ".main-section .main-section-Column-Item .table-pnl table tbody"
-  );
+  const allTbodies = mainContentElement.querySelectorAll(TABLE_TBODY_SELECTOR);
+  const tbodyIndex = Array.from(allTbodies).indexOf(tbody);
+
+  return tbodyIndex >= 0 ? String(tbodyIndex) : null;
+}
+
+/**
+ * 몇 번째 tbody의 몇 번째 tr인지 key 생성 (예: "0-0", "1-2")
+ * 드롭 좌표(clientY) 기준으로 해당 tbody 안에서 가장 가까운 tr 선택
+ */
+function findRowKey(mainContentElement, dropTarget, clientY, event) {
+  const tbody = findTableTbody(event, mainContentElement, dropTarget);
+  if (!tbody) return null;
+
+  const allTbodies = mainContentElement.querySelectorAll(TABLE_TBODY_SELECTOR);
   const tbodyIndex = Array.from(allTbodies).indexOf(tbody);
   if (tbodyIndex < 0) return null;
 
-  const allRows = tbody.querySelectorAll(":scope > tr");
-  const rowIndex = Array.from(allRows).indexOf(row);
-  if (rowIndex < 0) return null;
+  const rows = tbody.querySelectorAll(":scope > tr");
+  if (!rows.length) return null;
+
+  let rowIndex = -1;
+
+  if (clientY != null) {
+    for (let i = 0; i < rows.length; i += 1) {
+      const rect = rows[i].getBoundingClientRect();
+      if (clientY >= rect.top && clientY <= rect.bottom) {
+        rowIndex = i;
+        break;
+      }
+    }
+
+    if (rowIndex < 0) {
+      let nearestIndex = 0;
+      let nearestDistance = Infinity;
+
+      rows.forEach((row, index) => {
+        const rect = row.getBoundingClientRect();
+        const rowCenterY = rect.top + rect.height / 2;
+        const distance = Math.abs(clientY - rowCenterY);
+
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+
+      rowIndex = nearestIndex;
+    }
+  } else {
+    rowIndex = 0;
+  }
 
   return `${tbodyIndex}-${rowIndex}`;
 }
@@ -217,9 +311,10 @@ function findFooterSlot(dropTarget, mouseX) {
 /**
  * 메인 섹션 최종 HTML 만들기
  * 1) Column 섹션 HTML을 먼저 붙이고
- * 2) 각 tr에 mainRow 아이템(타이틀+인풋 등)을 행 key별로 삽입
+ * 2) tbody별로 추가 tr을 붙이고
+ * 3) 각 tr에 mainRow 아이템(타이틀+인풋 등)을 행 key별로 삽입
  */
-function buildMainSectionHtml(mainSectionItems, mainRowItems) {
+function buildMainSectionHtml(mainSectionItems, mainRowItems, mainExtraRows) {
   const mainSectionHtml = itemsToHtml(mainSectionItems, wrapMainSectionItem);
   if (!mainSectionHtml) return "";
 
@@ -231,16 +326,19 @@ function buildMainSectionHtml(mainSectionItems, mainRowItems) {
   );
 
   tbodies.forEach((tbody, tbodyIndex) => {
+    const extraRowCount = mainExtraRows[String(tbodyIndex)] || 0;
+
+    for (let i = 0; i < extraRowCount; i += 1) {
+      tbody.insertAdjacentHTML("beforeend", "<tr></tr>");
+    }
+
     const rows = tbody.querySelectorAll(":scope > tr");
 
     rows.forEach((row, rowIndex) => {
       const rowKey = `${tbodyIndex}-${rowIndex}`;
       const rowItems = mainRowItems[rowKey] || [];
-      const cellHtml = rowItems.map((item) => wrapMainRowItemHtml(item, rowKey)).join("");
 
-      if (cellHtml) {
-        row.insertAdjacentHTML("beforeend", cellHtml);
-      }
+      applyRowItems(row, rowItems, rowKey);
     });
   });
 
@@ -271,11 +369,13 @@ export default function Legocode() {
    * 드롭된 컴포넌트들을 영역별로 저장하는 상태
    * - header, mainSection, footerLeft, footerRight: 배열
    * - mainRow: { "0-0": [...], "1-0": [...] } 형태의 객체
+   * - mainExtraRows: { "0": 2, "1": 1 } tbody별 추가 tr 개수
    */
   const [droppedItems, setDroppedItems] = useState({
     header: [],
     mainSection: [],
     mainRow: {},
+    mainExtraRows: {},
     footerLeft: [],
     footerRight: [],
   });
@@ -305,8 +405,12 @@ export default function Legocode() {
   );
 
   const mainSectionDisplayHtml = useMemo(() => {
-    return buildMainSectionHtml(droppedItems.mainSection, droppedItems.mainRow);
-  }, [droppedItems.mainSection, droppedItems.mainRow]);
+    return buildMainSectionHtml(
+      droppedItems.mainSection,
+      droppedItems.mainRow,
+      droppedItems.mainExtraRows
+    );
+  }, [droppedItems.mainSection, droppedItems.mainRow, droppedItems.mainExtraRows]);
 
   // ── useEffect: 테이블 제목(th) 클릭 시 인라인 수정 ──
   useEffect(() => {
@@ -553,7 +657,7 @@ export default function Legocode() {
       return;
     }
 
-    // ── 메인 컴포넌트 (section = Column, tr = 행 안 아이템) ──
+    // ── 메인 컴포넌트 (section = Column, tbody = tr 추가, tr = 행 안 아이템) ──
     if (component.zone === "main") {
       if (component.target === "section") {
         if (!isMainSectionArea(dropTarget)) {
@@ -568,15 +672,42 @@ export default function Legocode() {
         return;
       }
 
-      if (component.target === "tr") {
-        if (!isTableRowArea(dropTarget)) {
-          showToast("메인 아이템은 table tbody > tr 영역에 드롭해주세요. Column1을 먼저 추가하세요.");
+      if (component.target === "tbody") {
+        if (!isTableTbodyArea(event, mainContentRef.current, dropTarget)) {
+          showToast("tr 추가는 table tbody 영역에 드롭해주세요. Column 섹션을 먼저 추가하세요.");
           return;
         }
 
-        const rowKey = findRowKey(mainContentRef.current, dropTarget);
+        const tbodyKey = findTbodyKey(mainContentRef.current, event, dropTarget);
+        if (tbodyKey === null) {
+          showToast("tbody를 찾을 수 없습니다. Column 섹션을 먼저 추가해주세요.");
+          return;
+        }
+
+        setDroppedItems((prev) => ({
+          ...prev,
+          mainExtraRows: {
+            ...prev.mainExtraRows,
+            [tbodyKey]: (prev.mainExtraRows[tbodyKey] || 0) + 1,
+          },
+        }));
+        return;
+      }
+
+      if (component.target === "tr") {
+        if (!isTableRowArea(event, mainContentRef.current, dropTarget)) {
+          showToast("메인 아이템은 table tbody > tr 영역에 드롭해주세요. Column을 먼저 추가하세요.");
+          return;
+        }
+
+        const rowKey = findRowKey(
+          mainContentRef.current,
+          dropTarget,
+          event.clientY,
+          event
+        );
         if (!rowKey) {
-          showToast("table tbody > tr을 찾을 수 없습니다. Column1 섹션을 먼저 추가해주세요.");
+          showToast("table tbody > tr을 찾을 수 없습니다. Column 섹션을 먼저 추가해주세요.");
           return;
         }
 
@@ -649,7 +780,7 @@ export default function Legocode() {
         >
           <div className="legocode-page-component-list">
             <div className="legocode-page-component-list-header">
-              <span className="legocode-page-component-list-heading">컴포넌트</span>
+              <span className="legocode-page-component-list-heading">컴포넌트 (삭제는 마우스 오른쪽 버튼)</span>
               <button
                 type="button"
                 className="legocode-sidebar-close-btn"
