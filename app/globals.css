@@ -486,7 +486,6 @@ ul.menu > li > .menu-title {
 }
 .top-menu .top-menu-list a.on > .title-box > div {
   font-weight: bold;
-  text-decoration: underline;
   text-underline-offset: 4px;
   transition: all 0.3s ease;
 }
