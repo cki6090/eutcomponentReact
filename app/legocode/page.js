@@ -386,6 +386,8 @@ export default function Legocode() {
   const [contextMenu, setContextMenu] = useState(null);
   // 왼쪽 컴포넌트 목록 패널 열림/닫힘
   const [isComponentListOpen, setIsComponentListOpen] = useState(true);
+  // 메인 섹션 Column-Item / tr 테두리 표시 (true = 1px, false = 0px)
+  const [isSectionBorderVisible, setIsSectionBorderVisible] = useState(true);
 
   // ── 상태 → 화면 HTML 변환 (useMemo: 데이터가 바뀔 때만 다시 계산) ──
 
@@ -813,7 +815,9 @@ export default function Legocode() {
         </aside>
 
         {/* 오른쪽: 레고 조립 영역 */}
-        <div className="legocode-page-legoZone">
+        <div
+          className={`legocode-page-legoZone ${isSectionBorderVisible ? "is-section-border-on" : "is-section-border-off"}`}
+        >
           <div className="main-layout">
             <div
               className="main-content"
@@ -831,6 +835,20 @@ export default function Legocode() {
 
               {/* 메인 — Column 섹션 + 행 아이템 합친 HTML */}
               <main>
+                <div className="legocode-section-border-toolbar">
+                    <button
+                      type="button"
+                      className={`legocode-section-border-toggle ${isSectionBorderVisible ? "is-on" : "is-off"}`}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setIsSectionBorderVisible((prev) => !prev);
+                      }}
+                      aria-pressed={isSectionBorderVisible}
+                    >
+                     {isSectionBorderVisible ? "ON" : "OFF"}
+                    </button>
+                </div>
+
                 <div
                   className="main-section"
                   dangerouslySetInnerHTML={{ __html: mainSectionDisplayHtml }}
