@@ -205,9 +205,7 @@ export const mainContents = [
         title: "tr 추가(한줄추가용)",
         zone: "main",
         target: "tbody",
-        code: `
-        <tr></tr>
-        `,
+        code: "",
     },
     {
         title: "타이틀 + 인풋",
@@ -234,6 +232,20 @@ export const mainContents = [
             <div className="main-item-input">
                 <input type="text" />
             </div>
+        </td>
+        `,
+    },
+    {
+        title: "셀렉트박스",
+        zone:"main",
+        target: "tr",
+        code: `
+        <td>  
+            <select>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
         </td>
         `,
     },

@@ -1,24 +1,36 @@
-header{background: transparent; min-height: 77px;}
-main{flex: 1 1;}
-.search-input > label >input{
+header {
+    background: transparent;
+    min-height: 77px;
+}
+
+main {
+    flex: 1 1;
+    position: relative;
+}
+
+.search-input > label > input {
     font-size: 12px;
     font-weight: 500;
 }
-.search-input > input{
+
+.search-input > input {
     width: 100%;
     height: 100%;
+    height: 22px;
     border: 1px solid #8a8a8a;
     border-radius: 4px;
     margin: 24px 5px 5px 5px;
-    padding: 0px;
+    padding: 0;
 }
+
 .legocode-page-legoZone .main-content {
     display: flex;
     flex-direction: column;
     position: relative;
     min-height: 100%;
 }
-.legocode-page-legoZone .main-content footer{
+
+.legocode-page-legoZone .main-content footer {
     margin: 15px 0 0 0;
     position: absolute;
     bottom: 0;
@@ -27,13 +39,9 @@ main{flex: 1 1;}
     max-width: 100%;
     z-index: 2;
 }
-.main-content {
-    display: flex;
-    flex-direction: column;
-}
 
 .search-pnl {
-    margin: 0px;
+    margin: 0;
     border-top: 3px solid #757bfa;
     display: grid;
     grid-template-columns: repeat(20, minmax(0, 1fr));
@@ -41,7 +49,6 @@ main{flex: 1 1;}
     padding: 4px 0 0 0;
     align-items: center;
     align-content: space-between;
-    grid-gap: 0 8px;
     margin-bottom: 0;
 }
 
@@ -49,8 +56,10 @@ main{flex: 1 1;}
     grid-column: span 2;
 }
 
-
-.main-layout{max-width: 100%; height: 100%;}
+.main-layout {
+    max-width: 100%;
+    height: 100%;
+}
 
 .legocode-page {
     display: flex;
@@ -59,7 +68,6 @@ main{flex: 1 1;}
     height: calc(100% - 50px);
 }
 
-/* 사이드바 래퍼 — width 애니메이션으로 접기/펼치기 */
 .legocode-sidebar {
     flex-shrink: 0;
     width: 250px;
@@ -105,23 +113,19 @@ main{flex: 1 1;}
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #d8dce3;
-    background-color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.legocode-sidebar-close-btn,
-.legocode-sidebar-open-btn {
     position: absolute;
     top: -42px;
     left: -1px;
     z-index: 99;
     width: 36px;
     height: 36px;
-    border-radius: 0 8px 8px 0;
+    border: 1px solid #d8dce3;
     border-left: none;
+    border-radius: 0 8px 8px 0;
+    background-color: #ffffff;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .legocode-sidebar-close-btn:hover,
@@ -130,18 +134,16 @@ main{flex: 1 1;}
     border-color: #c5c9fc;
 }
 
-/* 닫기 아이콘 (왼쪽 화살표) */
 .legocode-sidebar-close-icon {
     display: block;
     width: 8px;
     height: 8px;
+    margin-left: 3px;
     border-left: 2px solid #555;
     border-bottom: 2px solid #555;
     transform: rotate(45deg);
-    margin-left: 3px;
 }
 
-/* 열기 아이콘 (패널 + 오른쪽 화살표) */
 .legocode-sidebar-open-icon {
     position: relative;
     display: block;
@@ -243,8 +245,6 @@ main{flex: 1 1;}
     cursor: grabbing;
 }
 
-main{position: relative;}
-
 .legocode-section-border-toolbar {
     display: flex;
     align-items: center;
@@ -285,72 +285,157 @@ main{position: relative;}
     border-color: #c5c9fc;
 }
 
-.legocode-page-legoZone{
+.legocode-page-legoZone {
     position: relative;
     width: 100%;
-    background-color:#e5e9ed;
+    background-color: #e5e9ed;
 }
 
-.footer-menu{display: flex; justify-content: space-between; width: 100%;}
-.footer-menu ul{display: flex; justify-content: space-between; width: 100%;}
-.footer-menu ul li{width: 50%; display: flex; min-height: 48px; align-items: center;}
-.footer-menu ul li:first-child{justify-content: flex-start;}
-.footer-menu ul li:last-child{justify-content: flex-end;}
+.footer-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
+.footer-menu ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
+.footer-menu ul li {
+    width: 50%;
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+}
 
-.main-section .main-section-title{border: 0px; outline: none; padding: 0; margin-left: 8px; font-weight: 600;
-    font-size: 14px; color: #33424f; position: relative; cursor: pointer;}
-.main-section h2{display: flex; position: relative; align-items: center; height: 28px; }
-.main-section h2::before{content: ""; display: block; width: 4px;height: 16px; background-color: #33424f; }
+.footer-menu ul li:first-child {
+    justify-content: flex-start;
+}
 
+.footer-menu ul li:last-child {
+    justify-content: flex-end;
+}
 
-.main-section .main-section-Column{min-height: 40px; height: 100%; display: grid; gap: 10px; min-width: 0; width: 100%;}
-.main-section .main-section-Column-Item{
+.main-section .main-section-title {
+    border: 0;
+    outline: none;
+    padding: 0;
+    margin-left: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #33424f;
+    position: relative;
+    cursor: pointer;
+}
+
+.main-section h2 {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 28px;
+}
+
+.main-section h2::before {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 16px;
+    background-color: #33424f;
+}
+
+.main-section .main-section-Column {
+    min-height: 40px;
+    height: 100%;
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+    width: 100%;
+}
+
+.main-section .main-section-Column-Item {
     min-height: 100%;
     min-width: 0;
     overflow: hidden;
 }
+
 .main-section .main-section-1Column {
-grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
 }
 
 .main-section .main-section-2Column {
-grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .main-section .main-section-3Column {
-grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .main-section .main-section-4Column {
-grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.main-section .main-section-Column-Item .table-pnl{height: 100%; width: 100%; overflow: hidden;}
-.main-section .main-section-Column-Item .table-pnl table{ width: 100%; max-width: 100%;  min-height: 48px;  height: 100%;  border-collapse: collapse; table-layout: fixed;}
-.main-section .main-section-Column-Item .table-pnl table tbody tr{
+.main-section .main-section-Column-Item .table-pnl {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-section .main-section-Column-Item .table-pnl table {
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr {
     height: 48px;
     min-height: 48px;
 }
-.main-section .main-section-Column-Item .table-pnl table tbody tr th,
-.main-section .main-section-Column-Item .table-pnl table tbody tr td{ overflow: hidden; vertical-align: middle; box-sizing: border-box; position: relative;
-}
-.main-section .main-section-Column-Item .table-pnl table tbody tr th{ text-align: left;position: relative;}
-.main-section .main-section-Column-Item .table-pnl table tbody tr td{width: auto;}
-.main-section .main-section-Column-Item .table-pnl table tbody tr th::before { display: block;  content: "";   position: absolute; left: 4px; top: 50%; width: calc(100% - 10px); height: 0; border-top: 1px dashed #8a8a8a; z-index: 1;}
 
-.main-section .main-section-Column-Item .table-pnl table tbody tr th.th-title{
+.main-section .main-section-Column-Item .table-pnl table tbody tr th,
+.main-section .main-section-Column-Item .table-pnl table tbody tr td {
+    overflow: hidden;
+    vertical-align: middle;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th {
+    text-align: left;
+    position: relative;
+}
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr td {
+    width: auto;
+}
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th::before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    width: calc(100% - 10px);
+    height: 0;
+    border-top: 1px dashed #8a8a8a;
+    z-index: 1;
+}
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th.th-title {
     position: relative;
     white-space: nowrap;
 }
-.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-label{
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-label {
     line-height: 0.9;
     display: inline-flex;
     align-items: center;
     position: relative;
     background-color: #ffffff;
-    padding-left: 0;
     padding-right: 8px;
     z-index: 10;
     font-size: 12px;
@@ -358,37 +443,42 @@ grid-template-columns: repeat(4, 1fr);
     color: #1c1c1c;
     cursor: pointer;
 }
-.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-input{
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-input {
     display: none;
-    position: relative;
-    outline: none;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    outline: none;
     z-index: 10;
 }
-.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-input:focus{
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th .th-title-input:focus {
     outline: none;
     border: none;
 }
-.main-section .main-section-Column-Item .table-pnl table tbody tr th.th-title.is-editing .th-title-input{
+
+.main-section .main-section-Column-Item .table-pnl table tbody tr th.th-title.is-editing .th-title-input {
     display: inline-block;
 }
 
-.main-item-input{
+.main-item-input {
     margin: 0 2px;
     outline: none;
     border: none;
 }
-.main-item-input input{
+
+.table-pnl select ,
+.main-item-input input {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    border: 1px solid #8a8a8a;
+    border-radius: 4px;
+    height: 24px;
 }
-.main-item-input .input{  border: 1px solid #8a8a8a; border-radius: 4px;}
-
 
 .legocode-toast-container {
     position: fixed;
@@ -506,7 +596,6 @@ grid-template-columns: repeat(4, 1fr);
     background-color: #ffebee;
 }
 
-/* 테두리 ON/OFF — legoZone 클래스로 제어 */
 .legocode-page-legoZone.is-section-border-on .main-section .main-section-Column-Item {
     border: 1px solid #e7e7e7;
 }
