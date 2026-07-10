@@ -392,21 +392,25 @@ main {
 }
 
 .main-section .main-section-Column-Item .table-pnl table tbody tr {
-    height: 48px;
-    min-height: 48px;
+    height: 24px ;
+    margin: 2px 0px;
+    
 }
 
 .main-section .main-section-Column-Item .table-pnl table tbody tr th,
 .main-section .main-section-Column-Item .table-pnl table tbody tr td {
     overflow: hidden;
-    vertical-align: middle;
+    vertical-align: top;
     box-sizing: border-box;
     position: relative;
+    min-height: 24px ;
 }
 
 .main-section .main-section-Column-Item .table-pnl table tbody tr th {
     text-align: left;
     position: relative;
+    line-height: 24px;
+    height: 24px;
 }
 
 .main-section .main-section-Column-Item .table-pnl table tbody tr td {
@@ -418,7 +422,7 @@ main {
     content: "";
     position: absolute;
     left: 4px;
-    top: 50%;
+    top: 12px;
     width: calc(100% - 10px);
     height: 0;
     border-top: 1px dashed #8a8a8a;
