@@ -38,6 +38,19 @@ function useSectionScroll() {
 function LogoSvg() {
   return (
     <svg className="logo_svg" width="400" height="100" viewBox="0 0 1334 334" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#570df8">
+            <animate attributeName="stop-color" values="#570df8;#7c3aed;#439BFF;#570df8" dur="6s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="50%" stopColor="#7c3aed">
+            <animate attributeName="stop-color" values="#7c3aed;#439BFF;#570df8;#7c3aed" dur="6s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stopColor="#439BFF">
+            <animate attributeName="stop-color" values="#439BFF;#570df8;#7c3aed;#439BFF" dur="6s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+      </defs>
       <path d="M 146.5 57 L 247.5 57 L 256 65.5 L 256 117 L 238 117 L 238 75 L 156 75 L 156 117 L 138 117 L 138 65.5 L 146.5 57 Z " />
       <path d="M 192.5 128 L 200.5 128 L 218.5 136 L 223.5 137 L 226.5 139 L 228.5 139 L 231.5 141 L 233.5 141 L 236.5 143 L 238.5 143 L 241.5 145 L 243.5 145 L 246.5 147 L 248.5 147 L 251.5 149 L 253.5 149 L 256.5 151 L 258.5 151 L 261.5 153 L 263.5 153 L 266.5 155 L 268.5 155 L 271.5 157 L 273.5 157 L 276.5 159 L 278.5 159 L 281.5 161 L 283.5 161 L 286.5 163 L 288.5 163 L 291.5 165 L 293.5 165 L 296.5 167 L 298.5 167 L 301.5 169 L 303.5 169 L 306.5 171 L 308.5 171 L 311.5 173 L 313.5 173 L 316.5 175 L 318.5 175 L 321.5 177 L 326 178 L 320 195 L 316.5 195 L 313.5 193 L 311.5 193 L 308.5 191 L 306.5 191 L 303.5 189 L 301.5 189 L 298.5 187 L 296.5 187 L 293.5 185 L 291.5 185 L 288.5 183 L 286.5 183 L 283.5 181 L 281.5 181 L 278.5 179 L 276.5 179 L 273.5 177 L 271.5 177 L 268.5 175 L 266.5 175 L 253.5 169 L 251.5 169 L 223.5 157 L 221.5 157 L 218.5 155 L 203.5 150 L 200.5 148 L 194.5 147 L 189.5 150 L 187.5 150 L 184.5 152 L 182.5 152 L 179.5 154 L 177.5 154 L 174.5 156 L 172.5 156 L 169.5 158 L 167.5 158 L 164.5 160 L 162.5 160 L 159.5 162 L 157.5 162 L 154.5 164 L 152.5 164 L 149.5 166 L 147.5 166 L 144.5 168 L 142.5 168 L 139.5 170 L 137.5 170 L 134.5 172 L 132.5 172 L 129.5 174 L 127.5 174 L 124.5 176 L 122.5 176 L 119.5 178 L 117.5 178 L 89.5 190 L 87.5 190 L 84.5 192 L 82.5 192 L 79.5 194 L 74.5 195 L 72 191.5 L 72 189.5 L 68 181.5 L 68 178 L 77.5 174 L 79.5 174 L 82.5 172 L 84.5 172 L 87.5 170 L 89.5 170 L 92.5 168 L 94.5 168 L 97.5 166 L 99.5 166 L 102.5 164 L 104.5 164 L 107.5 162 L 109.5 162 L 112.5 160 L 114.5 160 L 117.5 158 L 119.5 158 L 122.5 156 L 124.5 156 L 127.5 154 L 129.5 154 L 132.5 152 L 134.5 152 L 137.5 150 L 139.5 150 L 142.5 148 L 144.5 148 L 147.5 146 L 149.5 146 L 152.5 144 L 154.5 144 L 157.5 142 L 159.5 142 L 162.5 140 L 164.5 140 L 167.5 138 L 169.5 138 L 172.5 136 L 174.5 136 L 177.5 134 L 179.5 134 L 182.5 132 L 184.5 132 L 192.5 128 Z " />
       <path d="M 102.5 210 L 150.5 258 L 242.5 258 L 291.5 210 L 304 223.5 L 253.5 274 L 248.5 276 L 144.5 276 L 140.5 274 L 90 223.5 L 102.5 210 Z " />
@@ -56,8 +69,10 @@ function LogoSvg() {
 
 /* ── 컴포넌트 ── */
 export default function Section0() {
+
   const { sectionRef, scrollPercent } = useSectionScroll();
   const wrapRef = useRef(null);
+  const bgRef = useRef(null);
   const ready = useRef(false);
 
   useEffect(() => {
@@ -77,6 +92,7 @@ export default function Section0() {
     const appearEnd = 95;
     const step = (appearEnd - appearStart) / paths.length;
     const wrap = wrapRef.current;
+    const svg = wrap.querySelector(".logo_svg");
 
     paths.forEach((path, i) => {
       const len = path.getTotalLength();
@@ -89,13 +105,36 @@ export default function Section0() {
       } else path.style.strokeDashoffset = `${len}`;
     });
 
-    if (scrollPercent >= 100) { wrap.classList.add("offscreen"); wrap.style.opacity = ""; }
-    else if (scrollPercent < appearStart) { wrap.classList.remove("offscreen"); wrap.style.opacity = "0"; }
-    else { wrap.classList.remove("offscreen"); wrap.style.opacity = "1"; }
+    const drawProgress = Math.max(0, Math.min(1, (scrollPercent - appearStart) / (appearEnd - appearStart)));
+    if (svg) {
+      svg.style.filter = `drop-shadow(0 0 ${Math.round(drawProgress * 20)}px rgba(87, 13, 248, ${(drawProgress * 0.6).toFixed(2)})) drop-shadow(0 0 ${Math.round(drawProgress * 6)}px rgba(67, 155, 255, ${(drawProgress * 0.5).toFixed(2)}))`;
+    }
+    wrap.classList.toggle("is-drawn", scrollPercent >= appearEnd);
+
+    if (bgRef.current) {
+      const bgIntensity = Math.sin((Math.PI * Math.max(0, Math.min(100, scrollPercent))) / 100);
+      bgRef.current.style.setProperty("--bg-intensity", bgIntensity.toFixed(3));
+    }
+
+    if (scrollPercent >= 100) {
+      wrap.classList.add("offscreen");
+      wrap.classList.remove("in-view");
+    } else if (scrollPercent < appearStart) {
+      wrap.classList.remove("offscreen", "in-view");
+    } else {
+      wrap.classList.remove("offscreen");
+      wrap.classList.add("in-view");
+    }
   }, [scrollPercent]);
 
   return (
     <div className="section section0" ref={sectionRef}>
+      <div className="section0_bg" ref={bgRef}>
+        <span className="section0_blob blob1"></span>
+        <span className="section0_blob blob2"></span>
+        <span className="section0_blob blob3"></span>
+        <span className="section0_grid"></span>
+      </div>
       <div className="svgWrap">
         <div className="logo_svg_wrap" ref={wrapRef}>
           <LogoSvg />
@@ -103,4 +142,5 @@ export default function Section0() {
       </div>
     </div>
   );
+  
 }

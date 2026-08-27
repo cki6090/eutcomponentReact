@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 /* ── SCRIPT : 스크롤 % ── */
 function useSectionScroll() {
@@ -59,21 +59,6 @@ function getFanClipPath(startDeg, sweepDeg, cx = 100, cy = 100, radius = 220) {
   return `polygon(${points.join(", ")})`;
 }
 
-const LAYER_IMAGES = [
-  "/img/theme01.png",
-  "/img/theme01_1.png",
-  "/img/theme02.png",
-  "/img/theme02_1.png",
-  "/img/theme03.png",
-  "/img/theme03_1.png",
-  "/img/theme04.png",
-  "/img/theme04_1.png",
-  "/img/theme05.png",
-  "/img/theme05_1.png",
-  "/img/theme06.png",
-  "/img/theme06_1.png",
-];
-
 function getCardClipPath(i, scrollPercent, layerCount) {
   const overlapStart = 0.15;
   const revealDuration = 100 / (1 + (layerCount - 1) * overlapStart);
@@ -92,21 +77,782 @@ function getCardClipPath(i, scrollPercent, layerCount) {
   return getFanClipPath(fanStart, eased * fanSweepMax);
 }
 
+/* ── 6컬러 × light/dark = 12 테마 (CSS variables) ── */
+const COLOR_FAMILIES = [
+  {
+    name: "Ocean Blue",
+    light: {
+      "--bg": "#eef5ff",
+      "--surface": "#ffffff",
+      "--surface-2": "#f1f6fd",
+      "--text": "#0f2744",
+      "--text-muted": "#5b738f",
+      "--border": "#c9d9ec",
+      "--primary": "#1a6fd4",
+      "--primary-soft": "#d6e8ff",
+      "--primary-fg": "#ffffff",
+      "--accent": "#ff8a3d",
+      "--accent-fg": "#ffffff",
+      "--success": "#1f9d6a",
+      "--warning": "#d97706",
+      "--danger": "#dc3d4a",
+      "--input-bg": "#ffffff",
+      "--shadow": "0 10px 28px rgba(15, 39, 68, 0.1)",
+      "--ring": "rgba(26, 111, 212, 0.35)",
+    },
+    dark: {
+      "--bg": "#0d1622",
+      "--surface": "#152233",
+      "--surface-2": "#1c2d42",
+      "--text": "#e8f1ff",
+      "--text-muted": "#91a7c2",
+      "--border": "#2d425c",
+      "--primary": "#4ea1ff",
+      "--primary-soft": "#1a3554",
+      "--primary-fg": "#061018",
+      "--accent": "#ffb070",
+      "--accent-fg": "#1a1008",
+      "--success": "#3dd68c",
+      "--warning": "#fbbf24",
+      "--danger": "#ff7b87",
+      "--input-bg": "#101b29",
+      "--shadow": "0 12px 32px rgba(0, 0, 0, 0.45)",
+      "--ring": "rgba(78, 161, 255, 0.4)",
+    },
+  },
+  {
+    name: "Forest Green",
+    light: {
+      "--bg": "#eefaf3",
+      "--surface": "#ffffff",
+      "--surface-2": "#f0faf4",
+      "--text": "#143328",
+      "--text-muted": "#5a7868",
+      "--border": "#c5e4d3",
+      "--primary": "#1f9d6a",
+      "--primary-soft": "#d4f5e6",
+      "--primary-fg": "#ffffff",
+      "--accent": "#e28a2e",
+      "--accent-fg": "#ffffff",
+      "--success": "#0f8a55",
+      "--warning": "#d97706",
+      "--danger": "#d64545",
+      "--input-bg": "#ffffff",
+      "--shadow": "0 10px 28px rgba(20, 51, 40, 0.1)",
+      "--ring": "rgba(31, 157, 106, 0.35)",
+    },
+    dark: {
+      "--bg": "#0c1813",
+      "--surface": "#13241c",
+      "--surface-2": "#1a3227",
+      "--text": "#e7f8ef",
+      "--text-muted": "#8fb8a4",
+      "--border": "#2a4638",
+      "--primary": "#3dd68c",
+      "--primary-soft": "#1a3d2d",
+      "--primary-fg": "#04140d",
+      "--accent": "#ffb86b",
+      "--accent-fg": "#1a1008",
+      "--success": "#5ee4a9",
+      "--warning": "#fbbf24",
+      "--danger": "#ff8a8a",
+      "--input-bg": "#0e1c16",
+      "--shadow": "0 12px 32px rgba(0, 0, 0, 0.45)",
+      "--ring": "rgba(61, 214, 140, 0.4)",
+    },
+  },
+  {
+    name: "Violet",
+    light: {
+      "--bg": "#f6f1ff",
+      "--surface": "#ffffff",
+      "--surface-2": "#f4effc",
+      "--text": "#2a1848",
+      "--text-muted": "#6f5f8c",
+      "--border": "#ddd0f3",
+      "--primary": "#7c3aed",
+      "--primary-soft": "#ebe0ff",
+      "--primary-fg": "#ffffff",
+      "--accent": "#ec4899",
+      "--accent-fg": "#ffffff",
+      "--success": "#16a34a",
+      "--warning": "#d97706",
+      "--danger": "#e11d48",
+      "--input-bg": "#ffffff",
+      "--shadow": "0 10px 28px rgba(42, 24, 72, 0.1)",
+      "--ring": "rgba(124, 58, 237, 0.35)",
+    },
+    dark: {
+      "--bg": "#140f1f",
+      "--surface": "#1d152c",
+      "--surface-2": "#271c3a",
+      "--text": "#f3eaff",
+      "--text-muted": "#b0a0c9",
+      "--border": "#3a2d55",
+      "--primary": "#a78bfa",
+      "--primary-soft": "#2d2048",
+      "--primary-fg": "#140a24",
+      "--accent": "#f472b6",
+      "--accent-fg": "#1a0810",
+      "--success": "#4ade80",
+      "--warning": "#fbbf24",
+      "--danger": "#fb7185",
+      "--input-bg": "#120c1c",
+      "--shadow": "0 12px 32px rgba(0, 0, 0, 0.45)",
+      "--ring": "rgba(167, 139, 250, 0.4)",
+    },
+  },
+  {
+    name: "Amber",
+    light: {
+      "--bg": "#fff7ed",
+      "--surface": "#fffdf9",
+      "--surface-2": "#fff3e4",
+      "--text": "#3b2610",
+      "--text-muted": "#8a6a48",
+      "--border": "#ecd7b8",
+      "--primary": "#df813c",
+      "--primary-soft": "#ffe4c8",
+      "--primary-fg": "#ffffff",
+      "--accent": "#24364d",
+      "--accent-fg": "#ffffff",
+      "--success": "#25910f",
+      "--warning": "#c67c22",
+      "--danger": "#ba1a1a",
+      "--input-bg": "#ffffff",
+      "--shadow": "0 10px 28px rgba(59, 38, 16, 0.1)",
+      "--ring": "rgba(223, 129, 60, 0.35)",
+    },
+    dark: {
+      "--bg": "#1a120c",
+      "--surface": "#241910",
+      "--surface-2": "#322314",
+      "--text": "#fff1e0",
+      "--text-muted": "#c4a888",
+      "--border": "#4a3420",
+      "--primary": "#ff9f5a",
+      "--primary-soft": "#3a2616",
+      "--primary-fg": "#1a0e06",
+      "--accent": "#98f2ff",
+      "--accent-fg": "#041418",
+      "--success": "#5bff3a",
+      "--warning": "#ffa48b",
+      "--danger": "#ff8a8a",
+      "--input-bg": "#160f0a",
+      "--shadow": "0 12px 32px rgba(0, 0, 0, 0.45)",
+      "--ring": "rgba(255, 159, 90, 0.4)",
+    },
+  },
+  {
+    name: "Rose",
+    light: {
+      "--bg": "#fff1f5",
+      "--surface": "#ffffff",
+      "--surface-2": "#ffebf1",
+      "--text": "#3f1526",
+      "--text-muted": "#8b5a6d",
+      "--border": "#f0c9d6",
+      "--primary": "#db2777",
+      "--primary-soft": "#fce7f1",
+      "--primary-fg": "#ffffff",
+      "--accent": "#7c3aed",
+      "--accent-fg": "#ffffff",
+      "--success": "#16a34a",
+      "--warning": "#d97706",
+      "--danger": "#e11d48",
+      "--input-bg": "#ffffff",
+      "--shadow": "0 10px 28px rgba(63, 21, 38, 0.1)",
+      "--ring": "rgba(219, 39, 119, 0.35)",
+    },
+    dark: {
+      "--bg": "#180c12",
+      "--surface": "#24141c",
+      "--surface-2": "#321c28",
+      "--text": "#ffe8f0",
+      "--text-muted": "#c79aab",
+      "--border": "#4a2c3a",
+      "--primary": "#f472b6",
+      "--primary-soft": "#3a1c2c",
+      "--primary-fg": "#1a0810",
+      "--accent": "#c4b5fd",
+      "--accent-fg": "#140a24",
+      "--success": "#4ade80",
+      "--warning": "#fbbf24",
+      "--danger": "#fb7185",
+      "--input-bg": "#140a10",
+      "--shadow": "0 12px 32px rgba(0, 0, 0, 0.45)",
+      "--ring": "rgba(244, 114, 182, 0.4)",
+    },
+  },
+  {
+    name: "Slate Cyan",
+    light: {
+      "--bg": "#f1f7ff",
+      "--surface": "#ffffff",
+      "--surface-2": "#eef4fb",
+      "--text": "#24364d",
+      "--text-muted": "#64748b",
+      "--border": "#d4dee9",
+      "--primary": "#0084ad",
+      "--primary-soft": "#def6ff",
+      "--primary-fg": "#ffffff",
+      "--accent": "#00b8e6",
+      "--accent-fg": "#042028",
+      "--success": "#25910f",
+      "--warning": "#c67c22",
+      "--danger": "#ba1a1a",
+      "--input-bg": "#ffffff",
+      "--shadow": "0 10px 28px rgba(36, 54, 77, 0.1)",
+      "--ring": "rgba(0, 132, 173, 0.35)",
+    },
+    dark: {
+      "--bg": "#12181f",
+      "--surface": "#1a222c",
+      "--surface-2": "#232d3a",
+      "--text": "#f1f7ff",
+      "--text-muted": "#989da4",
+      "--border": "#515a63",
+      "--primary": "#8cd1ff",
+      "--primary-soft": "#0c5970",
+      "--primary-fg": "#041018",
+      "--accent": "#98f2ff",
+      "--accent-fg": "#041418",
+      "--success": "#5bff3a",
+      "--warning": "#ffa48b",
+      "--danger": "#ff8a8a",
+      "--input-bg": "#161c23",
+      "--shadow": "0 12px 32px rgba(0, 0, 0, 0.45)",
+      "--ring": "rgba(140, 209, 255, 0.4)",
+    },
+  },
+];
+
+const THEMES = COLOR_FAMILIES.flatMap((family) => [
+  { id: `${family.name}-light`, name: family.name, mode: "light", vars: family.light },
+  { id: `${family.name}-dark`, name: family.name, mode: "dark", vars: family.dark },
+]);
+
+const PALETTE_KEYS = [
+  { key: "--primary", label: "Primary" },
+  { key: "--accent", label: "Accent" },
+  { key: "--success", label: "Success" },
+  { key: "--warning", label: "Warning" },
+  { key: "--danger", label: "Danger" },
+  { key: "--surface", label: "Surface" },
+];
+
+const CARGO_OPTIONS = ["Dangerous", "Awkward", "Reefer", "Food Grade", "Scrap", "Oversize"];
+const TAB_ITEMS = ["Master", "Container", "Customer", "Remark"];
+
+function ThemeShowcase({ theme, index }) {
+  const uid = useId();
+  const toastTimer = useRef(null);
+  const [text, setText] = useState("");
+  const [search, setSearch] = useState("");
+  const [selectVal, setSelectVal] = useState("general");
+  const [toggleOn, setToggleOn] = useState(index % 2 === 0);
+  const [notify, setNotify] = useState(true);
+  const [checks, setChecks] = useState(() => new Set(["Reefer", "Food Grade"]));
+  const [region, setRegion] = useState("Asia");
+  const [tab, setTab] = useState("Master");
+  const [range, setRange] = useState(42 + (index % 5) * 8);
+  const [rating, setRating] = useState(3 + (index % 3));
+  const [rows, setRows] = useState([
+    { type: "20GP", qty: 2 },
+    { type: "40HC", qty: 1 },
+  ]);
+  const [pickedSwatch, setPickedSwatch] = useState("--primary");
+  const [toast, setToast] = useState("");
+  const [dateVal, setDateVal] = useState("2026-08-25");
+  const [timeVal, setTimeVal] = useState("14:30");
+  const [qty, setQty] = useState(4);
+  const [showPw, setShowPw] = useState(false);
+  const [password, setPassword] = useState("demo1234");
+  const [tags, setTags] = useState(() => new Set(["EDI", "Hold"]));
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [fileName, setFileName] = useState("");
+  const [alertOn, setAlertOn] = useState(true);
+  const [accordionOpen, setAccordionOpen] = useState(false);
+
+  useEffect(() => () => {
+    if (toastTimer.current) window.clearTimeout(toastTimer.current);
+  }, []);
+
+  const toggleCheck = (label) => {
+    setChecks((prev) => {
+      const next = new Set(prev);
+      if (next.has(label)) next.delete(label);
+      else next.add(label);
+      return next;
+    });
+  };
+
+  const toggleTag = (tag) => {
+    setTags((prev) => {
+      const next = new Set(prev);
+      if (next.has(tag)) next.delete(tag);
+      else next.add(tag);
+      return next;
+    });
+  };
+
+  const runLoading = () => {
+    setLoading(true);
+    showToast("Submitting…");
+    window.setTimeout(() => {
+      setLoading(false);
+      showToast("Done");
+    }, 1200);
+  };
+
+  const showToast = (msg) => {
+    setToast(msg);
+    if (toastTimer.current) window.clearTimeout(toastTimer.current);
+    toastTimer.current = window.setTimeout(() => setToast(""), 1400);
+  };
+
+  const addRow = () => {
+    setRows((prev) => {
+      if (prev.length >= 2) {
+        showToast("Max 2 rows");
+        return prev;
+      }
+      showToast("Row added");
+      return [...prev, { type: "40GP", qty: 1 }];
+    });
+  };
+
+  const removeRow = () => {
+    setRows((prev) => {
+      if (prev.length <= 1) return prev;
+      showToast("Row removed");
+      return prev.slice(0, -1);
+    });
+  };
+
+  return (
+    <div
+      className={`s4-showcase${theme.mode === "dark" ? " is-dark" : ""}`}
+      style={theme.vars}
+      data-theme={theme.id}
+    >
+      <header className="s4-head">
+        <div>
+          <p className="s4-kicker">Theme {String(index + 1).padStart(2, "0")} · CSS Variables</p>
+          <h3 className="s4-title">{theme.name}</h3>
+        </div>
+        <div className="s4-head-actions">
+          <span className={`s4-badge ${theme.mode}`}>{theme.mode}</span>
+          <label className="s4-switch">
+            <input
+              type="checkbox"
+              checked={toggleOn}
+              onChange={(e) => setToggleOn(e.target.checked)}
+              aria-label="Keep session"
+            />
+            <span className="s4-switch-track"><span className="s4-switch-thumb" /></span>
+            <span>Keep Session</span>
+          </label>
+        </div>
+      </header>
+
+      <section className="s4-panel">
+        <div className="s4-panel-title">Color Palette</div>
+        <div className="s4-swatches">
+          {PALETTE_KEYS.map(({ key, label }) => (
+            <button
+              key={key}
+              type="button"
+              className={`s4-swatch${pickedSwatch === key ? " is-active" : ""}`}
+              style={{ "--swatch": `var(${key})` }}
+              onClick={() => {
+                setPickedSwatch(key);
+                showToast(`${label} selected`);
+              }}
+            >
+              <span className="s4-swatch-fill" />
+              <span className="s4-swatch-meta">
+                <strong>{label}</strong>
+                <em>{theme.vars[key]}</em>
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <div className="s4-grid">
+        <section className="s4-panel">
+          <div className="s4-panel-title">Inputs</div>
+          <div className="s4-fields">
+            <label className="s4-field">
+              <span>BKG No. *</span>
+              <input
+                type="text"
+                value={text}
+                placeholder="Type booking number"
+                onChange={(e) => setText(e.target.value)}
+              />
+            </label>
+            <label className="s4-field s4-field-icon">
+              <span>Search</span>
+              <input
+                type="search"
+                value={search}
+                placeholder="POR / POL / Carrier"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button type="button" className="s4-icon-btn" onClick={() => showToast(`Search: ${search || "empty"}`)} aria-label="Run search">
+                ⌕
+              </button>
+            </label>
+            <label className="s4-field">
+              <span>Booking Type</span>
+              <select value={selectVal} onChange={(e) => setSelectVal(e.target.value)}>
+                <option value="general">General BKG</option>
+                <option value="empty">Empty Repo</option>
+                <option value="co-load">Co-Load</option>
+              </select>
+            </label>
+            <label className="s4-field">
+              <span>ETD Date</span>
+              <input type="date" value={dateVal} onChange={(e) => setDateVal(e.target.value)} />
+            </label>
+            <label className="s4-field">
+              <span>Cut-off</span>
+              <input type="time" value={timeVal} onChange={(e) => setTimeVal(e.target.value)} />
+            </label>
+            <label className="s4-field s4-field-icon">
+              <span>Password</span>
+              <input
+                type={showPw ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="button" className="s4-icon-btn" onClick={() => setShowPw((v) => !v)} aria-label="Toggle password">
+                {showPw ? "Hide" : "Show"}
+              </button>
+            </label>
+            <div className="s4-field">
+              <span>Qty Stepper</span>
+              <div className="s4-stepper">
+                <button type="button" onClick={() => setQty((v) => Math.max(0, v - 1))} aria-label="Decrease">−</button>
+                <strong>{qty}</strong>
+                <button type="button" onClick={() => setQty((v) => v + 1)} aria-label="Increase">+</button>
+              </div>
+            </div>
+            <label className="s4-field s4-field-remark">
+              <span>Remark</span>
+              <textarea
+                rows={1}
+                placeholder="Write a note…"
+                defaultValue=""
+                onBlur={(e) => e.target.value && showToast("Remark saved")}
+              />
+            </label>
+          </div>
+        </section>
+
+        <section className="s4-panel">
+          <div className="s4-panel-title">Controls</div>
+          <div className="s4-controls-top">
+            <div className="s4-seg" role="group" aria-label="Region">
+              {["Asia", "US", "EU"].map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className={region === item ? "is-active" : ""}
+                  onClick={() => setRegion(item)}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+            <label className="s4-switch dense">
+              <input
+                type="checkbox"
+                checked={notify}
+                onChange={(e) => setNotify(e.target.checked)}
+              />
+              <span className="s4-switch-track"><span className="s4-switch-thumb" /></span>
+              <span>Notify</span>
+            </label>
+          </div>
+
+          <div className="s4-checks">
+            {CARGO_OPTIONS.map((label) => (
+              <label key={label} className="s4-check">
+                <input
+                  type="checkbox"
+                  checked={checks.has(label)}
+                  onChange={() => toggleCheck(label)}
+                />
+                <span className="s4-check-box" />
+                {label}
+              </label>
+            ))}
+          </div>
+
+          <div className="s4-tag-row">
+            {["EDI", "Hold", "VIP", "Reefer", "DG"].map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                className={`s4-chip${tags.has(tag) ? " is-on" : ""}`}
+                onClick={() => toggleTag(tag)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
+          <div className="s4-controls-bottom">
+            <div className="s4-radios" role="radiogroup" aria-label="Priority">
+              {["Normal", "Urgent", "VIP"].map((item, i) => (
+                <label key={item} className="s4-radio">
+                  <input
+                    type="radio"
+                    name={`${uid}-priority`}
+                    defaultChecked={i === 0}
+                    onChange={() => showToast(`Priority: ${item}`)}
+                  />
+                  <span className="s4-radio-dot" />
+                  {item}
+                </label>
+              ))}
+            </div>
+            <div className="s4-stars" aria-label="Rating">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  className={n <= rating ? "is-on" : ""}
+                  onClick={() => setRating(n)}
+                  aria-label={`${n} stars`}
+                >
+                  ★
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <label className="s4-field s4-field-range">
+            <span>Progress · {range}%</span>
+            <input
+              type="range"
+              min={0}
+              max={100}
+              value={range}
+              onChange={(e) => setRange(Number(e.target.value))}
+            />
+            <div className="s4-progress"><i style={{ width: `${range}%` }} /></div>
+          </label>
+        </section>
+
+        <section className="s4-panel">
+          <div className="s4-panel-title">Widgets</div>
+
+          <div className="s4-status-row">
+            <span className="s4-status ok">Ready</span>
+            <span className="s4-status warn">Pending</span>
+            <span className="s4-status err">Blocked</span>
+            <span className="s4-status info">Sync</span>
+          </div>
+
+          {alertOn ? (
+            <div className="s4-alert">
+              <span>Vessel cut-off in 2h. Confirm POL ETD.</span>
+              <button type="button" onClick={() => setAlertOn(false)} aria-label="Dismiss">×</button>
+            </div>
+          ) : (
+            <button type="button" className="s4-btn ghost s4-btn-block" onClick={() => setAlertOn(true)}>
+              Show alert
+            </button>
+          )}
+
+          <div className="s4-steps" role="list">
+            {["Draft", "Confirm", "Submit"].map((label, i) => (
+              <button
+                key={label}
+                type="button"
+                role="listitem"
+                className={`s4-step${step === i ? " is-active" : ""}${step > i ? " is-done" : ""}`}
+                onClick={() => setStep(i)}
+              >
+                <em>{i + 1}</em>
+                {label}
+              </button>
+            ))}
+          </div>
+
+          <div className="s4-widget-row">
+            <label className="s4-file">
+              <input
+                type="file"
+                onChange={(e) => {
+                  const name = e.target.files?.[0]?.name || "";
+                  setFileName(name);
+                  showToast(name ? `File: ${name}` : "No file");
+                }}
+              />
+              <span className="s4-btn ghost">{fileName || "Attach file"}</span>
+            </label>
+            <button
+              type="button"
+              className={`s4-btn primary${loading ? " is-loading" : ""}`}
+              onClick={runLoading}
+              disabled={loading}
+            >
+              {loading ? "…" : "Submit"}
+            </button>
+          </div>
+
+          <div className="s4-meter" aria-label="Capacity">
+            <div className="s4-meter-head">
+              <span>Capacity</span>
+              <strong>{Math.min(100, qty * 12 + range)}%</strong>
+            </div>
+            <div className="s4-progress"><i style={{ width: `${Math.min(100, qty * 12 + range)}%` }} /></div>
+          </div>
+
+          <button
+            type="button"
+            className={`s4-accordion${accordionOpen ? " is-open" : ""}`}
+            onClick={() => setAccordionOpen((v) => !v)}
+          >
+            <span>More options</span>
+            <em>{accordionOpen ? "−" : "+"}</em>
+          </button>
+          {accordionOpen ? (
+            <div className="s4-accordion-body">
+              <label className="s4-switch dense">
+                <input
+                  type="checkbox"
+                  checked={toggleOn}
+                  onChange={(e) => setToggleOn(e.target.checked)}
+                />
+                <span className="s4-switch-track"><span className="s4-switch-thumb" /></span>
+                <span>Auto EDI</span>
+              </label>
+              <label className="s4-field">
+                <span>Accent color</span>
+                <input
+                  type="color"
+                  value={theme.vars["--primary"]}
+                  onChange={() => showToast("Preview only · theme locked")}
+                />
+              </label>
+            </div>
+          ) : null}
+        </section>
+      </div>
+
+      <section className="s4-panel">
+        <div className="s4-tabs">
+          {TAB_ITEMS.map((item) => (
+            <button
+              key={item}
+              type="button"
+              className={tab === item ? "is-active" : ""}
+              onClick={() => setTab(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+
+        <div className="s4-table-wrap">
+          <div className="s4-table-toolbar">
+            <strong>{tab} · Container Q&apos;ty</strong>
+            <div className="s4-btn-row">
+              <button type="button" className="s4-btn ghost" onClick={addRow}>+ Add Row</button>
+              <button type="button" className="s4-btn ghost" onClick={removeRow}>- Delete</button>
+            </div>
+          </div>
+          <table className="s4-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Type</th>
+                <th>Qty</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => (
+                <tr key={`${row.type}-${i}`}>
+                  <td>{i + 1}</td>
+                  <td>
+                    <select
+                      value={row.type}
+                      onChange={(e) => {
+                        const type = e.target.value;
+                        setRows((prev) => prev.map((r, idx) => (idx === i ? { ...r, type } : r)));
+                      }}
+                    >
+                      {["20GP", "40GP", "40HC", "45HC"].map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      min={0}
+                      value={row.qty}
+                      onChange={(e) => {
+                        const qty = Number(e.target.value);
+                        setRows((prev) => prev.map((r, idx) => (idx === i ? { ...r, qty } : r)));
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <button type="button" className="s4-chip" onClick={() => showToast(`${row.type} inquired`)}>
+                      Inquiry
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer className="s4-footer">
+        <div className="s4-chips">
+          <span className="s4-chip soft">{region}</span>
+          <span className="s4-chip soft">{selectVal}</span>
+          <span className="s4-chip soft">{checks.size} cargo</span>
+          {notify && <span className="s4-chip soft">notify on</span>}
+        </div>
+        <div className="s4-btn-row">
+          <button type="button" className="s4-btn ghost" onClick={() => showToast("Cancelled")}>Cancel</button>
+          <button type="button" className="s4-btn primary" onClick={() => showToast("Search run")}>Search</button>
+          <button type="button" className="s4-btn accent" onClick={() => showToast("Saved!")}>Save</button>
+        </div>
+      </footer>
+
+      {toast ? <div className="s4-toast" role="status">{toast}</div> : null}
+    </div>
+  );
+}
+
 /* ── 컴포넌트 ── */
 export default function Section4() {
   const { sectionRef, scrollPercent } = useSectionScroll();
 
   return (
     <div className="section section4" ref={sectionRef}>
+      <style>{SECTION4_STYLES}</style>
       <div className="layer-sticky">
         <div className="layer-stack">
-          {LAYER_IMAGES.map((src, i) => (
+          {THEMES.map((theme, i) => (
             <div
-              key={src}
+              key={theme.id}
               className="layer-card"
-              style={{ clipPath: getCardClipPath(i, scrollPercent, LAYER_IMAGES.length) }}
+              style={{ clipPath: getCardClipPath(i, scrollPercent, THEMES.length) }}
             >
-              <img src={src} alt="" />
+              <ThemeShowcase theme={theme} index={i} />
             </div>
           ))}
         </div>
@@ -114,3 +860,791 @@ export default function Section4() {
     </div>
   );
 }
+
+
+const SECTION4_STYLES = `
+.section4 .layer-card {
+  display: flex;
+  pointer-events: auto;
+  container-type: size;
+  container-name: s4card;
+  overflow: hidden;
+}
+.section4 .s4-showcase {
+  --radius: clamp(6px, 1.2cqh, 12px);
+  --gap: clamp(4px, 1cqh, 10px);
+  --pad: clamp(6px, 1.2cqh, 12px);
+  --fs: clamp(10px, 1.35cqh, 12px);
+  --fs-sm: clamp(9px, 1.15cqh, 11px);
+  --ctrl-h: clamp(26px, 3.4cqh, 34px);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: clamp(8px, 1.6cqh, 16px) clamp(10px, 1.4cqw, 18px);
+  border-radius: 12px;
+  background:
+    radial-gradient(1200px 400px at 0% 0%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Pretendard", "Segoe UI", sans-serif;
+  font-size: var(--fs);
+  line-height: 1.25;
+}
+.section4 .s4-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(6px, 1cqw, 12px);
+  flex: 0 0 auto;
+  min-height: 0;
+}
+.section4 .s4-kicker {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+.section4 .s4-title {
+  font-size: clamp(16px, 3.2cqh, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.section4 .s4-head-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1cqw, 12px);
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.section4 .s4-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  white-space: nowrap;
+}
+.section4 .s4-badge.light { color: var(--primary); background: var(--primary-soft); border-color: transparent; }
+.section4 .s4-badge.dark { color: var(--primary-fg); background: var(--primary); border-color: transparent; }
+
+.section4 .s4-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--pad);
+  margin: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.8cqh, 8px);
+}
+.section4 .s4-panel-title {
+  position: relative;
+  padding-left: 8px;
+  margin: 0;
+  font-size: var(--fs);
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+.section4 .s4-panel-title::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 15%; bottom: 15%;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--primary);
+}
+
+.section4 .s4-showcase > .s4-panel:first-of-type {
+  flex: 0 0 auto;
+}
+.section4 .s4-swatches {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(4px, 0.8cqw, 8px);
+  min-height: 0;
+}
+.section4 .s4-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: clamp(6px, 1cqh, 10px);
+  background: var(--surface-2);
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: left;
+  min-width: 0;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.section4 .s4-swatch:hover { transform: translateY(-1px); }
+.section4 .s4-swatch.is-active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+.section4 .s4-swatch-fill {
+  display: block;
+  height: clamp(16px, 3cqh, 28px);
+  background: var(--swatch);
+  flex: 0 0 auto;
+}
+.section4 .s4-swatch-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0 5px 5px;
+  min-width: 0;
+}
+.section4 .s4-swatch-meta strong {
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.section4 .s4-swatch-meta em {
+  font-style: normal;
+  font-size: clamp(8px, 1cqh, 10px);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section4 .s4-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.section4 .s4-grid > .s4-panel {
+  min-height: 0;
+  overflow: hidden;
+}
+.section4 .s4-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(4px, 0.9cqh, 8px) clamp(6px, 1cqw, 10px);
+  min-height: 0;
+  align-content: start;
+}
+.section4 .s4-field {
+  display: grid;
+  gap: 3px;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  min-width: 0;
+}
+.section4 .s4-field-remark { grid-column: 1 / -1; }
+.section4 .s4-field-range { gap: 4px; }
+.section4 .s4-field > span { font-weight: 600; color: var(--text); }
+.section4 .s4-field input,
+.section4 .s4-field select,
+.section4 .s4-field textarea,
+.section4 .s4-table select,
+.section4 .s4-table input {
+  width: 100%;
+  height: var(--ctrl-h);
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: clamp(5px, 0.8cqh, 8px);
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 0 8px;
+  font: inherit;
+  font-size: var(--fs);
+  outline: none;
+  min-width: 0;
+}
+.section4 .s4-field textarea {
+  height: auto;
+  min-height: var(--ctrl-h);
+  max-height: clamp(28px, 5cqh, 44px);
+  padding: 6px 8px;
+  resize: none;
+}
+.section4 .s4-field input:focus,
+.section4 .s4-field select:focus,
+.section4 .s4-field textarea:focus,
+.section4 .s4-table select:focus,
+.section4 .s4-table input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--ring);
+}
+.section4 .s4-field-icon { position: relative; }
+.section4 .s4-field-icon input { padding-right: 48px; }
+.section4 .s4-icon-btn {
+  position: absolute;
+  right: 4px;
+  bottom: 3px;
+  min-width: calc(var(--ctrl-h) - 6px);
+  height: calc(var(--ctrl-h) - 6px);
+  padding: 0 6px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: clamp(9px, 1.1cqh, 11px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.section4 .s4-stepper {
+  display: inline-flex;
+  align-items: center;
+  height: var(--ctrl-h);
+  border: 1px solid var(--border);
+  border-radius: clamp(5px, 0.8cqh, 8px);
+  overflow: hidden;
+  background: var(--input-bg);
+  width: 100%;
+}
+.section4 .s4-stepper button {
+  width: 32px;
+  height: 100%;
+  border: 0;
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+.section4 .s4-stepper strong {
+  flex: 1;
+  text-align: center;
+  color: var(--text);
+  font-size: var(--fs);
+}
+
+.section4 .s4-tag-row,
+.section4 .s4-status-row,
+.section4 .s4-widget-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.section4 .s4-chip.is-on {
+  background: var(--primary);
+  color: var(--primary-fg);
+  border-color: transparent;
+}
+.section4 .s4-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+.section4 .s4-status.ok { background: color-mix(in srgb, var(--success) 22%, transparent); color: var(--success); }
+.section4 .s4-status.warn { background: color-mix(in srgb, var(--warning) 22%, transparent); color: var(--warning); }
+.section4 .s4-status.err { background: color-mix(in srgb, var(--danger) 22%, transparent); color: var(--danger); }
+.section4 .s4-status.info { background: var(--primary-soft); color: var(--primary); }
+
+.section4 .s4-alert {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--warning) 16%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--warning) 40%, var(--border));
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+.section4 .s4-alert button {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+}
+
+.section4 .s4-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+}
+.section4 .s4-step {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border-radius: 8px;
+  padding: 5px 6px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 0;
+}
+.section4 .s4-step em {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  font-style: normal;
+  font-size: 9px;
+  background: var(--border);
+  color: var(--text);
+  flex: 0 0 auto;
+}
+.section4 .s4-step.is-active {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+.section4 .s4-step.is-active em,
+.section4 .s4-step.is-done em {
+  background: var(--primary);
+  color: var(--primary-fg);
+}
+.section4 .s4-step.is-done { color: var(--text); }
+
+.section4 .s4-file {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+.section4 .s4-file input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.section4 .s4-file .s4-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.section4 .s4-btn-block { width: 100%; }
+.section4 .s4-btn.is-loading { opacity: 0.7; cursor: wait; }
+
+.section4 .s4-meter {
+  display: grid;
+  gap: 4px;
+}
+.section4 .s4-meter-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.section4 .s4-meter-head strong { color: var(--text); }
+
+.section4 .s4-accordion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+.section4 .s4-accordion em { font-style: normal; color: var(--primary); }
+.section4 .s4-accordion-body {
+  display: grid;
+  gap: 6px;
+  padding: 4px 2px 0;
+}
+.section4 .s4-accordion-body input[type="color"] {
+  width: 100%;
+  height: var(--ctrl-h);
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  cursor: pointer;
+}
+
+.section4 .s4-controls-top,
+.section4 .s4-controls-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+}
+.section4 .s4-seg {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  margin: 0;
+}
+.section4 .s4-seg button {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.section4 .s4-seg button.is-active {
+  background: var(--primary);
+  color: var(--primary-fg);
+}
+
+.section4 .s4-checks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(3px, 0.7cqh, 6px) 8px;
+  margin: 0;
+  flex: 0 0 auto;
+}
+.section4 .s4-check,
+.section4 .s4-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+  white-space: nowrap;
+}
+.section4 .s4-check input,
+.section4 .s4-radio input,
+.section4 .s4-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.section4 .s4-check-box,
+.section4 .s4-radio-dot {
+  width: clamp(12px, 1.8cqh, 15px);
+  height: clamp(12px, 1.8cqh, 15px);
+  border: 1.5px solid var(--border);
+  background: var(--input-bg);
+  position: relative;
+  flex: 0 0 auto;
+}
+.section4 .s4-check-box { border-radius: 3px; }
+.section4 .s4-radio-dot { border-radius: 50%; }
+.section4 .s4-check input:checked + .s4-check-box {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.section4 .s4-check input:checked + .s4-check-box::after {
+  content: "";
+  position: absolute;
+  left: 35%; top: 8%;
+  width: 28%; height: 55%;
+  border: solid var(--primary-fg);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+.section4 .s4-radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+.section4 .s4-radio input:checked + .s4-radio-dot {
+  border-color: var(--primary);
+}
+.section4 .s4-radio input:checked + .s4-radio-dot::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.section4 .s4-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+.section4 .s4-switch.dense { margin: 0; }
+.section4 .s4-switch-track {
+  width: 32px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--border);
+  position: relative;
+  transition: background 0.2s ease;
+  flex: 0 0 auto;
+}
+.section4 .s4-switch-thumb {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+.section4 .s4-switch input:checked + .s4-switch-track {
+  background: var(--primary);
+}
+.section4 .s4-switch input:checked + .s4-switch-track .s4-switch-thumb {
+  transform: translateX(14px);
+}
+
+.section4 .s4-field input[type="range"] {
+  height: 18px;
+  padding: 0;
+  accent-color: var(--primary);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.section4 .s4-progress {
+  height: clamp(4px, 0.7cqh, 6px);
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.section4 .s4-progress > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.section4 .s4-stars {
+  display: flex;
+  gap: 2px;
+  margin: 0;
+}
+.section4 .s4-stars button {
+  border: 0;
+  background: transparent;
+  color: var(--border);
+  font-size: clamp(14px, 2.2cqh, 18px);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+.section4 .s4-stars button.is-on { color: var(--accent); }
+
+.section4 .s4-showcase > .s4-panel:last-of-type {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+.section4 .s4-tabs {
+  display: flex;
+  gap: 2px;
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+.section4 .s4-tabs button {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+}
+.section4 .s4-tabs button.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.section4 .s4-table-wrap {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.section4 .s4-table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: var(--fs-sm);
+  flex: 0 0 auto;
+}
+.section4 .s4-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  table-layout: fixed;
+}
+.section4 .s4-table th,
+.section4 .s4-table td {
+  border: 1px solid var(--border);
+  padding: clamp(2px, 0.5cqh, 5px) 6px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.section4 .s4-table th {
+  background: var(--primary-soft);
+  color: var(--text);
+}
+.section4 .s4-table tbody tr:nth-child(even) {
+  background: var(--surface-2);
+}
+.section4 .s4-table select,
+.section4 .s4-table input {
+  height: clamp(22px, 2.8cqh, 28px);
+  padding: 0 4px;
+  border-radius: 5px;
+}
+
+.section4 .s4-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-height: 0;
+}
+.section4 .s4-chips,
+.section4 .s4-btn-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+.section4 .s4-chip {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.section4 .s4-chip.soft {
+  background: var(--primary-soft);
+  color: var(--text);
+  border-color: transparent;
+  cursor: default;
+}
+.section4 .s4-btn {
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 0 10px;
+  height: var(--ctrl-h);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+.section4 .s4-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.section4 .s4-btn:active { transform: translateY(0); }
+.section4 .s4-btn.primary { background: var(--primary); color: var(--primary-fg); }
+.section4 .s4-btn.accent { background: var(--accent); color: var(--accent-fg); }
+.section4 .s4-btn.ghost {
+  background: var(--surface);
+  color: var(--primary);
+  border-color: var(--border);
+}
+
+.section4 .s4-toast {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  pointer-events: none;
+  animation: s4ToastIn 0.2s ease;
+  z-index: 2;
+}
+@keyframes s4ToastIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@container s4card (max-height: 720px) {
+  .section4 .s4-swatch-meta em { display: none; }
+  .section4 .s4-swatch-meta { padding-bottom: 4px; }
+}
+@container s4card (max-height: 640px) {
+  .section4 .s4-kicker { display: none; }
+  .section4 .s4-panel-title { font-size: var(--fs-sm); }
+  .section4 .s4-tabs button { padding: 3px 6px; }
+}
+@container s4card (max-height: 560px) {
+  .section4 .s4-checks { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .section4 .s4-table thead { display: none; }
+  .section4 .s4-chips .s4-chip:nth-child(n + 3) { display: none; }
+  .section4 .s4-alert { display: none; }
+  .section4 .s4-step { font-size: 0; gap: 0; justify-content: center; padding: 4px; }
+  .section4 .s4-step em { font-size: 9px; }
+}
+@container s4card (max-width: 1100px) {
+  .section4 .s4-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .section4 .s4-step { flex-direction: column; gap: 2px; text-align: center; }
+}
+@container s4card (max-width: 900px) {
+  .section4 .s4-grid { grid-template-columns: 1fr 1fr; }
+  .section4 .s4-grid > .s4-panel:last-child { grid-column: 1 / -1; }
+}
+@container s4card (max-width: 680px) {
+  .section4 .s4-grid { grid-template-columns: 1fr; }
+  .section4 .s4-grid > .s4-panel:last-child { grid-column: auto; }
+  .section4 .s4-swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .section4 .s4-fields { grid-template-columns: 1fr 1fr; }
+  .section4 .s4-checks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .section4 .s4-head { align-items: flex-start; }
+  .section4 .s4-head-actions { flex-wrap: wrap; }
+  .section4 .s4-footer { flex-wrap: wrap; }
+}
+
+@media (max-width: 1024px) {
+  .section4 .s4-showcase { padding: 8px 10px; }
+}
+`;

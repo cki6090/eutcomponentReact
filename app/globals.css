@@ -727,7 +727,6 @@ header {
   width: 100%;
   min-height: 150px;
   margin-bottom: 15px;
-  background-color: var(--white);
 }
 main {
   width: 100%;
@@ -744,8 +743,6 @@ footer {
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  background-color: var(--white);
-  border-top: 1px solid #c9c9c9;
   padding: 0px 15px;
 }
 footer .footer-menu {

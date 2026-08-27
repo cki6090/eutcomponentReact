@@ -33,7 +33,9 @@ function useSectionScroll() {
 
 /* ── SCRIPT : 스크롤 비디오 ── */
 const VIDEO_DURATION = 10;
-const FRAME_COUNT = 130;
+const FRAME_COUNT = 160;
+/** 스크롤 추종 — 너무 낮으면 늦게 따라오고, 1이면 즉시 반응 */
+const LERP = 0.18;
 
 function useScrollVideo(videoSrc, scrollPercent) {
   const sourceRef = useRef(null);
@@ -41,7 +43,9 @@ function useScrollVideo(videoSrc, scrollPercent) {
   const wrapRef = useRef(null);
   const framesRef = useRef([]);
   const colorsRef = useRef([]);
+  const smoothIndexRef = useRef(0);
   const lastFrameRef = useRef(-1);
+  const lastColorRef = useRef("");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -51,7 +55,7 @@ function useScrollVideo(videoSrc, scrollPercent) {
 
     let cancelled = false;
     const captureCanvas = document.createElement("canvas");
-    const captureCtx = captureCanvas.getContext("2d");
+    const captureCtx = captureCanvas.getContext("2d", { alpha: false });
 
     const startCapture = () => {
       const w = source.videoWidth;
@@ -65,25 +69,33 @@ function useScrollVideo(videoSrc, scrollPercent) {
       captureCanvas.width = displayW;
       captureCanvas.height = displayH;
 
+      framesRef.current = new Array(FRAME_COUNT);
+      colorsRef.current = new Array(FRAME_COUNT);
+
       let frameIndex = 0;
       const captureNext = () => {
         if (cancelled || frameIndex >= FRAME_COUNT) {
           if (!cancelled) setReady(true);
           return;
         }
-        source.currentTime = (frameIndex / (FRAME_COUNT - 1)) * VIDEO_DURATION;
+        const idx = frameIndex;
+        source.currentTime = (idx / (FRAME_COUNT - 1)) * VIDEO_DURATION;
         source.onseeked = () => {
           if (cancelled) return;
           captureCtx.drawImage(source, 0, 0, displayW, displayH);
           const data = captureCtx.getImageData(0, 0, displayW, displayH).data;
           let r = 0, g = 0, b = 0, count = 0;
-          for (let i = 0; i < data.length; i += 64) {
+          for (let i = 0; i < data.length; i += 80) {
             r += data[i]; g += data[i + 1]; b += data[i + 2]; count++;
           }
-          colorsRef.current[frameIndex] = `rgb(${Math.round(r / count)},${Math.round(g / count)},${Math.round(b / count)})`;
+          colorsRef.current[idx] = `rgb(${Math.round(r / count)},${Math.round(g / count)},${Math.round(b / count)})`;
           createImageBitmap(captureCanvas).then((bitmap) => {
-            if (cancelled) return;
-            framesRef.current[frameIndex++] = bitmap;
+            if (cancelled) {
+              bitmap.close?.();
+              return;
+            }
+            framesRef.current[idx] = bitmap;
+            frameIndex = idx + 1;
             captureNext();
           });
         };
@@ -93,23 +105,71 @@ function useScrollVideo(videoSrc, scrollPercent) {
 
     if (source.readyState >= 1) startCapture();
     else source.addEventListener("loadedmetadata", startCapture, { once: true });
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+      framesRef.current.forEach((bmp) => bmp?.close?.());
+      framesRef.current = [];
+    };
   }, [videoSrc]);
 
+  const targetPercentRef = useRef(scrollPercent);
   useEffect(() => {
-    if (!ready || scrollPercent < 0 || scrollPercent >= 100) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx || !framesRef.current.length) return;
+    targetPercentRef.current = scrollPercent;
+  }, [scrollPercent]);
 
-    const index = Math.max(0, Math.min(FRAME_COUNT - 1, Math.round((scrollPercent / 100) * (FRAME_COUNT - 1))));
-    if (index === lastFrameRef.current) return;
-    lastFrameRef.current = index;
-    ctx.drawImage(framesRef.current[index], 0, 0, canvas.width, canvas.height);
-    if (wrapRef.current && colorsRef.current[index]) {
-      wrapRef.current.style.backgroundColor = colorsRef.current[index];
-    }
-  }, [ready, scrollPercent]);
+  useEffect(() => {
+    if (!ready) return;
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d", { alpha: false });
+    if (!canvas || !ctx) return;
+
+    const drawFrame = (frame) => {
+      const bmp = framesRef.current[frame];
+      if (!bmp) return;
+      ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+
+      const color = colorsRef.current[frame];
+      if (wrapRef.current && color && color !== lastColorRef.current) {
+        lastColorRef.current = color;
+        wrapRef.current.style.backgroundColor = color;
+      }
+    };
+
+    // 첫 화면
+    const startTarget = (targetPercentRef.current / 100) * (FRAME_COUNT - 1);
+    smoothIndexRef.current = startTarget;
+    const startFrame = Math.round(startTarget);
+    lastFrameRef.current = startFrame;
+    drawFrame(startFrame);
+
+    let rafId;
+    const loop = () => {
+      const target = Math.max(
+        0,
+        Math.min(FRAME_COUNT - 1, (targetPercentRef.current / 100) * (FRAME_COUNT - 1))
+      );
+
+      let current = smoothIndexRef.current;
+      const diff = target - current;
+      if (Math.abs(diff) < 0.001) {
+        current = target;
+      } else {
+        current += diff * LERP;
+      }
+      smoothIndexRef.current = current;
+
+      const frame = Math.round(current);
+      if (frame !== lastFrameRef.current) {
+        lastFrameRef.current = frame;
+        drawFrame(frame);
+      }
+
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafId);
+  }, [ready]);
 
   return { sourceRef, canvasRef, wrapRef };
 }

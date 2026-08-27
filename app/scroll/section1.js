@@ -51,38 +51,24 @@ export default function Section1() {
   const { sectionRef, scrollPercent } = useSectionScroll();
   const thresholds = [21, 50, 73, 96];
   const active = thresholds.map((t, i) => (scrollPercent > t ? i + 1 : -1)).filter((i) => i >= 0);
+  const boxWrapRef = useRef(null);
+  const imgRefs = useRef([]);
+
+  const WINDOWS = [[5, 27], [27, 50], [50, 75], [75, 100]];
+  const stacked = scrollPercent >= WINDOWS[3][1];
+
+  useEffect(() => {
+    imgRefs.current.forEach((img, i) => {
+      if (!img) return;
+      img.classList.toggle("landed", scrollPercent >= WINDOWS[i][1]);
+    });
+    if (boxWrapRef.current) boxWrapRef.current.classList.toggle("stacked", stacked);
+  }, [scrollPercent, stacked]);
 
   const imgStyle = (i) => {
-    if (i === 0 && scrollPercent >= 27) return { left: "0%", opacity: 1 };
-    if (i === 0 && scrollPercent >= 5 && scrollPercent < 27) {
-      let v = 100 - ((scrollPercent - 5) / 22) * 110;
-      if (v <= 10) v = 0; else if (v >= 90) v = 100;
-      return { left: `${Math.round(v)}%`, opacity: 1 };
-    }
-
-    if (i === 1 && scrollPercent >= 50) return { left: "0%", opacity: 1 };
-    if (i === 1 && scrollPercent >= 27 && scrollPercent < 50) {
-      let v = 100 - ((scrollPercent - 27) / 23) * 110;
-      if (v <= 10) v = 0; else if (v >= 90) v = 100;
-      return { left: `${Math.round(v)}%`, opacity: 1 };
-    }
-
-    if (i === 2 && scrollPercent >= 75) return { left: "0%", opacity: 1 };
-    if (i === 2 && scrollPercent >= 50 && scrollPercent < 75) {
-      let v = 100 - ((scrollPercent - 50) / 25) * 110;
-      if (v <= 10) v = 0; else if (v >= 90) v = 100;
-      return { left: `${Math.round(v)}%`, opacity: 1 };
-    }
-    
-    if (i === 3 && scrollPercent >= 100) return { opacity: 1 };
-    if (i === 3 && scrollPercent >= 75) {
-      let v = (scrollPercent - 75) / 25;
-      if (v <= 0.2) return { opacity: 0 };
-      if (v >= 0.8) return { opacity: 1 };
-      return { opacity: v };
-    }
-    if (i === 3) return { opacity: 0 };
-    return undefined;
+    const [start, end] = WINDOWS[i];
+    const p = Math.max(0, Math.min(1, (scrollPercent - start) / (end - start)));
+    return { "--p": p };
   };
 
   return (
@@ -92,9 +78,16 @@ export default function Section1() {
           <p key={i} className={`text${i} ${i === 0 || active.includes(i) ? "active" : ""}`}>{text}</p>
         ))}
       </div>
-      <div className="boxWrap">
+      <div className="boxWrap" ref={boxWrapRef}>
         {IMAGES.map((src, i) => (
-          <img key={src} src={src} alt="" style={imgStyle(i)} />
+          <div
+            key={src}
+            className="imgCard"
+            style={imgStyle(i)}
+            ref={(el) => { imgRefs.current[i] = el; }}
+          >
+            <img src={src} alt="" />
+          </div>
         ))}
       </div>
     </div>
