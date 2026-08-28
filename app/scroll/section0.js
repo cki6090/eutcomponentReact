@@ -89,7 +89,7 @@ export default function Section0() {
     if (!wrapRef.current) return;
     const paths = wrapRef.current.querySelectorAll(".logo_svg path");
     const appearStart = 5;
-    const appearEnd = 95;
+    const appearEnd = 90;
     const step = (appearEnd - appearStart) / paths.length;
     const wrap = wrapRef.current;
     const svg = wrap.querySelector(".logo_svg");
@@ -116,13 +116,9 @@ export default function Section0() {
       bgRef.current.style.setProperty("--bg-intensity", bgIntensity.toFixed(3));
     }
 
-    if (scrollPercent >= 100) {
-      wrap.classList.add("offscreen");
+    if (scrollPercent < appearStart) {
       wrap.classList.remove("in-view");
-    } else if (scrollPercent < appearStart) {
-      wrap.classList.remove("offscreen", "in-view");
     } else {
-      wrap.classList.remove("offscreen");
       wrap.classList.add("in-view");
     }
   }, [scrollPercent]);

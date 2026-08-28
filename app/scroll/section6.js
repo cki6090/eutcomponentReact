@@ -200,8 +200,9 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <rect x="2" y="2" width="28" height="28" rx="8" fill="#0F172A" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="3" strokeLinecap="round" d="M12.5 10H10a6 6 0 0 0 0 12h2.5M15 9v13h5" />
-        <path fill="none" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" d="M20 10h7M23.5 10v12" />
+        <rect x="7" y="16" width="4" height="9" rx="1.5" fill="#38BDF8" />
+        <rect x="14" y="10" width="4" height="15" rx="1.5" fill="#F8FAFC" />
+        <rect x="21" y="13" width="4" height="12" rx="1.5" fill="#F59E0B" />
       </svg>
     ),
   },
@@ -211,8 +212,8 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#0284C7" d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2z" />
-        <path fill="none" stroke="#F8FAFC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M12 10h-1.5a5.5 5.5 0 0 0 0 11H12m2.5-11v11h4" />
-        <path fill="none" stroke="#FBBF24" strokeWidth="2.5" strokeLinecap="round" d="M18 10h8M22 10v11" />
+        <path fill="#F8FAFC" d="m16 9 2.3 5.2 5.2 1.8-5.2 1.8L16 23.5l-2.3-5.2-5.2-1.8 5.2-1.8L16 9z" />
+        <circle cx="16" cy="16" r="2" fill="#FBBF24" />
       </svg>
     ),
   },
@@ -221,10 +222,9 @@ const CLT_LOGOS = [
     name: "13. CLT Signature Line",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" d="M12 8H9a7 7 0 0 0 0 14h3M15 7v15h6" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="3.2" strokeLinecap="round" d="M20 8h10M25 8v14" />
-        <circle cx="5" cy="25.5" r="2" fill="#F97316" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="1.7" strokeLinecap="round" d="M8 26c6-2.5 11-2.5 17 0" />
+        <path fill="none" stroke="#0B3A5B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" d="M4 22c2-6 4-6 6 0s4 6 6 0 4-10 8-10 4 10 6 4" />
+        <circle cx="4" cy="22" r="1.8" fill="#F97316" />
+        <circle cx="28" cy="16" r="1.8" fill="#0EA5E9" />
       </svg>
     ),
   },
@@ -234,9 +234,9 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <circle cx="16" cy="16" r="14" fill="#E0F2FE" />
-        <path fill="none" stroke="#0369A1" strokeWidth="3" strokeLinecap="round" d="M13 9h-2.5a7 7 0 0 0 0 14H13M15.5 8v15h6" />
-        <path fill="none" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" d="M20 9h9M24.5 9v14" />
-        <path fill="#0EA5E9" d="m5 5 5.5-2L8 8.5 5 5z" />
+        <circle cx="11" cy="17" r="5.5" fill="none" stroke="#0369A1" strokeWidth="2.4" />
+        <circle cx="18" cy="12" r="5.5" fill="none" stroke="#0EA5E9" strokeWidth="2.4" />
+        <circle cx="21" cy="19" r="5.5" fill="none" stroke="#F59E0B" strokeWidth="2.4" />
       </svg>
     ),
   },
@@ -577,15 +577,120 @@ const CLT_LOGOS = [
   },
 ];
 
-const LOGOS = [...BRAND_LOGOS, ...CLT_LOGOS];
+/* ── 심플 아이콘 10종 ── */
+const SIMPLE_LOGOS = [
+  {
+    id: "simple-01-anchor",
+    name: "Anchor",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="7" r="3" fill="none" stroke="#0B3A5B" strokeWidth="2.4" />
+        <path fill="none" stroke="#0B3A5B" strokeWidth="2.4" strokeLinecap="round" d="M16 10v16M9 15H6a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-3M11 12h10" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-02-container",
+    name: "Container",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="5" y="9" width="22" height="14" rx="1.5" fill="none" stroke="#0EA5E9" strokeWidth="2.4" />
+        <path fill="none" stroke="#0EA5E9" strokeWidth="1.6" d="M11 9v14M21 9v14" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-03-ship",
+    name: "Ship",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="#0B3A5B" d="M6 20h20l-3 6H9l-3-6z" />
+        <path fill="none" stroke="#0B3A5B" strokeWidth="2.2" strokeLinecap="round" d="M16 20V8m-5 5h10" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-04-wave",
+    name: "Wave",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="none" stroke="#0EA5E9" strokeWidth="2.4" strokeLinecap="round" d="M4 13c4-3 8-3 12 0s8 3 12 0" />
+        <path fill="none" stroke="#0EA5E9" strokeWidth="2.4" strokeLinecap="round" opacity="0.5" d="M4 20c4-3 8-3 12 0s8 3 12 0" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-05-compass",
+    name: "Compass",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="12" fill="none" stroke="#0B3A5B" strokeWidth="2.2" />
+        <path fill="#F59E0B" d="m20 12-2 6-6 2 2-6 6-2z" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-06-globe",
+    name: "Globe",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="12" fill="none" stroke="#0EA5E9" strokeWidth="2.2" />
+        <path fill="none" stroke="#0EA5E9" strokeWidth="1.6" d="M4 16h24M16 4c4 3.5 4 20.5 0 24-4-3.5-4-20.5 0-24z" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-07-crane",
+    name: "Crane",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="none" stroke="#0B3A5B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" d="M7 28V6h18M12 6l-5 6" />
+        <rect x="17" y="14" width="10" height="7" fill="#F59E0B" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-08-lighthouse",
+    name: "Lighthouse",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="#0B3A5B" d="M13 28 14 11h4l1 17z" />
+        <path fill="#F59E0B" d="M13.5 7 16 3l2.5 4z" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-09-chain",
+    name: "Chain",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="4" y="11" width="12" height="10" rx="5" fill="none" stroke="#0B3A5B" strokeWidth="2.4" />
+        <rect x="16" y="11" width="12" height="10" rx="5" fill="none" stroke="#0EA5E9" strokeWidth="2.4" />
+      </svg>
+    ),
+  },
+  {
+    id: "simple-10-pin",
+    name: "Port Pin",
+    Svg: () => (
+      <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="#0B3A5B" d="M16 3a9 9 0 0 0-9 9c0 7 9 17 9 17s9-10 9-17a9 9 0 0 0-9-9z" />
+        <circle cx="16" cy="12" r="3.2" fill="#F8FAFC" />
+      </svg>
+    ),
+  },
+];
 
-function LogoItem({ logo, colored, onActivate }) {
+const LOGOS = [...BRAND_LOGOS, ...CLT_LOGOS, ...SIMPLE_LOGOS];
+
+function LogoItem({ logo, colored, onActivate, index }) {
   const Mark = logo.Svg;
   return (
     <div
       className={`section6-logoItem${colored ? " colored" : ""}`}
       title={logo.name}
       onMouseEnter={onActivate}
+      style={{ "--logo-index": index }}
     >
       <span className="section6-logoTooltip" role="tooltip">
         {logo.name}
@@ -619,6 +724,7 @@ export default function Section6() {
   };
 
   const titleOpacity = fadePhase(scrollPercent, 0, 8, 28, 38);
+  const underlineProgress = easeOutCubic(mapRange(scrollPercent, 8, 28));
 
   const statsOpacity = fadePhase(scrollPercent, 32, 42, 62, 72);
   const counterProgress = easeOutCubic(mapRange(scrollPercent, 42, 62));
@@ -652,12 +758,13 @@ export default function Section6() {
             pointerEvents: titleOpacity > 0 ? "auto" : "none",
           }}
         >
-          <h2 className={`section6-title${titleRevealed ? " is-revealed" : ""}`}>
-            <span className="section6-titleFx" aria-hidden="true">
-              {Array.from({ length: 8 }, (_, i) => (
-                <span key={i} className={`section6-titleParticle section6-titleParticle${i + 1}`} />
-              ))}
-            </span>
+          <h2
+            className={`section6-title${titleRevealed ? " is-revealed" : ""}`}
+            style={{
+              "--underline-progress": underlineProgress,
+              "--highlight-progress": `${underlineProgress * 100}%`,
+            }}
+          >
             <span className="section6-titleLine">
               {TITLE_WORDS.map((word, i) => (
                 <span
@@ -699,7 +806,7 @@ export default function Section6() {
         </div>
 
         <div
-          className="section6-phase section6-logosPhase"
+          className={`section6-phase section6-logosPhase${logosOpacity > 0.05 ? " is-visible" : ""}`}
           style={{
             opacity: logosOpacity,
             pointerEvents: logosOpacity > 0 ? "auto" : "none",
@@ -707,10 +814,11 @@ export default function Section6() {
         >
           <p className="section6-logosLabel">a company with us</p>
           <div className="section6-logoGrid">
-            {LOGOS.map((logo) => (
+            {LOGOS.map((logo, index) => (
               <LogoItem
                 key={logo.id}
                 logo={logo}
+                index={index}
                 colored={coloredLogos.has(logo.id)}
                 onActivate={() => activateLogo(logo.id)}
               />

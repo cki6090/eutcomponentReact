@@ -109,7 +109,11 @@ function getFullHtml(lines) {
 /* ── 컴포넌트 ── */
 export default function Section5() {
   const { sectionRef, scrollPercent } = useSectionScroll();
-  const { activeIndex, segmentProgress } = getLocaleState(scrollPercent);
+  const contentScrollPercent = Math.max(
+    0,
+    Math.min(100, ((scrollPercent - 10) / 90) * 100)
+  );
+  const { activeIndex, segmentProgress } = getLocaleState(contentScrollPercent);
   const locale = LOCALES[activeIndex];
   const wrapOpacity = scrollPercent >= 1 ? 1 : 0;
   const prevLocale = activeIndex > 0 ? LOCALES[activeIndex - 1] : null;

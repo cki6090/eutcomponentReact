@@ -42,7 +42,11 @@ export default function Section3() {
     <div className="section section3" ref={sectionRef}>
       <div className="themeBoxtitle">
         {WORDS.map((word, i) => (
-          <span key={word} style={{ opacity: scrollPercent >= THRESHOLDS[i] ? 1 : 0.1 }}>
+          <span
+            key={word}
+            className={scrollPercent >= THRESHOLDS[i] ? "is-active" : ""}
+            style={{ "--word-index": i }}
+          >
             {word}
           </span>
         ))}

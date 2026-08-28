@@ -32,11 +32,16 @@ function useSectionScroll() {
 }
 
 const TEXTS = [
-  "Scroll Events page",
   "Import Framework",
   "Import header and footer",
   "Import content area",
   "Creating a Content Area",
+];
+const TEXT_PHASES = [
+  { inStart: 0, inEnd: 5, outStart: 20, outEnd: 25 },
+  { inStart: 25, inEnd: 30, outStart: 45, outEnd: 50 },
+  { inStart: 50, inEnd: 55, outStart: 70, outEnd: 75 },
+  { inStart: 75, inEnd: 80, outStart: 100, outEnd: 100 },
 ];
 
 const IMAGES = [
@@ -49,21 +54,31 @@ const IMAGES = [
 /* ── 컴포넌트 ── */
 export default function Section1() {
   const { sectionRef, scrollPercent } = useSectionScroll();
-  const thresholds = [21, 50, 73, 96];
-  const active = thresholds.map((t, i) => (scrollPercent > t ? i + 1 : -1)).filter((i) => i >= 0);
-  const boxWrapRef = useRef(null);
-  const imgRefs = useRef([]);
 
-  const WINDOWS = [[5, 27], [27, 50], [50, 75], [75, 100]];
-  const stacked = scrollPercent >= WINDOWS[3][1];
+  const WINDOWS = [[0, 25], [25, 50], [50, 75], [75, 100]];
 
-  useEffect(() => {
-    imgRefs.current.forEach((img, i) => {
-      if (!img) return;
-      img.classList.toggle("landed", scrollPercent >= WINDOWS[i][1]);
-    });
-    if (boxWrapRef.current) boxWrapRef.current.classList.toggle("stacked", stacked);
-  }, [scrollPercent, stacked]);
+  const textStyle = (i) => {
+    const phase = TEXT_PHASES[i];
+    const enter = Math.max(
+      0,
+      Math.min(1, (scrollPercent - phase.inStart) / (phase.inEnd - phase.inStart))
+    );
+    const exit =
+      phase.outStart === phase.outEnd
+        ? 1
+        : 1 -
+          Math.max(
+            0,
+            Math.min(1, (scrollPercent - phase.outStart) / (phase.outEnd - phase.outStart))
+          );
+    const easedEnter = 1 - Math.pow(1 - enter, 3);
+
+    return {
+      "--text-opacity": easedEnter * exit,
+      "--text-y": `${-24 * (1 - easedEnter) + 10 * (1 - exit)}px`,
+      "--text-blur": `${4 * (1 - easedEnter * exit)}px`,
+    };
+  };
 
   const imgStyle = (i) => {
     const [start, end] = WINDOWS[i];
@@ -75,16 +90,17 @@ export default function Section1() {
     <div className="section section1" ref={sectionRef}>
       <div className="textBox">
         {TEXTS.map((text, i) => (
-          <p key={i} className={`text${i} ${i === 0 || active.includes(i) ? "active" : ""}`}>{text}</p>
+          <p key={text} className={`text${i}`} style={textStyle(i)}>
+            {text}
+          </p>
         ))}
       </div>
-      <div className="boxWrap" ref={boxWrapRef}>
+      <div className="boxWrap">
         {IMAGES.map((src, i) => (
           <div
             key={src}
             className="imgCard"
             style={imgStyle(i)}
-            ref={(el) => { imgRefs.current[i] = el; }}
           >
             <img src={src} alt="" />
           </div>
