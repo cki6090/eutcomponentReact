@@ -72,10 +72,15 @@ export default function Section1() {
             Math.min(1, (scrollPercent - phase.outStart) / (phase.outEnd - phase.outStart))
           );
     const easedEnter = 1 - Math.pow(1 - enter, 3);
+    const segmentStart = i * 25;
+    const segmentProgress = Math.max(
+      0,
+      Math.min(1, (scrollPercent - segmentStart) / 25)
+    );
 
     return {
       "--text-opacity": easedEnter * exit,
-      "--text-y": `${-24 * (1 - easedEnter) + 10 * (1 - exit)}px`,
+      "--text-y": `${-24 + segmentProgress * 48}px`,
       "--text-blur": `${4 * (1 - easedEnter * exit)}px`,
     };
   };

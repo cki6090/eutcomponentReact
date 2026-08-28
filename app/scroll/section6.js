@@ -682,15 +682,43 @@ const SIMPLE_LOGOS = [
 ];
 
 const LOGOS = [...BRAND_LOGOS, ...CLT_LOGOS, ...SIMPLE_LOGOS];
+const LOGO_SCATTER_POINTS = [
+  { x: -65, y: -45 },
+  { x: -35, y: -62 },
+  { x: 0, y: -65 },
+  { x: 35, y: -62 },
+  { x: 65, y: -45 },
+  { x: 68, y: 0 },
+  { x: 65, y: 45 },
+  { x: 35, y: 62 },
+  { x: 0, y: 65 },
+  { x: -35, y: 62 },
+  { x: -65, y: 45 },
+  { x: -68, y: 0 },
+];
 
-function LogoItem({ logo, colored, onActivate, index }) {
+function LogoItem({ logo, colored, onActivate, index, gatherProgress }) {
   const Mark = logo.Svg;
+  const scatterPoint = LOGO_SCATTER_POINTS[index % LOGO_SCATTER_POINTS.length];
+  const spreadOffset = (Math.floor(index / LOGO_SCATTER_POINTS.length) % 5) * 3;
+  const remaining = 1 - gatherProgress;
+  const scatterX =
+    (scatterPoint.x + Math.sign(scatterPoint.x) * spreadOffset) * remaining;
+  const scatterY =
+    (scatterPoint.y + Math.sign(scatterPoint.y) * spreadOffset) * remaining;
+
   return (
     <div
       className={`section6-logoItem${colored ? " colored" : ""}`}
       title={logo.name}
       onMouseEnter={onActivate}
-      style={{ "--logo-index": index }}
+      style={{
+        "--logo-x": `${scatterX}vw`,
+        "--logo-y": `${scatterY}vh`,
+        "--logo-rotate": `${remaining * (index % 2 === 0 ? -140 : 140)}deg`,
+        "--logo-scale": 0.55 + gatherProgress * 0.45,
+        "--logo-opacity": 0.2 + gatherProgress * 0.8,
+      }}
     >
       <span className="section6-logoTooltip" role="tooltip">
         {logo.name}
@@ -731,6 +759,7 @@ export default function Section6() {
 
   const logosOpacity =
     scrollPercent < 68 ? 0 : scrollPercent < 78 ? (scrollPercent - 68) / 10 : 1;
+  const logoGatherProgress = mapRange(scrollPercent, 68, 98);
 
   const [titleRevealed, setTitleRevealed] = useState(false);
 
@@ -806,10 +835,10 @@ export default function Section6() {
         </div>
 
         <div
-          className={`section6-phase section6-logosPhase${logosOpacity > 0.05 ? " is-visible" : ""}`}
+          className="section6-phase section6-logosPhase"
           style={{
             opacity: logosOpacity,
-            pointerEvents: logosOpacity > 0 ? "auto" : "none",
+            pointerEvents: logoGatherProgress > 0.95 ? "auto" : "none",
           }}
         >
           <p className="section6-logosLabel">a company with us</p>
@@ -819,6 +848,7 @@ export default function Section6() {
                 key={logo.id}
                 logo={logo}
                 index={index}
+                gatherProgress={logoGatherProgress}
                 colored={coloredLogos.has(logo.id)}
                 onActivate={() => activateLogo(logo.id)}
               />
