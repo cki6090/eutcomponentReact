@@ -17,7 +17,10 @@ function useSectionScroll() {
       setScrollPercent(Math.max(0, Math.min(100, percent)));
     };
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -55,13 +58,21 @@ const IMAGES = [
 export default function Section1() {
   const { sectionRef, scrollPercent } = useSectionScroll();
 
-  const WINDOWS = [[0, 25], [25, 50], [50, 75], [75, 100]];
+  const WINDOWS = [
+    [0, 25],
+    [25, 50],
+    [50, 75],
+    [75, 100],
+  ];
 
   const textStyle = (i) => {
     const phase = TEXT_PHASES[i];
     const enter = Math.max(
       0,
-      Math.min(1, (scrollPercent - phase.inStart) / (phase.inEnd - phase.inStart))
+      Math.min(
+        1,
+        (scrollPercent - phase.inStart) / (phase.inEnd - phase.inStart),
+      ),
     );
     const exit =
       phase.outStart === phase.outEnd
@@ -69,18 +80,22 @@ export default function Section1() {
         : 1 -
           Math.max(
             0,
-            Math.min(1, (scrollPercent - phase.outStart) / (phase.outEnd - phase.outStart))
+            Math.min(
+              1,
+              (scrollPercent - phase.outStart) /
+                (phase.outEnd - phase.outStart),
+            ),
           );
     const easedEnter = 1 - Math.pow(1 - enter, 3);
     const segmentStart = i * 25;
     const segmentProgress = Math.max(
       0,
-      Math.min(1, (scrollPercent - segmentStart) / 25)
+      Math.min(1, (scrollPercent - segmentStart) / 25),
     );
 
     return {
       "--text-opacity": easedEnter * exit,
-      "--text-y": `${-24 + segmentProgress * 48}px`,
+      "--text-y": `${-24 * (1 - segmentProgress)}px`,
       "--text-blur": `${4 * (1 - easedEnter * exit)}px`,
     };
   };
@@ -102,11 +117,7 @@ export default function Section1() {
       </div>
       <div className="boxWrap">
         {IMAGES.map((src, i) => (
-          <div
-            key={src}
-            className="imgCard"
-            style={imgStyle(i)}
-          >
+          <div key={src} className="imgCard" style={imgStyle(i)}>
             <img src={src} alt="" />
           </div>
         ))}

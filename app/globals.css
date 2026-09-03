@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 html {
   font-size: 13px;
 }
@@ -25,16 +25,17 @@ html.dark {
   --grey03: #ececec;
 }
 
-
 * {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-weight: 300;
   box-sizing: border-box;
 }
-::placeholder{color: #bbbbbb;}
+::placeholder {
+  color: #bbbbbb;
+}
 html,
 body {
   width: 100%;
@@ -42,8 +43,8 @@ body {
   min-height: 100%;
   background-color: var(--white);
 }
-body{
- font-size: 14px;
+body {
+  font-size: 14px;
 }
 strong {
   font-weight: bold;
@@ -88,7 +89,9 @@ a {
   background-color: #262626;
 }
 
-.fixed{position: fixed;}
+.fixed {
+  position: fixed;
+}
 
 .loadingBox .dim {
   position: fixed;
@@ -200,7 +203,7 @@ a {
   transition: all 0.2s;
 }
 
-.search-input > label >input,
+.search-input > label > input,
 .search-input > input:focus ~ label,
 .search-input > input:valid ~ label {
   width: 100%;
@@ -210,8 +213,12 @@ a {
   font-weight: 500;
   z-index: 99;
 }
-.search-input > label >input {border: none;} 
-.search-input > label >input:focus {outline: none;}
+.search-input > label > input {
+  border: none;
+}
+.search-input > label > input:focus {
+  outline: none;
+}
 
 .search-input > input:focus ~ span,
 .search-input > input:valid ~ span {
@@ -247,11 +254,21 @@ a {
   font-weight: bold;
 }
 .index-page .index-page-content h1 span {
+  display: inline;
   margin: 0px;
   font: inherit;
   letter-spacing: inherit;
   color: rgb(55, 125, 255);
   background: linear-gradient(transparent 82%, rgba(249, 185, 52, 0.3) 0%);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 100%;
+  animation: index-title-marker 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+}
+@keyframes index-title-marker {
+  to {
+    background-size: 100% 100%;
+  }
 }
 
 .index-page .index-page-content p {
@@ -260,7 +277,12 @@ a {
   margin-top: 15px;
 }
 
-.scroll-down-arrow-icon {position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);}
+.scroll-down-arrow-icon {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .scroll-to-top-btn {
   position: fixed;
@@ -281,7 +303,12 @@ a {
   opacity: 0;
   visibility: hidden;
   transform: translateY(16px);
-  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.1);
 }
 .scroll-to-top-btn.is-visible {
@@ -675,8 +702,12 @@ ul.menu > li > .menu-title {
   }
   100% {
     opacity: 1;
-    text-shadow: 0px 0px 10px #3d3d3d, 0px 0px 8px #3d3d3d, 0px 0px 6px #3d3d3d,
-      0px 0px 4px #3d3d3d, 0px 0px 2px #3d3d3d;
+    text-shadow:
+      0px 0px 10px #3d3d3d,
+      0px 0px 8px #3d3d3d,
+      0px 0px 6px #3d3d3d,
+      0px 0px 4px #3d3d3d,
+      0px 0px 2px #3d3d3d;
   }
 }
 
@@ -791,7 +822,9 @@ footer .footer-menu li button {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 1), 0 0 8px rgba(255, 255, 255, 1),
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 1),
+    0 0 8px rgba(255, 255, 255, 1),
     0 0 10px rgba(255, 255, 255, 1);
   border-radius: 10px;
 }
@@ -1055,7 +1088,7 @@ footer .footer-menu li button {
 .QnA-list-content-item .QnA-list-content-content {
   font-size: 1.0769rem;
 }
-.QnA-list-content-item .QnA-list-content-answer{
+.QnA-list-content-item .QnA-list-content-answer {
   font-size: 1.3769rem;
   margin-top: 5px;
 }
@@ -1093,7 +1126,6 @@ footer .footer-menu li button {
   width: 450px;
   border-radius: 10px;
   margin: 25px auto;
-  
 }
 .ai-box .ai-box-title {
   position: relative;
@@ -1186,15 +1218,23 @@ footer .footer-menu li button {
   background-color: var(--grey03);
 }
 
+.progress-wrapper {
+  position: relative;
+}
+.progress-value {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
 
-
-.progress-wrapper{position: relative;}
-.progress-value{position: absolute;top: 0px; left: 0px;}
-
- @media (max-width: 1280px) {
-    html {font-size: 10px; }
-  .main-layout .left-menu{display: none ;}
+@media (max-width: 1280px) {
+  html {
+    font-size: 10px;
+  }
+  .main-layout .left-menu {
+    display: none;
+  }
   .top-menu .top-menu-list a > .title-box .titleEng {
-      margin-top: 17px;
+    margin-top: 17px;
   }
 }
