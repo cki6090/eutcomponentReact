@@ -294,8 +294,8 @@ body {
 .section3 .themeBoxtitle span {
   position: relative;
   display: inline-block;
-  --word-spacing: -5px;
-  font-size: 70px;
+  --word-spacing: -0px;
+  font-size: 30px;
   font-weight: bold;
   opacity: 0.08;
   margin: 0 10px;

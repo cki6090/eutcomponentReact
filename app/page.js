@@ -18,7 +18,7 @@ export default function Home() {
             TECHNOLOGY STACK <br></br>
             React, Next.js, TypeScript, CSS
             <br></br>
-            NextAuth.js, json-server, axios, recharts, react-live
+            NextAuth.js, json-server, axios, recharts
           </p>
           <AiBbox />
           <div className="scrollDownArrow">
