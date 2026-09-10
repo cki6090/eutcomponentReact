@@ -17,7 +17,10 @@ function useSectionScroll() {
       setScrollPercent(Math.max(0, Math.min(100, percent)));
     };
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -73,7 +76,10 @@ const LOCALES = [
 
 function getLocaleState(scrollPercent) {
   const segment = 100 / LOCALES.length;
-  const activeIndex = Math.min(LOCALES.length - 1, Math.floor(scrollPercent / segment));
+  const activeIndex = Math.min(
+    LOCALES.length - 1,
+    Math.floor(scrollPercent / segment),
+  );
   const segmentStart = activeIndex * segment;
   const segmentProgress =
     scrollPercent <= segmentStart
@@ -85,7 +91,9 @@ function getLocaleState(scrollPercent) {
 
 function getTypedHtml(scrollPercent, lines) {
   const totalLength = lines.join("").length;
-  const currentLength = Math.floor(Math.min(scrollPercent / 100, 1) * totalLength);
+  const currentLength = Math.floor(
+    Math.min(scrollPercent / 100, 1) * totalLength,
+  );
   let result = "";
   let count = 0;
 
@@ -111,7 +119,7 @@ export default function Section5() {
   const { sectionRef, scrollPercent } = useSectionScroll();
   const contentScrollPercent = Math.max(
     0,
-    Math.min(100, ((scrollPercent - 10) / 90) * 100)
+    Math.min(100, ((scrollPercent - 10) / 90) * 100),
   );
   const { activeIndex, segmentProgress } = getLocaleState(contentScrollPercent);
   const locale = LOCALES[activeIndex];
@@ -149,13 +157,15 @@ export default function Section5() {
                 {loc.label}
               </span>
             ))}
-          </div>
+          </div>  
 
           <div className="titleTextContentWrap">
             {prevLocale && (
               <p
                 className="titleTextContent ghost"
-                dangerouslySetInnerHTML={{ __html: getFullHtml(prevLocale.lines) }}
+                dangerouslySetInnerHTML={{
+                  __html: getFullHtml(prevLocale.lines),
+                }}
               />
             )}
             <p

@@ -294,13 +294,11 @@ body {
 .section3 .themeBoxtitle span {
   position: relative;
   display: inline-block;
-  --word-spacing: -0px;
   font-size: 30px;
   font-weight: bold;
   opacity: 0.08;
   margin: 0 10px;
   text-transform: uppercase;
-  letter-spacing: var(--word-spacing);
   color: #0f172a;
   transform-origin: center;
   filter: blur(2px);
@@ -716,6 +714,32 @@ body {
   letter-spacing: -0.04em;
   color: #0f172a;
   font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transform: translateY(28px) scale(0.86);
+  filter: blur(8px);
+  transform-origin: center bottom;
+  will-change: transform, opacity, filter;
+}
+.section6-statsPhase.is-visible .section6-statValue {
+  animation: section6StatReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1)
+    calc(var(--stat-index, 0) * 0.14s) both;
+}
+@keyframes section6StatReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.86);
+    filter: blur(8px);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.04);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }
 .section6-statSuffix {
   font-size: 0.45em;
@@ -847,7 +871,6 @@ body {
     font-size: 18px;
   }
   .section3 .themeBoxtitle span {
-    --word-spacing: 0px;
     font-size: 20px;
     margin: 0 5px;
   }

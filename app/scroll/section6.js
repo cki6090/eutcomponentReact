@@ -17,7 +17,10 @@ function useSectionScroll() {
       setScrollPercent(Math.max(0, Math.min(100, percent)));
     };
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -78,10 +81,26 @@ const CLT_LOGOS = [
     name: "01. Compass Route",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="11.5" fill="none" stroke="#0F172A" strokeWidth="2.2" />
-        <path fill="#0EA5E9" d="m18.7 7.5-1.1 7.1-4.3 2.8-1.1 7.1 5.2-5.2 1.3-11.8z" />
+        <circle
+          cx="16"
+          cy="16"
+          r="11.5"
+          fill="none"
+          stroke="#0F172A"
+          strokeWidth="2.2"
+        />
+        <path
+          fill="#0EA5E9"
+          d="m18.7 7.5-1.1 7.1-4.3 2.8-1.1 7.1 5.2-5.2 1.3-11.8z"
+        />
         <circle cx="16" cy="16" r="2.2" fill="#F97316" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="1.5" strokeLinecap="round" d="M5.5 24.5c4-2.5 7.5-2.5 11 0s6.8 2.5 10 0" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          d="M5.5 24.5c4-2.5 7.5-2.5 11 0s6.8 2.5 10 0"
+        />
       </svg>
     ),
   },
@@ -104,8 +123,17 @@ const CLT_LOGOS = [
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <circle cx="16" cy="16" r="13" fill="#E0F2FE" />
         <path fill="#F59E0B" d="M10.5 14a5.5 5.5 0 0 1 11 0h-11z" />
-        <path fill="#0369A1" d="M3.6 16h24.8c-.3 7.2-5.4 13-12.4 13S3.9 23.2 3.6 16z" />
-        <path fill="none" stroke="#7DD3FC" strokeWidth="2" strokeLinecap="round" d="M6 20c3-2 5-2 8 0s5 2 8 0 4-1.6 5-1" />
+        <path
+          fill="#0369A1"
+          d="M3.6 16h24.8c-.3 7.2-5.4 13-12.4 13S3.9 23.2 3.6 16z"
+        />
+        <path
+          fill="none"
+          stroke="#7DD3FC"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M6 20c3-2 5-2 8 0s5 2 8 0 4-1.6 5-1"
+        />
       </svg>
     ),
   },
@@ -114,8 +142,22 @@ const CLT_LOGOS = [
     name: "04. Connected Anchor",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="7" r="3.2" fill="none" stroke="#0EA5E9" strokeWidth="2.4" />
-        <path fill="none" stroke="#0B3A5B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M16 10.5v14M9 16H5m22 0h-4M6 20c1.5 5 5 8 10 8s8.5-3 10-8" />
+        <circle
+          cx="16"
+          cy="7"
+          r="3.2"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.4"
+        />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M16 10.5v14M9 16H5m22 0h-4M6 20c1.5 5 5 8 10 8s8.5-3 10-8"
+        />
         <circle cx="6" cy="16" r="2" fill="#F59E0B" />
         <circle cx="26" cy="16" r="2" fill="#38BDF8" />
       </svg>
@@ -128,7 +170,13 @@ const CLT_LOGOS = [
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#0F172A" d="m9 13 15-6-3 10H9v-4z" />
         <path fill="#0284C7" d="M5 17h24l-4 6.5H10L5 17z" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" d="M3 27h19M2 12h7M5 8h7" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M3 27h19M2 12h7M5 8h7"
+        />
         <path fill="#F97316" d="m25 7 4 2-6 3 2-5z" />
       </svg>
     ),
@@ -139,8 +187,22 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <circle cx="16" cy="16" r="8.5" fill="#0B3A5B" />
-        <path fill="none" stroke="#7DD3FC" strokeWidth="1.4" d="M8 16h16M16 7.5c3 2.5 4.5 5.3 4.5 8.5S19 22 16 24.5C13 22 11.5 19.2 11.5 16S13 10 16 7.5z" />
-        <ellipse cx="16" cy="16" rx="14" ry="6.5" fill="none" stroke="#0EA5E9" strokeWidth="2" transform="rotate(-24 16 16)" />
+        <path
+          fill="none"
+          stroke="#7DD3FC"
+          strokeWidth="1.4"
+          d="M8 16h16M16 7.5c3 2.5 4.5 5.3 4.5 8.5S19 22 16 24.5C13 22 11.5 19.2 11.5 16S13 10 16 7.5z"
+        />
+        <ellipse
+          cx="16"
+          cy="16"
+          rx="14"
+          ry="6.5"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2"
+          transform="rotate(-24 16 16)"
+        />
         <circle cx="27.5" cy="10.2" r="2.3" fill="#F59E0B" />
       </svg>
     ),
@@ -152,7 +214,13 @@ const CLT_LOGOS = [
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#0F172A" d="M14 12h4v16h-4z" />
         <path fill="#F97316" d="m16 3 4.5 7h-9L16 3z" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="2.2" strokeLinecap="round" d="M10.5 8a9 9 0 0 0 0 12M21.5 8a9 9 0 0 1 0 12M6.5 5a14 14 0 0 0 0 18M25.5 5a14 14 0 0 1 0 18" />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          d="M10.5 8a9 9 0 0 0 0 12M21.5 8a9 9 0 0 1 0 12M6.5 5a14 14 0 0 0 0 18M25.5 5a14 14 0 0 1 0 18"
+        />
         <path fill="#0369A1" d="M8 27h16v2H8z" />
       </svg>
     ),
@@ -162,8 +230,20 @@ const CLT_LOGOS = [
     name: "08. Infinite Logistics",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="4" strokeLinecap="round" d="M5 16c3.2-5.8 7.2-5.8 11 0s7.8 5.8 11 0" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="4" strokeLinecap="round" d="M5 16c3.2 5.8 7.2 5.8 11 0s7.8-5.8 11 0" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="4"
+          strokeLinecap="round"
+          d="M5 16c3.2-5.8 7.2-5.8 11 0s7.8 5.8 11 0"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="4"
+          strokeLinecap="round"
+          d="M5 16c3.2 5.8 7.2 5.8 11 0s7.8-5.8 11 0"
+        />
         <circle cx="5" cy="16" r="2.3" fill="#F59E0B" />
         <circle cx="27" cy="16" r="2.3" fill="#F97316" />
       </svg>
@@ -174,7 +254,10 @@ const CLT_LOGOS = [
     name: "09. Port Location",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="#0B3A5B" d="M16 2.5A10.5 10.5 0 0 0 5.5 13C5.5 21 16 29.5 16 29.5S26.5 21 26.5 13A10.5 10.5 0 0 0 16 2.5z" />
+        <path
+          fill="#0B3A5B"
+          d="M16 2.5A10.5 10.5 0 0 0 5.5 13C5.5 21 16 29.5 16 29.5S26.5 21 26.5 13A10.5 10.5 0 0 0 16 2.5z"
+        />
         <path fill="#0EA5E9" d="M9.5 14h13l-2 4H12l-2.5-4z" />
         <rect x="12" y="9" width="3.5" height="5" fill="#F8FAFC" />
         <rect x="16.5" y="7" width="3.5" height="7" fill="#F59E0B" />
@@ -212,7 +295,10 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#0284C7" d="M16 2 29 9.5v13L16 30 3 22.5v-13L16 2z" />
-        <path fill="#F8FAFC" d="m16 9 2.3 5.2 5.2 1.8-5.2 1.8L16 23.5l-2.3-5.2-5.2-1.8 5.2-1.8L16 9z" />
+        <path
+          fill="#F8FAFC"
+          d="m16 9 2.3 5.2 5.2 1.8-5.2 1.8L16 23.5l-2.3-5.2-5.2-1.8 5.2-1.8L16 9z"
+        />
         <circle cx="16" cy="16" r="2" fill="#FBBF24" />
       </svg>
     ),
@@ -222,7 +308,14 @@ const CLT_LOGOS = [
     name: "13. CLT Signature Line",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" d="M4 22c2-6 4-6 6 0s4 6 6 0 4-10 8-10 4 10 6 4" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 22c2-6 4-6 6 0s4 6 6 0 4-10 8-10 4 10 6 4"
+        />
         <circle cx="4" cy="22" r="1.8" fill="#F97316" />
         <circle cx="28" cy="16" r="1.8" fill="#0EA5E9" />
       </svg>
@@ -234,9 +327,30 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <circle cx="16" cy="16" r="14" fill="#E0F2FE" />
-        <circle cx="11" cy="17" r="5.5" fill="none" stroke="#0369A1" strokeWidth="2.4" />
-        <circle cx="18" cy="12" r="5.5" fill="none" stroke="#0EA5E9" strokeWidth="2.4" />
-        <circle cx="21" cy="19" r="5.5" fill="none" stroke="#F59E0B" strokeWidth="2.4" />
+        <circle
+          cx="11"
+          cy="17"
+          r="5.5"
+          fill="none"
+          stroke="#0369A1"
+          strokeWidth="2.4"
+        />
+        <circle
+          cx="18"
+          cy="12"
+          r="5.5"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.4"
+        />
+        <circle
+          cx="21"
+          cy="19"
+          r="5.5"
+          fill="none"
+          stroke="#F59E0B"
+          strokeWidth="2.4"
+        />
       </svg>
     ),
   },
@@ -246,8 +360,21 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#0F172A" d="M3 5h20l6 11-6 11H3l6-11L3 5z" />
-        <path fill="none" stroke="#F8FAFC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M13 10h-1.5a6 6 0 0 0 0 12H13m2.5-12v12h4" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="2.5" strokeLinecap="round" d="M19 10h8M23 10v12" />
+        <path
+          fill="none"
+          stroke="#F8FAFC"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M13 10h-1.5a6 6 0 0 0 0 12H13m2.5-12v12h4"
+        />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          d="M19 10h8M23 10v12"
+        />
         <path fill="#F97316" d="m25 3 5 3-5 3V3z" />
       </svg>
     ),
@@ -258,8 +385,19 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <rect x="4" y="5" width="24" height="15" rx="2" fill="#0B3A5B" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="1.6" d="M9 7.5v10M13.5 7.5v10M18 7.5v10M22.5 7.5v10" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="2.2" strokeLinecap="round" d="M3 24c3.5-3.5 7-3.5 10.5 0s7 3.5 10.5 0 4.5-2.5 5-2" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="1.6"
+          d="M9 7.5v10M13.5 7.5v10M18 7.5v10M22.5 7.5v10"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          d="M3 24c3.5-3.5 7-3.5 10.5 0s7 3.5 10.5 0 4.5-2.5 5-2"
+        />
         <path fill="#F59E0B" d="M22 8h3v8h-3z" />
       </svg>
     ),
@@ -273,7 +411,13 @@ const CLT_LOGOS = [
         <rect x="14" y="8" width="6" height="5" rx="1" fill="#0EA5E9" />
         <rect x="21" y="8" width="6" height="5" rx="1" fill="#0284C7" />
         <path fill="#0F172A" d="M3 14h27l-4.5 9H9L3 14z" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" d="M4 27c4-2.5 8-2.5 12 0s8 2.5 12 0" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M4 27c4-2.5 8-2.5 12 0s8 2.5 12 0"
+        />
       </svg>
     ),
   },
@@ -286,8 +430,19 @@ const CLT_LOGOS = [
         <rect x="17" y="5" width="12" height="7" rx="1.5" fill="#F97316" />
         <rect x="6" y="14" width="12" height="7" rx="1.5" fill="#0369A1" />
         <rect x="20" y="14" width="9" height="7" rx="1.5" fill="#F59E0B" />
-        <path fill="none" stroke="#7DD3FC" strokeWidth="1.3" d="M7 7.5v2M11 7.5v2M21 7.5v2M25 7.5v2M10 16.5v2M14 16.5v2M24 16.5v2" />
-        <path fill="none" stroke="#0B3A5B" strokeWidth="2.2" strokeLinecap="round" d="M3 26c4-3 8-3 12 0s8 3 14-1" />
+        <path
+          fill="none"
+          stroke="#7DD3FC"
+          strokeWidth="1.3"
+          d="M7 7.5v2M11 7.5v2M21 7.5v2M25 7.5v2M10 16.5v2M14 16.5v2M24 16.5v2"
+        />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          d="M3 26c4-3 8-3 12 0s8 3 14-1"
+        />
       </svg>
     ),
   },
@@ -296,10 +451,28 @@ const CLT_LOGOS = [
     name: "19. Smart Port Crane",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0F172A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M6 27V5h20M12 5l-6 7M23 5v7" />
-        <path fill="none" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" d="M23 12v3" />
+        <path
+          fill="none"
+          stroke="#0F172A"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6 27V5h20M12 5l-6 7M23 5v7"
+        />
+        <path
+          fill="none"
+          stroke="#F59E0B"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          d="M23 12v3"
+        />
         <rect x="17" y="15" width="12" height="8" rx="1.5" fill="#0284C7" />
-        <path fill="none" stroke="#7DD3FC" strokeWidth="1.4" d="M21 17v4M25 17v4" />
+        <path
+          fill="none"
+          stroke="#7DD3FC"
+          strokeWidth="1.4"
+          d="M21 17v4M25 17v4"
+        />
         <path fill="#0EA5E9" d="M3 27h27v2H3z" />
       </svg>
     ),
@@ -310,11 +483,29 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <circle cx="16" cy="16" r="13" fill="#E0F2FE" />
-        <path fill="none" stroke="#0284C7" strokeWidth="2" strokeLinecap="round" strokeDasharray="2.5 3" d="M5 20C8 9 19 5 27 11" />
+        <path
+          fill="none"
+          stroke="#0284C7"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="2.5 3"
+          d="M5 20C8 9 19 5 27 11"
+        />
         <rect x="9" y="13" width="14" height="10" rx="2" fill="#0B3A5B" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="1.5" d="M13 15.5v5M17 15.5v5" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="1.5"
+          d="M13 15.5v5M17 15.5v5"
+        />
         <path fill="#F59E0B" d="m25 7 5 3-5 3V7z" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="1.7" strokeLinecap="round" d="M6 26c3-2 6-2 9 0s6 2 10 0" />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          d="M6 26c3-2 6-2 9 0s6 2 10 0"
+        />
       </svg>
     ),
   },
@@ -326,8 +517,20 @@ const CLT_LOGOS = [
         <path fill="#0B3A5B" d="M13 30 14 12h4l1 18z" />
         <path fill="#F8FAFC" d="M14.3 16h3.4v3h-3.4zm-.3 5h4v3h-4z" />
         <path fill="#F59E0B" d="M13.5 8 16 3l2.5 5z" />
-        <path fill="none" stroke="#FBBF24" strokeWidth="1.5" strokeLinecap="round" d="M18.5 8 27 5M19 10.5h9M18.5 13 27 16" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" d="M4 27c4-3 8-3 12 0s8 3 12 0" />
+        <path
+          fill="none"
+          stroke="#FBBF24"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          d="M18.5 8 27 5M19 10.5h9M18.5 13 27 16"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M4 27c4-3 8-3 12 0s8 3 12 0"
+        />
       </svg>
     ),
   },
@@ -340,7 +543,13 @@ const CLT_LOGOS = [
         <rect x="10" y="15" width="4" height="13" fill="#0EA5E9" />
         <rect x="16" y="10" width="4" height="18" fill="#0284C7" />
         <rect x="22" y="6" width="4" height="22" fill="#0B3A5B" />
-        <path fill="none" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" d="M3 9c3-3 6-3 9 0s6 3 9 0 6-3 8-1" />
+        <path
+          fill="none"
+          stroke="#F59E0B"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M3 9c3-3 6-3 9 0s6 3 9 0 6-3 8-1"
+        />
       </svg>
     ),
   },
@@ -349,8 +558,20 @@ const CLT_LOGOS = [
     name: "23. Nautical Knot",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="3.2" strokeLinecap="round" d="M9 9a7 7 0 1 0 7 12" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="3.2" strokeLinecap="round" d="M16 21a7 7 0 1 0 7-12" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          d="M9 9a7 7 0 1 0 7 12"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          d="M16 21a7 7 0 1 0 7-12"
+        />
         <circle cx="16" cy="16" r="1.8" fill="#F59E0B" />
       </svg>
     ),
@@ -360,10 +581,37 @@ const CLT_LOGOS = [
     name: "24. Cargo Tracking Radar",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="12" fill="none" stroke="#0B3A5B" strokeWidth="1.5" opacity="0.35" />
-        <circle cx="16" cy="16" r="8" fill="none" stroke="#0284C7" strokeWidth="1.5" opacity="0.55" />
-        <circle cx="16" cy="16" r="4" fill="none" stroke="#0EA5E9" strokeWidth="1.5" />
-        <path fill="#0EA5E9" opacity="0.45" d="M16 16V4a12 12 0 0 1 10.9 6.9z" />
+        <circle
+          cx="16"
+          cy="16"
+          r="12"
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="1.5"
+          opacity="0.35"
+        />
+        <circle
+          cx="16"
+          cy="16"
+          r="8"
+          fill="none"
+          stroke="#0284C7"
+          strokeWidth="1.5"
+          opacity="0.55"
+        />
+        <circle
+          cx="16"
+          cy="16"
+          r="4"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="1.5"
+        />
+        <path
+          fill="#0EA5E9"
+          opacity="0.45"
+          d="M16 16V4a12 12 0 0 1 10.9 6.9z"
+        />
         <circle cx="22" cy="9.5" r="2.2" fill="#F59E0B" />
       </svg>
     ),
@@ -373,8 +621,20 @@ const CLT_LOGOS = [
     name: "25. Logistics Bridge",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="2.4" strokeLinecap="round" d="M4 22c4-10 20-10 24 0" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="1.6" strokeLinecap="round" d="M9 22V13M13 22V9M16 22V7M19 22V9M23 22V13" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          d="M4 22c4-10 20-10 24 0"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          d="M9 22V13M13 22V9M16 22V7M19 22V9M23 22V13"
+        />
         <rect x="2" y="22" width="28" height="2.4" fill="#334155" />
         <circle cx="16" cy="7" r="1.7" fill="#F59E0B" />
       </svg>
@@ -400,7 +660,13 @@ const CLT_LOGOS = [
     name: "27. Dual Wave S",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="4.5" strokeLinecap="round" d="M23 8c-8 0-8 8 0 8s8 8 0 8" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+          d="M23 8c-8 0-8 8 0 8s8 8 0 8"
+        />
         <circle cx="23" cy="8" r="2.4" fill="#F59E0B" />
         <circle cx="23" cy="24" r="2.4" fill="#0EA5E9" />
       </svg>
@@ -411,8 +677,26 @@ const CLT_LOGOS = [
     name: "28. Chain Link Trust",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <rect x="3" y="10" width="12" height="14" rx="6" fill="none" stroke="#0B3A5B" strokeWidth="3" />
-        <rect x="14" y="10" width="12" height="14" rx="6" fill="none" stroke="#0EA5E9" strokeWidth="3" />
+        <rect
+          x="3"
+          y="10"
+          width="12"
+          height="14"
+          rx="6"
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="3"
+        />
+        <rect
+          x="14"
+          y="10"
+          width="12"
+          height="14"
+          rx="6"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="3"
+        />
         <circle cx="27" cy="17" r="3" fill="#F59E0B" />
       </svg>
     ),
@@ -422,8 +706,16 @@ const CLT_LOGOS = [
     name: "29. Cargo Net Shield",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="#0B3A5B" d="M16 2 28 8v10c0 7-6 11-12 12C10 29 4 25 4 18V8z" />
-        <path fill="none" stroke="#7DD3FC" strokeWidth="1.3" d="M16 6 8 11 16 16 24 11zM8 11v9l8 5M24 11v9l-8 5" />
+        <path
+          fill="#0B3A5B"
+          d="M16 2 28 8v10c0 7-6 11-12 12C10 29 4 25 4 18V8z"
+        />
+        <path
+          fill="none"
+          stroke="#7DD3FC"
+          strokeWidth="1.3"
+          d="M16 6 8 11 16 16 24 11zM8 11v9l8 5M24 11v9l-8 5"
+        />
         <circle cx="16" cy="16" r="1.7" fill="#F59E0B" />
       </svg>
     ),
@@ -433,7 +725,14 @@ const CLT_LOGOS = [
     name: "30. Live Route Pulse",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" d="M3 18h5l3-8 4 14 3-10 3 6h8" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 18h5l3-8 4 14 3-10 3 6h8"
+        />
         <circle cx="4" cy="18" r="2" fill="#0EA5E9" />
         <circle cx="27" cy="18" r="2" fill="#F59E0B" />
       </svg>
@@ -451,7 +750,13 @@ const CLT_LOGOS = [
         <rect x="6" y="13" width="5" height="4" fill="#F97316" />
         <rect x="12" y="13" width="5" height="4" fill="#0EA5E9" />
         <rect x="18" y="13" width="5" height="4" fill="#F59E0B" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" d="M2 27c5-2 8-2 13 0s10 2 15 0" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M2 27c5-2 8-2 13 0s10 2 15 0"
+        />
       </svg>
     ),
   },
@@ -463,7 +768,13 @@ const CLT_LOGOS = [
         <path fill="#0B3A5B" d="M3 24 L24 24 L29 16 L10 10 Z" />
         <rect x="12" y="14" width="5" height="6" fill="#F59E0B" />
         <rect x="18" y="12" width="5" height="8" fill="#0EA5E9" />
-        <path fill="none" stroke="#7DD3FC" strokeWidth="1.6" strokeLinecap="round" d="M2 26c2-1 3-1 4 0M2 20l4 2M1 16l5 3" />
+        <path
+          fill="none"
+          stroke="#7DD3FC"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          d="M2 26c2-1 3-1 4 0M2 20l4 2M1 16l5 3"
+        />
       </svg>
     ),
   },
@@ -476,7 +787,13 @@ const CLT_LOGOS = [
         <rect x="9" y="12" width="5" height="16" fill="#0284C7" />
         <rect x="15" y="16" width="5" height="12" fill="#F59E0B" />
         <rect x="21" y="8" width="5" height="20" fill="#0B3A5B" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" d="M2 28c6-2 8-2 12 0s10 2 16 0" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M2 28c6-2 8-2 12 0s10 2 16 0"
+        />
       </svg>
     ),
   },
@@ -494,7 +811,13 @@ const CLT_LOGOS = [
         <rect x="12" y="18" width="3" height="3" fill="#0EA5E9" />
         <rect x="16" y="18" width="3" height="3" fill="#F59E0B" />
         <rect x="20" y="18" width="3" height="3" fill="#0284C7" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" d="M2 25c6-2 8-2 14 0s10 2 16 0" />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M2 25c6-2 8-2 14 0s10 2 16 0"
+        />
       </svg>
     ),
   },
@@ -504,9 +827,22 @@ const CLT_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#0B3A5B" d="M3 21 L29 21 L24 14 L8 14 Z" />
-        <path fill="none" stroke="#F8FAFC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" d="M16 8v9M13 10h6M11 17a5 5 0 0 0 10 0" />
+        <path
+          fill="none"
+          stroke="#F8FAFC"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M16 8v9M13 10h6M11 17a5 5 0 0 0 10 0"
+        />
         <circle cx="16" cy="8" r="1.6" fill="#F59E0B" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" d="M2 24c5-2.5 8-2.5 13 0s10 2.5 15 0" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M2 24c5-2.5 8-2.5 13 0s10 2.5 15 0"
+        />
       </svg>
     ),
   },
@@ -522,7 +858,13 @@ const CLT_LOGOS = [
         <path fill="#0F172A" d="M3 22 L27 22 L23 15 H9Z" />
         <rect x="12" y="17" width="4" height="4" fill="#0EA5E9" />
         <rect x="17" y="17" width="4" height="4" fill="#F59E0B" />
-        <path fill="none" stroke="#0284C7" strokeWidth="2" strokeLinecap="round" d="M2 25c5-2 8-2 13 0s10 2 15 0" />
+        <path
+          fill="none"
+          stroke="#0284C7"
+          strokeWidth="2"
+          strokeLinecap="round"
+          d="M2 25c5-2 8-2 13 0s10 2 15 0"
+        />
       </svg>
     ),
   },
@@ -534,7 +876,13 @@ const CLT_LOGOS = [
         <path fill="#0B3A5B" d="M16 4 L26 20 H6 Z" />
         <path fill="#0284C7" d="M3 20 H29 L26 26 H6 Z" />
         <rect x="13" y="10" width="6" height="8" fill="#F59E0B" />
-        <path fill="none" stroke="#38BDF8" strokeWidth="1.6" strokeLinecap="round" d="M4 28h24" />
+        <path
+          fill="none"
+          stroke="#38BDF8"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          d="M4 28h24"
+        />
       </svg>
     ),
   },
@@ -571,7 +919,13 @@ const CLT_LOGOS = [
         <path fill="#0B3A5B" d="M6 16 L20 16 L24 22 L4 22 Z" />
         <rect x="9" y="11" width="4" height="5" fill="#F59E0B" />
         <rect x="14" y="11" width="4" height="5" fill="#0EA5E9" />
-        <path fill="none" stroke="#7DD3FC" strokeWidth="1.4" strokeLinecap="round" d="M2 24c3 1 5 1 8 0M1 27c4 1.4 7 1.4 11 0" />
+        <path
+          fill="none"
+          stroke="#7DD3FC"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          d="M2 24c3 1 5 1 8 0M1 27c4 1.4 7 1.4 11 0"
+        />
       </svg>
     ),
   },
@@ -584,8 +938,21 @@ const SIMPLE_LOGOS = [
     name: "Anchor",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="7" r="3" fill="none" stroke="#0B3A5B" strokeWidth="2.4" />
-        <path fill="none" stroke="#0B3A5B" strokeWidth="2.4" strokeLinecap="round" d="M16 10v16M9 15H6a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-3M11 12h10" />
+        <circle
+          cx="16"
+          cy="7"
+          r="3"
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.4"
+        />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          d="M16 10v16M9 15H6a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-3M11 12h10"
+        />
       </svg>
     ),
   },
@@ -594,8 +961,22 @@ const SIMPLE_LOGOS = [
     name: "Container",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <rect x="5" y="9" width="22" height="14" rx="1.5" fill="none" stroke="#0EA5E9" strokeWidth="2.4" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="1.6" d="M11 9v14M21 9v14" />
+        <rect
+          x="5"
+          y="9"
+          width="22"
+          height="14"
+          rx="1.5"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.4"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="1.6"
+          d="M11 9v14M21 9v14"
+        />
       </svg>
     ),
   },
@@ -605,7 +986,13 @@ const SIMPLE_LOGOS = [
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
         <path fill="#0B3A5B" d="M6 20h20l-3 6H9l-3-6z" />
-        <path fill="none" stroke="#0B3A5B" strokeWidth="2.2" strokeLinecap="round" d="M16 20V8m-5 5h10" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          d="M16 20V8m-5 5h10"
+        />
       </svg>
     ),
   },
@@ -614,8 +1001,21 @@ const SIMPLE_LOGOS = [
     name: "Wave",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0EA5E9" strokeWidth="2.4" strokeLinecap="round" d="M4 13c4-3 8-3 12 0s8 3 12 0" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="2.4" strokeLinecap="round" opacity="0.5" d="M4 20c4-3 8-3 12 0s8 3 12 0" />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          d="M4 13c4-3 8-3 12 0s8 3 12 0"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          opacity="0.5"
+          d="M4 20c4-3 8-3 12 0s8 3 12 0"
+        />
       </svg>
     ),
   },
@@ -624,7 +1024,14 @@ const SIMPLE_LOGOS = [
     name: "Compass",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="12" fill="none" stroke="#0B3A5B" strokeWidth="2.2" />
+        <circle
+          cx="16"
+          cy="16"
+          r="12"
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.2"
+        />
         <path fill="#F59E0B" d="m20 12-2 6-6 2 2-6 6-2z" />
       </svg>
     ),
@@ -634,8 +1041,20 @@ const SIMPLE_LOGOS = [
     name: "Globe",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="12" fill="none" stroke="#0EA5E9" strokeWidth="2.2" />
-        <path fill="none" stroke="#0EA5E9" strokeWidth="1.6" d="M4 16h24M16 4c4 3.5 4 20.5 0 24-4-3.5-4-20.5 0-24z" />
+        <circle
+          cx="16"
+          cy="16"
+          r="12"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.2"
+        />
+        <path
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="1.6"
+          d="M4 16h24M16 4c4 3.5 4 20.5 0 24-4-3.5-4-20.5 0-24z"
+        />
       </svg>
     ),
   },
@@ -644,7 +1063,14 @@ const SIMPLE_LOGOS = [
     name: "Crane",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="none" stroke="#0B3A5B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" d="M7 28V6h18M12 6l-5 6" />
+        <path
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M7 28V6h18M12 6l-5 6"
+        />
         <rect x="17" y="14" width="10" height="7" fill="#F59E0B" />
       </svg>
     ),
@@ -664,8 +1090,26 @@ const SIMPLE_LOGOS = [
     name: "Chain",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <rect x="4" y="11" width="12" height="10" rx="5" fill="none" stroke="#0B3A5B" strokeWidth="2.4" />
-        <rect x="16" y="11" width="12" height="10" rx="5" fill="none" stroke="#0EA5E9" strokeWidth="2.4" />
+        <rect
+          x="4"
+          y="11"
+          width="12"
+          height="10"
+          rx="5"
+          fill="none"
+          stroke="#0B3A5B"
+          strokeWidth="2.4"
+        />
+        <rect
+          x="16"
+          y="11"
+          width="12"
+          height="10"
+          rx="5"
+          fill="none"
+          stroke="#0EA5E9"
+          strokeWidth="2.4"
+        />
       </svg>
     ),
   },
@@ -674,7 +1118,10 @@ const SIMPLE_LOGOS = [
     name: "Port Pin",
     Svg: () => (
       <svg className="section6-logoMark" viewBox="0 0 32 32" aria-hidden="true">
-        <path fill="#0B3A5B" d="M16 3a9 9 0 0 0-9 9c0 7 9 17 9 17s9-10 9-17a9 9 0 0 0-9-9z" />
+        <path
+          fill="#0B3A5B"
+          d="M16 3a9 9 0 0 0-9 9c0 7 9 17 9 17s9-10 9-17a9 9 0 0 0-9-9z"
+        />
         <circle cx="16" cy="12" r="3.2" fill="#F8FAFC" />
       </svg>
     ),
@@ -812,21 +1259,27 @@ export default function Section6() {
         </div>
 
         <div
-          className="section6-phase section6-statsPhase"
+          className={`section6-phase section6-statsPhase${statsOpacity > 0.15 ? " is-visible" : ""}`}
           style={{
             opacity: statsOpacity,
             pointerEvents: statsOpacity > 0 ? "auto" : "none",
           }}
         >
           <ul className="section6-stats">
-            {STATS.map((stat) => {
+            {STATS.map((stat, index) => {
               const current = Math.floor(stat.value * counterProgress);
               return (
-                <li key={stat.label} className="section6-stat">
+                <li
+                  key={stat.label}
+                  className="section6-stat"
+                  style={{ "--stat-index": index }}
+                >
                   <p className="section6-statLabel">{stat.label}</p>
                   <p className="section6-statValue">
                     {current.toLocaleString()}
-                    {stat.suffix && <span className="section6-statSuffix">{stat.suffix}</span>}
+                    {stat.suffix && (
+                      <span className="section6-statSuffix">{stat.suffix}</span>
+                    )}
                   </p>
                 </li>
               );
