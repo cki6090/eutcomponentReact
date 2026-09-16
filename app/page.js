@@ -9,18 +9,21 @@ export default function Home() {
     <div className="index-page">
       <div className="index-ci">
         <div className="index-page-content">
-          <h1>
-            Project Name
-            <br></br>
-            <span>Component Page</span>
-          </h1>
-          <p>
-            TECHNOLOGY STACK <br></br>
-            React, Next.js, TypeScript, CSS
-            <br></br>
-            NextAuth.js, json-server, axios, recharts
-          </p>
-          <AiBbox />
+          <div className="index-page-content-top">
+            <h1>
+              Project Name
+              <br></br>
+              <span>Component Page</span>
+            </h1>
+            <p>
+              TECHNOLOGY STACK <br></br>
+              React, Next.js, TypeScript, CSS
+              <br></br>
+              NextAuth.js, json-server, axios, recharts
+            </p>
+            <AiBbox />
+          </div>
+
           <div className="scrollDownArrow">
             <ScrollDownArrowIcon />
           </div>

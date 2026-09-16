@@ -157,7 +157,7 @@ export default function Section5() {
                 {loc.label}
               </span>
             ))}
-          </div>  
+          </div>
 
           <div className="titleTextContentWrap">
             {prevLocale && (
