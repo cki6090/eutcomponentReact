@@ -17,7 +17,10 @@ function useSectionScroll() {
       setScrollPercent(Math.max(0, Math.min(100, percent)));
     };
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -33,9 +36,47 @@ function useSectionScroll() {
 
 /* ── SCRIPT : 스크롤 비디오 ── */
 const VIDEO_DURATION = 10;
-const FRAME_COUNT = 160;
-/** 스크롤 추종 — 너무 낮으면 늦게 따라오고, 1이면 즉시 반응 */
-const LERP = 0.18;
+const FRAME_COUNT = 240;
+/** 60fps 기준 추종 속도. 너무 낮으면 늦게 따라오고, 1이면 즉시 반응 */
+const FOLLOW = 0.28;
+const MAX_CAPTURE_WIDTH = 1920;
+
+function getVideoDisplaySize(videoWidth, videoHeight) {
+  const viewWidth = window.innerWidth;
+  const viewHeight = window.innerHeight;
+  const videoRatio = videoWidth / videoHeight;
+  const viewRatio = viewWidth / viewHeight;
+
+  let displayWidth = viewWidth;
+  let displayHeight = viewHeight;
+
+  if (viewRatio > videoRatio) {
+    displayWidth = viewWidth;
+    displayHeight = Math.round(viewWidth / videoRatio);
+  } else {
+    displayHeight = viewHeight;
+    displayWidth = Math.round(viewHeight * videoRatio);
+  }
+
+  return { displayWidth, displayHeight };
+}
+
+function getAverageColor(ctx, width, height) {
+  const data = ctx.getImageData(0, 0, width, height).data;
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  let count = 0;
+
+  for (let i = 0; i < data.length; i += 16) {
+    r += data[i];
+    g += data[i + 1];
+    b += data[i + 2];
+    count += 1;
+  }
+
+  return `rgb(${Math.round(r / count)},${Math.round(g / count)},${Math.round(b / count)})`;
+}
 
 function useScrollVideo(videoSrc, scrollPercent) {
   const sourceRef = useRef(null);
@@ -55,19 +96,37 @@ function useScrollVideo(videoSrc, scrollPercent) {
 
     let cancelled = false;
     const captureCanvas = document.createElement("canvas");
-    const captureCtx = captureCanvas.getContext("2d", { alpha: false });
+    const captureCtx = captureCanvas.getContext("2d", {
+      alpha: false,
+      willReadFrequently: false,
+    });
+    const colorCanvas = document.createElement("canvas");
+    colorCanvas.width = 32;
+    colorCanvas.height = 32;
+    const colorCtx = colorCanvas.getContext("2d", {
+      alpha: false,
+      willReadFrequently: true,
+    });
 
     const startCapture = () => {
-      const w = source.videoWidth;
-      const h = source.videoHeight;
-      if (!w || !h || cancelled) return;
+      const videoWidth = source.videoWidth;
+      const videoHeight = source.videoHeight;
+      if (!videoWidth || !videoHeight || cancelled) return;
 
-      const displayH = Math.round(window.innerHeight * 0.75);
-      const displayW = Math.round((w / h) * displayH);
-      canvas.width = displayW;
-      canvas.height = displayH;
-      captureCanvas.width = displayW;
-      captureCanvas.height = displayH;
+      const { displayWidth, displayHeight } = getVideoDisplaySize(
+        videoWidth,
+        videoHeight,
+      );
+      const scale = Math.min(1, MAX_CAPTURE_WIDTH / displayWidth);
+      const captureWidth = Math.round(displayWidth * scale);
+      const captureHeight = Math.round(displayHeight * scale);
+
+      canvas.width = captureWidth;
+      canvas.height = captureHeight;
+      captureCanvas.width = captureWidth;
+      captureCanvas.height = captureHeight;
+      captureCtx.imageSmoothingEnabled = true;
+      captureCtx.imageSmoothingQuality = "high";
 
       framesRef.current = new Array(FRAME_COUNT);
       colorsRef.current = new Array(FRAME_COUNT);
@@ -78,17 +137,16 @@ function useScrollVideo(videoSrc, scrollPercent) {
           if (!cancelled) setReady(true);
           return;
         }
+
         const idx = frameIndex;
         source.currentTime = (idx / (FRAME_COUNT - 1)) * VIDEO_DURATION;
         source.onseeked = () => {
           if (cancelled) return;
-          captureCtx.drawImage(source, 0, 0, displayW, displayH);
-          const data = captureCtx.getImageData(0, 0, displayW, displayH).data;
-          let r = 0, g = 0, b = 0, count = 0;
-          for (let i = 0; i < data.length; i += 80) {
-            r += data[i]; g += data[i + 1]; b += data[i + 2]; count++;
-          }
-          colorsRef.current[idx] = `rgb(${Math.round(r / count)},${Math.round(g / count)},${Math.round(b / count)})`;
+
+          captureCtx.drawImage(source, 0, 0, captureWidth, captureHeight);
+          colorCtx.drawImage(captureCanvas, 0, 0, 32, 32);
+          colorsRef.current[idx] = getAverageColor(colorCtx, 32, 32);
+
           createImageBitmap(captureCanvas).then((bitmap) => {
             if (cancelled) {
               bitmap.close?.();
@@ -100,11 +158,13 @@ function useScrollVideo(videoSrc, scrollPercent) {
           });
         };
       };
+
       captureNext();
     };
 
     if (source.readyState >= 1) startCapture();
-    else source.addEventListener("loadedmetadata", startCapture, { once: true });
+    else
+      source.addEventListener("loadedmetadata", startCapture, { once: true });
 
     return () => {
       cancelled = true;
@@ -121,8 +181,14 @@ function useScrollVideo(videoSrc, scrollPercent) {
   useEffect(() => {
     if (!ready) return;
     const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d", { alpha: false });
+    const ctx = canvas?.getContext("2d", {
+      alpha: false,
+      desynchronized: true,
+    });
     if (!canvas || !ctx) return;
+
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
 
     const drawFrame = (frame) => {
       const bmp = framesRef.current[frame];
@@ -136,7 +202,6 @@ function useScrollVideo(videoSrc, scrollPercent) {
       }
     };
 
-    // 첫 화면
     const startTarget = (targetPercentRef.current / 100) * (FRAME_COUNT - 1);
     smoothIndexRef.current = startTarget;
     const startFrame = Math.round(startTarget);
@@ -144,10 +209,17 @@ function useScrollVideo(videoSrc, scrollPercent) {
     drawFrame(startFrame);
 
     let rafId;
-    const loop = () => {
+    let lastTime = performance.now();
+    const loop = (now) => {
+      const dt = Math.min(2.5, (now - lastTime) / 16.67);
+      lastTime = now;
+
       const target = Math.max(
         0,
-        Math.min(FRAME_COUNT - 1, (targetPercentRef.current / 100) * (FRAME_COUNT - 1))
+        Math.min(
+          FRAME_COUNT - 1,
+          (targetPercentRef.current / 100) * (FRAME_COUNT - 1),
+        ),
       );
 
       let current = smoothIndexRef.current;
@@ -155,7 +227,8 @@ function useScrollVideo(videoSrc, scrollPercent) {
       if (Math.abs(diff) < 0.001) {
         current = target;
       } else {
-        current += diff * LERP;
+        const follow = 1 - Math.pow(1 - FOLLOW, dt);
+        current += diff * follow;
       }
       smoothIndexRef.current = current;
 
@@ -177,13 +250,23 @@ function useScrollVideo(videoSrc, scrollPercent) {
 /* ── 컴포넌트 ── */
 export default function Section2({ videoSrc = "/video/scroller3.mp4" }) {
   const { sectionRef, scrollPercent } = useSectionScroll();
-  const { sourceRef, canvasRef, wrapRef } = useScrollVideo(videoSrc, scrollPercent);
+  const { sourceRef, canvasRef, wrapRef } = useScrollVideo(
+    videoSrc,
+    scrollPercent,
+  );
 
   return (
     <div className="section section2" ref={sectionRef}>
       <div className="videoWrap" ref={wrapRef}>
         <canvas className="scrollVideoCanvas" ref={canvasRef} />
-        <video className="scrollVideoSource" ref={sourceRef} src={videoSrc} muted playsInline preload="auto" />
+        <video
+          className="scrollVideoSource"
+          ref={sourceRef}
+          src={videoSrc}
+          muted
+          playsInline
+          preload="auto"
+        />
       </div>
     </div>
   );

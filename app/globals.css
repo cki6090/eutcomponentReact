@@ -263,8 +263,9 @@ a {
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 0% 100%;
-  animation: index-title-marker 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  animation: index-title-marker 1s cubic-bezier(0.22, 1, 0.36, 1) 2.35s forwards;
 }
+
 @keyframes index-title-marker {
   to {
     background-size: 100% 100%;
@@ -1155,7 +1156,7 @@ footer .footer-menu li button {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.1);
     text-shadow: 0 0 17px rgba(0, 0, 0, 0.5);
   }
   100% {
@@ -1189,13 +1190,17 @@ footer .footer-menu li button {
 }
 
 .ai-box .tip {
+  font-size: 12px;
   margin-top: 10px;
-  transition: all 0.35s ease;
-  height: 0;
+  height: 75px;
+  opacity: 0;
   overflow: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 .ai-box .tip.active {
-  height: 75px;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .progress-wrapper {

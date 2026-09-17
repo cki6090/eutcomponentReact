@@ -37,17 +37,39 @@ function useSectionScroll() {
 /* ── HTML : 로고 SVG ── */
 function LogoSvg() {
   return (
-    <svg className="logo_svg" width="400" height="100" viewBox="0 0 1334 334" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className="logo_svg"
+      width="400"
+      height="100"
+      viewBox="0 0 1334 334"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
         <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#570df8">
-            <animate attributeName="stop-color" values="#570df8;#7c3aed;#439BFF;#570df8" dur="6s" repeatCount="indefinite" />
+            <animate
+              attributeName="stop-color"
+              values="#570df8;#7c3aed;#439BFF;#570df8"
+              dur="6s"
+              repeatCount="indefinite"
+            />
           </stop>
           <stop offset="50%" stopColor="#7c3aed">
-            <animate attributeName="stop-color" values="#7c3aed;#439BFF;#570df8;#7c3aed" dur="6s" repeatCount="indefinite" />
+            <animate
+              attributeName="stop-color"
+              values="#7c3aed;#439BFF;#570df8;#7c3aed"
+              dur="6s"
+              repeatCount="indefinite"
+            />
           </stop>
           <stop offset="100%" stopColor="#439BFF">
-            <animate attributeName="stop-color" values="#439BFF;#570df8;#7c3aed;#439BFF" dur="6s" repeatCount="indefinite" />
+            <animate
+              attributeName="stop-color"
+              values="#439BFF;#570df8;#7c3aed;#439BFF"
+              dur="6s"
+              repeatCount="indefinite"
+            />
           </stop>
         </linearGradient>
       </defs>
@@ -69,7 +91,6 @@ function LogoSvg() {
 
 /* ── 컴포넌트 ── */
 export default function Section0() {
-
   const { sectionRef, scrollPercent } = useSectionScroll();
   const wrapRef = useRef(null);
   const bgRef = useRef(null);
@@ -100,20 +121,31 @@ export default function Section0() {
       const end = appearStart + step * (i + 1);
       if (scrollPercent >= end) path.style.strokeDashoffset = "0";
       else if (scrollPercent >= start) {
-        const p = Math.max(0, Math.min(1, (scrollPercent - start) / (end - start)));
+        const p = Math.max(
+          0,
+          Math.min(1, (scrollPercent - start) / (end - start)),
+        );
         path.style.strokeDashoffset = `${len * (1 - p)}`;
       } else path.style.strokeDashoffset = `${len}`;
     });
 
-    const drawProgress = Math.max(0, Math.min(1, (scrollPercent - appearStart) / (appearEnd - appearStart)));
+    const drawProgress = Math.max(
+      0,
+      Math.min(1, (scrollPercent - appearStart) / (appearEnd - appearStart)),
+    );
     if (svg) {
       svg.style.filter = `drop-shadow(0 0 ${Math.round(drawProgress * 20)}px rgba(87, 13, 248, ${(drawProgress * 0.6).toFixed(2)})) drop-shadow(0 0 ${Math.round(drawProgress * 6)}px rgba(67, 155, 255, ${(drawProgress * 0.5).toFixed(2)}))`;
     }
     wrap.classList.toggle("is-drawn", scrollPercent >= appearEnd);
 
     if (bgRef.current) {
-      const bgIntensity = Math.sin((Math.PI * Math.max(0, Math.min(100, scrollPercent))) / 100);
-      bgRef.current.style.setProperty("--bg-intensity", bgIntensity.toFixed(3));
+      const clamped = Math.max(0, Math.min(100, scrollPercent));
+      const wave = Math.sin((Math.PI * clamped) / 100);
+      const exitFade = clamped > 76 ? Math.max(0, (100 - clamped) / 24) : 1;
+      bgRef.current.style.setProperty(
+        "--bg-intensity",
+        (wave * exitFade).toFixed(3),
+      );
     }
 
     if (scrollPercent < appearStart) {
@@ -138,5 +170,4 @@ export default function Section0() {
       </div>
     </div>
   );
-  
 }

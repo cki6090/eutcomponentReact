@@ -51,6 +51,12 @@ function fadePhase(p, inStart, inEnd, outStart, outEnd) {
 }
 
 const TITLE_WORDS = ["Empowering", "innovators", "worldwide", "with"];
+const TITLE_WORD_STARTS = [
+  { x: -3, y: 16 },
+  { x: 4, y: 22 },
+  { x: -2, y: 12 },
+  { x: 3, y: 18 },
+];
 
 const STATS = [
   { label: "고객", value: 35, suffix: "" },
@@ -1208,16 +1214,6 @@ export default function Section6() {
     scrollPercent < 68 ? 0 : scrollPercent < 78 ? (scrollPercent - 68) / 10 : 1;
   const logoGatherProgress = mapRange(scrollPercent, 68, 98);
 
-  const [titleRevealed, setTitleRevealed] = useState(false);
-
-  useEffect(() => {
-    if (titleOpacity > 0.15) {
-      setTitleRevealed(true);
-    } else if (titleOpacity < 0.05) {
-      setTitleRevealed(false);
-    }
-  }, [titleOpacity]);
-
   useEffect(() => {
     if (logosOpacity < 0.05) {
       setColoredLogos(new Set());
@@ -1235,22 +1231,34 @@ export default function Section6() {
           }}
         >
           <h2
-            className={`section6-title${titleRevealed ? " is-revealed" : ""}`}
+            className="section6-title"
             style={{
               "--underline-progress": underlineProgress,
               "--highlight-progress": `${underlineProgress * 100}%`,
             }}
           >
             <span className="section6-titleLine">
-              {TITLE_WORDS.map((word, i) => (
-                <span
-                  key={word}
-                  className="section6-titleWord"
-                  style={{ "--w": i }}
-                >
-                  {word}
-                </span>
-              ))}
+              {TITLE_WORDS.map((word, i) => {
+                const start = TITLE_WORD_STARTS[i];
+                const progress = easeOutCubic(
+                  mapRange(scrollPercent, 1 + i * 3.5, 14 + i * 3.5),
+                );
+                const remain = 1 - progress;
+
+                return (
+                  <span
+                    key={word}
+                    className="section6-titleWord"
+                    style={{
+                      "--word-opacity": progress,
+                      "--word-x": `${start.x * remain}vw`,
+                      "--word-y": `${start.y * remain}vh`,
+                    }}
+                  >
+                    {word}
+                  </span>
+                );
+              })}
             </span>
             <span className="section6-titleLine section6-titleLineAccent">
               <span className="section6-titleHighlight">our technology</span>.

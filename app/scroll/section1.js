@@ -95,8 +95,8 @@ export default function Section1() {
 
     return {
       "--text-opacity": easedEnter * exit,
-      "--text-y": `${-24 * (1 - segmentProgress)}px`,
-      "--text-blur": `${4 * (1 - easedEnter * exit)}px`,
+      "--text-y": `${-30 * (1 - segmentProgress)}px`,
+      "--text-blur": `${5 * (1 - easedEnter * exit)}px`,
     };
   };
 

@@ -17,7 +17,10 @@ function useSectionScroll() {
       setScrollPercent(Math.max(0, Math.min(100, percent)));
     };
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -64,7 +67,7 @@ function getCardClipPath(i, scrollPercent, layerCount) {
   const revealDuration = 100 / (1 + (layerCount - 1) * overlapStart);
   const stagger = revealDuration * overlapStart;
   const fanStart = 180;
-  const fanSweepMax = 270;
+  const fanSweepMax = 120;
 
   if (i === 0) return "inset(0)";
 
@@ -328,8 +331,18 @@ const COLOR_FAMILIES = [
 ];
 
 const THEMES = COLOR_FAMILIES.flatMap((family) => [
-  { id: `${family.name}-light`, name: family.name, mode: "light", vars: family.light },
-  { id: `${family.name}-dark`, name: family.name, mode: "dark", vars: family.dark },
+  {
+    id: `${family.name}-light`,
+    name: family.name,
+    mode: "light",
+    vars: family.light,
+  },
+  {
+    id: `${family.name}-dark`,
+    name: family.name,
+    mode: "dark",
+    vars: family.dark,
+  },
 ]);
 
 const PALETTE_KEYS = [
@@ -341,7 +354,14 @@ const PALETTE_KEYS = [
   { key: "--surface", label: "Surface" },
 ];
 
-const CARGO_OPTIONS = ["Dangerous", "Awkward", "Reefer", "Food Grade", "Scrap", "Oversize"];
+const CARGO_OPTIONS = [
+  "Dangerous",
+  "Awkward",
+  "Reefer",
+  "Food Grade",
+  "Scrap",
+  "Oversize",
+];
 const TAB_ITEMS = ["Master", "Container", "Customer", "Remark"];
 
 function ThemeShowcase({ theme, index }) {
@@ -375,9 +395,12 @@ function ThemeShowcase({ theme, index }) {
   const [alertOn, setAlertOn] = useState(true);
   const [accordionOpen, setAccordionOpen] = useState(false);
 
-  useEffect(() => () => {
-    if (toastTimer.current) window.clearTimeout(toastTimer.current);
-  }, []);
+  useEffect(
+    () => () => {
+      if (toastTimer.current) window.clearTimeout(toastTimer.current);
+    },
+    [],
+  );
 
   const toggleCheck = (label) => {
     setChecks((prev) => {
@@ -439,7 +462,9 @@ function ThemeShowcase({ theme, index }) {
     >
       <header className="s4-head">
         <div>
-          <p className="s4-kicker">Theme {String(index + 1).padStart(2, "0")} · CSS Variables</p>
+          <p className="s4-kicker">
+            Theme {String(index + 1).padStart(2, "0")} · CSS Variables
+          </p>
           <h3 className="s4-title">{theme.name}</h3>
         </div>
         <div className="s4-head-actions">
@@ -451,7 +476,9 @@ function ThemeShowcase({ theme, index }) {
               onChange={(e) => setToggleOn(e.target.checked)}
               aria-label="Keep session"
             />
-            <span className="s4-switch-track"><span className="s4-switch-thumb" /></span>
+            <span className="s4-switch-track">
+              <span className="s4-switch-thumb" />
+            </span>
             <span>Keep Session</span>
           </label>
         </div>
@@ -502,13 +529,21 @@ function ThemeShowcase({ theme, index }) {
                 placeholder="POR / POL / Carrier"
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <button type="button" className="s4-icon-btn" onClick={() => showToast(`Search: ${search || "empty"}`)} aria-label="Run search">
+              <button
+                type="button"
+                className="s4-icon-btn"
+                onClick={() => showToast(`Search: ${search || "empty"}`)}
+                aria-label="Run search"
+              >
                 ⌕
               </button>
             </label>
             <label className="s4-field">
               <span>Booking Type</span>
-              <select value={selectVal} onChange={(e) => setSelectVal(e.target.value)}>
+              <select
+                value={selectVal}
+                onChange={(e) => setSelectVal(e.target.value)}
+              >
                 <option value="general">General BKG</option>
                 <option value="empty">Empty Repo</option>
                 <option value="co-load">Co-Load</option>
@@ -516,11 +551,19 @@ function ThemeShowcase({ theme, index }) {
             </label>
             <label className="s4-field">
               <span>ETD Date</span>
-              <input type="date" value={dateVal} onChange={(e) => setDateVal(e.target.value)} />
+              <input
+                type="date"
+                value={dateVal}
+                onChange={(e) => setDateVal(e.target.value)}
+              />
             </label>
             <label className="s4-field">
               <span>Cut-off</span>
-              <input type="time" value={timeVal} onChange={(e) => setTimeVal(e.target.value)} />
+              <input
+                type="time"
+                value={timeVal}
+                onChange={(e) => setTimeVal(e.target.value)}
+              />
             </label>
             <label className="s4-field s4-field-icon">
               <span>Password</span>
@@ -529,16 +572,33 @@ function ThemeShowcase({ theme, index }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="button" className="s4-icon-btn" onClick={() => setShowPw((v) => !v)} aria-label="Toggle password">
+              <button
+                type="button"
+                className="s4-icon-btn"
+                onClick={() => setShowPw((v) => !v)}
+                aria-label="Toggle password"
+              >
                 {showPw ? "Hide" : "Show"}
               </button>
             </label>
             <div className="s4-field">
               <span>Qty Stepper</span>
               <div className="s4-stepper">
-                <button type="button" onClick={() => setQty((v) => Math.max(0, v - 1))} aria-label="Decrease">−</button>
+                <button
+                  type="button"
+                  onClick={() => setQty((v) => Math.max(0, v - 1))}
+                  aria-label="Decrease"
+                >
+                  −
+                </button>
                 <strong>{qty}</strong>
-                <button type="button" onClick={() => setQty((v) => v + 1)} aria-label="Increase">+</button>
+                <button
+                  type="button"
+                  onClick={() => setQty((v) => v + 1)}
+                  aria-label="Increase"
+                >
+                  +
+                </button>
               </div>
             </div>
             <label className="s4-field s4-field-remark">
@@ -574,7 +634,9 @@ function ThemeShowcase({ theme, index }) {
                 checked={notify}
                 onChange={(e) => setNotify(e.target.checked)}
               />
-              <span className="s4-switch-track"><span className="s4-switch-thumb" /></span>
+              <span className="s4-switch-track">
+                <span className="s4-switch-thumb" />
+              </span>
               <span>Notify</span>
             </label>
           </div>
@@ -645,7 +707,9 @@ function ThemeShowcase({ theme, index }) {
               value={range}
               onChange={(e) => setRange(Number(e.target.value))}
             />
-            <div className="s4-progress"><i style={{ width: `${range}%` }} /></div>
+            <div className="s4-progress">
+              <i style={{ width: `${range}%` }} />
+            </div>
           </label>
         </section>
 
@@ -662,10 +726,20 @@ function ThemeShowcase({ theme, index }) {
           {alertOn ? (
             <div className="s4-alert">
               <span>Vessel cut-off in 2h. Confirm POL ETD.</span>
-              <button type="button" onClick={() => setAlertOn(false)} aria-label="Dismiss">×</button>
+              <button
+                type="button"
+                onClick={() => setAlertOn(false)}
+                aria-label="Dismiss"
+              >
+                ×
+              </button>
             </div>
           ) : (
-            <button type="button" className="s4-btn ghost s4-btn-block" onClick={() => setAlertOn(true)}>
+            <button
+              type="button"
+              className="s4-btn ghost s4-btn-block"
+              onClick={() => setAlertOn(true)}
+            >
               Show alert
             </button>
           )}
@@ -712,7 +786,9 @@ function ThemeShowcase({ theme, index }) {
               <span>Capacity</span>
               <strong>{Math.min(100, qty * 12 + range)}%</strong>
             </div>
-            <div className="s4-progress"><i style={{ width: `${Math.min(100, qty * 12 + range)}%` }} /></div>
+            <div className="s4-progress">
+              <i style={{ width: `${Math.min(100, qty * 12 + range)}%` }} />
+            </div>
           </div>
 
           <button
@@ -731,7 +807,9 @@ function ThemeShowcase({ theme, index }) {
                   checked={toggleOn}
                   onChange={(e) => setToggleOn(e.target.checked)}
                 />
-                <span className="s4-switch-track"><span className="s4-switch-thumb" /></span>
+                <span className="s4-switch-track">
+                  <span className="s4-switch-thumb" />
+                </span>
                 <span>Auto EDI</span>
               </label>
               <label className="s4-field">
@@ -765,8 +843,16 @@ function ThemeShowcase({ theme, index }) {
           <div className="s4-table-toolbar">
             <strong>{tab} · Container Q&apos;ty</strong>
             <div className="s4-btn-row">
-              <button type="button" className="s4-btn ghost" onClick={addRow}>+ Add Row</button>
-              <button type="button" className="s4-btn ghost" onClick={removeRow}>- Delete</button>
+              <button type="button" className="s4-btn ghost" onClick={addRow}>
+                + Add Row
+              </button>
+              <button
+                type="button"
+                className="s4-btn ghost"
+                onClick={removeRow}
+              >
+                - Delete
+              </button>
             </div>
           </div>
           <table className="s4-table">
@@ -775,26 +861,35 @@ function ThemeShowcase({ theme, index }) {
                 <th>#</th>
                 <th>Type</th>
                 <th>Qty</th>
-                <th />
+                <th>Qty2</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row, i) => (
                 <tr key={`${row.type}-${i}`}>
                   <td>{i + 1}</td>
+
                   <td>
                     <select
                       value={row.type}
                       onChange={(e) => {
                         const type = e.target.value;
-                        setRows((prev) => prev.map((r, idx) => (idx === i ? { ...r, type } : r)));
+                        setRows((prev) =>
+                          prev.map((r, idx) =>
+                            idx === i ? { ...r, type } : r,
+                          ),
+                        );
                       }}
                     >
                       {["20GP", "40GP", "40HC", "45HC"].map((t) => (
-                        <option key={t} value={t}>{t}</option>
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
                       ))}
                     </select>
                   </td>
+
                   <td>
                     <input
                       type="number"
@@ -802,12 +897,29 @@ function ThemeShowcase({ theme, index }) {
                       value={row.qty}
                       onChange={(e) => {
                         const qty = Number(e.target.value);
-                        setRows((prev) => prev.map((r, idx) => (idx === i ? { ...r, qty } : r)));
+                        setRows((prev) =>
+                          prev.map((r, idx) => (idx === i ? { ...r, qty } : r)),
+                        );
                       }}
                     />
                   </td>
+
                   <td>
-                    <button type="button" className="s4-chip" onClick={() => showToast(`${row.type} inquired`)}>
+                    <button
+                      type="button"
+                      className="s4-chip"
+                      onClick={() => showToast(`${row.type} inquired`)}
+                    >
+                      Inquiry
+                    </button>
+                  </td>
+
+                  <td>
+                    <button
+                      type="button"
+                      className="s4-chip"
+                      onClick={() => showToast(`${row.type} inquired`)}
+                    >
                       Inquiry
                     </button>
                   </td>
@@ -826,13 +938,35 @@ function ThemeShowcase({ theme, index }) {
           {notify && <span className="s4-chip soft">notify on</span>}
         </div>
         <div className="s4-btn-row">
-          <button type="button" className="s4-btn ghost" onClick={() => showToast("Cancelled")}>Cancel</button>
-          <button type="button" className="s4-btn primary" onClick={() => showToast("Search run")}>Search</button>
-          <button type="button" className="s4-btn accent" onClick={() => showToast("Saved!")}>Save</button>
+          <button
+            type="button"
+            className="s4-btn ghost"
+            onClick={() => showToast("Cancelled")}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="s4-btn primary"
+            onClick={() => showToast("Search run")}
+          >
+            Search
+          </button>
+          <button
+            type="button"
+            className="s4-btn accent"
+            onClick={() => showToast("Saved!")}
+          >
+            Save
+          </button>
         </div>
       </footer>
 
-      {toast ? <div className="s4-toast" role="status">{toast}</div> : null}
+      {toast ? (
+        <div className="s4-toast" role="status">
+          {toast}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -850,7 +984,9 @@ export default function Section4() {
             <div
               key={theme.id}
               className="layer-card"
-              style={{ clipPath: getCardClipPath(i, scrollPercent, THEMES.length) }}
+              style={{
+                clipPath: getCardClipPath(i, scrollPercent, THEMES.length),
+              }}
             >
               <ThemeShowcase theme={theme} index={i} />
             </div>
@@ -860,7 +996,6 @@ export default function Section4() {
     </div>
   );
 }
-
 
 const SECTION4_STYLES = `
 .section4 .layer-card {
@@ -902,6 +1037,7 @@ const SECTION4_STYLES = `
   align-items: center;
   gap: clamp(6px, 1cqw, 12px);
   flex: 0 0 auto;
+  margin-bottom: 0px;
   min-height: 0;
 }
 .section4 .s4-kicker {
@@ -980,11 +1116,11 @@ const SECTION4_STYLES = `
 .section4 .s4-swatch {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 0;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: clamp(6px, 1cqh, 10px);
-  background: var(--surface-2);
+  background: var(--swatch);
   color: inherit;
   cursor: pointer;
   overflow: hidden;
@@ -1007,19 +1143,26 @@ const SECTION4_STYLES = `
   display: flex;
   flex-direction: column;
   gap: 1px;
-  padding: 0 5px 5px;
+  padding: 4px 6px 6px;
   min-width: 0;
+  background: var(--swatch);
 }
 .section4 .s4-swatch-meta strong {
   font-size: var(--fs-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #fff;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.75),
+    0 0 8px rgba(0, 0, 0, 0.55);
 }
 .section4 .s4-swatch-meta em {
   font-style: normal;
   font-size: clamp(8px, 1cqh, 10px);
-  color: var(--text-muted);
+  color: #fff;
+  mix-blend-mode: difference;
+  opacity: 0.85;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1533,6 +1676,15 @@ const SECTION4_STYLES = `
   padding: 0 4px;
   border-radius: 5px;
 }
+.section4 .s4-showcase.is-dark .s4-field input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.section4 .s4-showcase.is-dark .s4-table input,
+.section4 .s4-showcase.is-dark .s4-accordion-body input[type="color"] {
+  border-radius: 0;
+}
+.section4 .s4-showcase.is-dark .s4-swatch,
+.section4 .s4-showcase.is-dark button {
+  border-radius: 0;
+}
 
 .section4 .s4-footer {
   display: flex;
@@ -1540,7 +1692,7 @@ const SECTION4_STYLES = `
   align-items: center;
   gap: 8px;
   flex: 0 0 auto;
-  min-height: 0;
+  height: auto;
 }
 .section4 .s4-chips,
 .section4 .s4-btn-row {
@@ -1586,6 +1738,12 @@ const SECTION4_STYLES = `
   background: var(--surface);
   color: var(--primary);
   border-color: var(--border);
+}
+.section4 .s4-showcase.is-dark .s4-footer .s4-btn {
+  border-radius: 0;
+}
+.section4 .s4-showcase.is-dark .s4-file .s4-btn {
+  border-radius: 0;
 }
 
 .section4 .s4-toast {

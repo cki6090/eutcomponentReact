@@ -34,18 +34,18 @@ export default function AiBbox() {
       } else {
         window.location.href = `/layouts/${found}`;
       }
-    } else {
-      setTip(true);
     }
   };
 
   return (
     <div className="ai-box">
       <div className="ai-box-title">
-        <h2 onClick={() => setTip(!tip)}>AI</h2>
+        <h2></h2>
         <div className="ai-box-input">
           <input
             type="text"
+            onFocus={() => setTip(true)}
+            onBlur={() => setTip(false)}
             onChange={(e) => setAiInput(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
