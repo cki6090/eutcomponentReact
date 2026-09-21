@@ -1205,7 +1205,8 @@ export default function Section6() {
   };
 
   const titleOpacity = fadePhase(scrollPercent, 0, 8, 28, 38);
-  const underlineProgress = easeOutCubic(mapRange(scrollPercent, 8, 28));
+  // 마지막 titleWord가 제자리로 돌아온 뒤(약 24.5%)부터 밑줄·하이라이트 채움
+  const underlineProgress = easeOutCubic(mapRange(scrollPercent, 25, 32));
 
   const statsOpacity = fadePhase(scrollPercent, 32, 42, 62, 72);
   const counterProgress = easeOutCubic(mapRange(scrollPercent, 42, 62));

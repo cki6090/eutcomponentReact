@@ -126,37 +126,24 @@ export default function Section5() {
   const wrapOpacity = scrollPercent >= 1 ? 1 : 0;
   const prevLocale = activeIndex > 0 ? LOCALES[activeIndex - 1] : null;
 
-  const [shownIndex, setShownIndex] = useState(0);
-  const [titleFading, setTitleFading] = useState(false);
-
-  useEffect(() => {
-    if (activeIndex === shownIndex) return;
-    setTitleFading(true);
-    const timer = setTimeout(() => {
-      setShownIndex(activeIndex);
-      setTitleFading(false);
-    }, 280);
-    return () => clearTimeout(timer);
-  }, [activeIndex, shownIndex]);
-
   return (
     <div className="section section5" ref={sectionRef}>
       <div className="titleTextWrap" style={{ opacity: wrapOpacity }}>
         <div>
-          <p className={`titleText${titleFading ? " is-fading" : ""}`}>
-            {LOCALES[shownIndex].title}
-          </p>
+          <div className="titleTextHeader">
+            <p className="titleText">{locale.title}</p>
 
-          <div className="localeTabs">
-            {LOCALES.map((loc, i) => (
-              <span
-                key={loc.code}
-                className={`localeTab ${i === activeIndex ? "active" : ""}`}
-              >
-                <span className="localeFlag">{loc.flag}</span>
-                {loc.label}
-              </span>
-            ))}
+            <div className="localeTabs">
+              {LOCALES.map((loc, i) => (
+                <span
+                  key={loc.code}
+                  className={`localeTab ${i === activeIndex ? "active" : ""}`}
+                >
+                  <span className="localeFlag">{loc.flag}</span>
+                  {loc.label}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="titleTextContentWrap">
