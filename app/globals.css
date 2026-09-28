@@ -1264,7 +1264,7 @@ footer .footer-menu li button {
   flex-direction: column;
   justify-content: center;
   gap: 28px;
-  padding: clamp(48px, 8vh, 88px) clamp(24px, 6vw, 80px);
+  padding: clamp(48px, 8vh, 88px) clamp(24px, 8vw, 180px);
   box-sizing: border-box;
 }
 
@@ -1330,8 +1330,8 @@ footer .footer-menu li button {
   max-width: 56rem;
 }
 
-.reportResultGoal strong,
-.reportResultProgress strong {
+.reportResultGoal > strong,
+.reportResultProgress > strong {
   font-size: clamp(1.05rem, 1.5vw, 1.2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -1339,8 +1339,8 @@ footer .footer-menu li button {
   white-space: nowrap;
 }
 
-.reportResultProgress strong {
-  color: #377dff;
+.reportResultProgress > strong {
+  color: #000000;
 }
 
 .reportResultGoal p,
@@ -1348,7 +1348,12 @@ footer .footer-menu li button {
   margin: 0;
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   line-height: 1.7;
-  color: #475569;
+  color: #1b1b1b;
+}
+
+.reportResultProgress p strong {
+  font-weight: 700;
+  color: #0f172a;
 }
 
 .reportResultGoal p {
@@ -1388,8 +1393,8 @@ footer .footer-menu li button {
     gap: 8px;
   }
 
-  .reportResultGoal strong,
-  .reportResultProgress strong {
+  .reportResultGoal > strong,
+  .reportResultProgress > strong {
     white-space: normal;
   }
 }

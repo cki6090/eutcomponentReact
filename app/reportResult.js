@@ -5,38 +5,73 @@ import { useEffect, useRef, useState } from "react";
 const REPORT_ITEMS = [
   {
     goalTitle: "목표 1",
-    goalText: "AI를 활용한 디자인 시안 추출 및 화면 퍼블리싱",
-    progressText:
-      "AI를 통해 원하는 디자인 방향을 구체적으로 구현하는 데에는 한계가 있었으며, 일반적으로 많이 사용되는 보편적인 UI·레이아웃은 비교적 쉽게 생성 가능함을 확인",
+    goalText: "AI 디자인 시안 제작 후 화면 퍼블리싱 화면 비교",
+    progressText: (
+      <>
+        디자인을 요청할 경우 일반적으로 사용되는 UI·레이아웃을 중심으로 생성되어
+        <br></br>
+        <strong>
+          원하는 디자인 방향과 세부적인 의도를 정확하게 반영하는 데 한계가
+          있었음.
+        </strong>
+      </>
+    ),
   },
   {
     goalTitle: "목표 2",
     goalText: "메인 로고 및 디자인 아이콘 SVG 구현",
-    progressText:
-      "기존에 제작된 이미지 또는 SVG를 참조하여 변환·재구성하도록 요청할 경우 높은 완성도로 구현 가능했으나, 이미지에 대한 구체적인 기준 없이 프롬프트만으로 SVG 제작을 요청할 경우 디자인 정확도가 낮아지는 경향을 확인",
+    progressText: (
+      <>
+        기존에 제작된 이미지 또는 SVG를{" "}
+        <strong>참조하여 변환·재구성하도록 요청할 경우 구현 가능</strong>
+        했으나, 이미지에 대한 구체적인 기준 없이{" "}
+        <strong>
+          프롬프트만으로 SVG 제작을 요청할 경우 원하는 디자인 방향과 다른 결과
+        </strong>
+        을 확인
+      </>
+    ),
   },
   {
     goalTitle: "목표 3",
     goalText: "스크롤 이벤트에 최적화된 영상 콘텐츠 제작",
-    progressText:
-      "스크롤 인터랙션에 활용하기 위한 영상 제작을 진행하였으나, 유사한 형태와 연출의 결과물이 반복적으로 생성되는 경향을 확인. 사용 중인 AI 환경 및 생성 모델의 특성에 따른 결과 차이에 대해서는 추가 검증 필요",
+    progressText: (
+      <>
+        스크롤 인터랙션에 활용하기 위한 영상 제작을 진행하였으나,{" "}
+        <strong>유사한 형태와 연출의 결과물이 반복적으로 생성</strong>되는
+        경향을 확인. 사용 중인 AI 환경 및 생성 모델의 특성에 따른 결과 차이에
+        대해서는 추가 검증 필요
+      </>
+    ),
   },
   {
     goalTitle: "목표 4",
     goalText: "스크롤 이벤트 스크립트 함수 및 로직의 재사용 구조화",
-    progressText:
-      "기존에는 공통 함수와 로직을 사전에 정리하여 재사용하는 것을 목표로 하였으나, AI를 활용하면 요구사항에 맞는 기능과 로직을 즉시 생성·수정할 수 있어 별도의 대규모 공통 함수 저장 및 관리의 필요성이 낮아짐을 확인",
+    progressText: (
+      <>
+        기존에는 공통 함수와 로직을 사전에 정리하여 재사용하는 것을 목표로
+        하였으나, AI를 활용하면 요구사항에 맞는 기능과 로직을 즉시 생성·수정할
+        수 있어 <strong>별도의 공통 함수 저장 및 관리의 필요성이 낮아짐</strong>
+        을 확인
+      </>
+    ),
   },
   {
     goalTitle: "목표 5",
-    goalText: "웹표준 페이지의 React 변환 및 적용",
-    progressText:
-      "기존 웹표준 HTML/CSS 기반 페이지를 React 구조로 변환하는 작업은 AI 활용 효과가 높았으며, HTML·CSS·JavaScript 구조를 분석하여 React 컴포넌트 형태로 변환하는 작업이 비교적 안정적으로 수행됨을 확인",
+    goalText: "웹표준 페이지를 React 구조로 변환 및 적용",
+    progressText: (
+      <>
+        기존 웹표준 HTML/CSS 기반 페이지를 React 구조로 변환하는 작업은{" "}
+        <strong>AI 활용 효과가 높았으며</strong>, HTML·CSS·JavaScript 구조를
+        분석하여 React 컴포넌트 형태로 변환하는 작업이 비교적 안정적으로
+        수행됨을 확인
+      </>
+    ),
   },
 ];
 
 const SLIDE_COUNT = REPORT_ITEMS.length + 1;
-const INTRO_HOLD_PERCENT = 20;
+const INTRO_HOLD_PERCENT = 10;
 
 function getMoveProgress(scrollPercent) {
   return Math.max(
@@ -54,6 +89,17 @@ function getActiveSlideIndex(scrollPercent) {
     SLIDE_COUNT - 1,
     Math.round(moveProgress * (SLIDE_COUNT - 1)),
   );
+}
+
+// 방향키용: 슬라이드 사이에서는 "아직 이전/다음으로 안 간 상태"로 본다
+function getSlideIndexForDirection(scrollPercent, direction) {
+  const position = getMoveProgress(scrollPercent) * (SLIDE_COUNT - 1);
+
+  if (direction === "next") {
+    return Math.min(SLIDE_COUNT - 1, Math.floor(position + 0.001));
+  }
+
+  return Math.max(0, Math.ceil(position - 0.001));
 }
 
 function getScrollPercentForSlide(slideIndex) {
@@ -111,7 +157,7 @@ export default function ReportResult() {
   const scrollPercentRef = useRef(scrollPercent);
   const isJumpingRef = useRef(false);
 
-  // 0~20%는 표지 고정, 20~100%에서만 좌우 슬라이드 이동
+  // 0~INTRO_HOLD%는 표지 고정, 이후 구간에서만 좌우 슬라이드 이동
   const moveProgress = getMoveProgress(scrollPercent);
   const translateX = moveProgress * (SLIDE_COUNT - 1) * 100;
   const activeIndex = getActiveSlideIndex(scrollPercent);
@@ -148,7 +194,11 @@ export default function ReportResult() {
         return;
       }
 
-      const currentIndex = getActiveSlideIndex(scrollPercentRef.current);
+      const direction = isNext ? "next" : "prev";
+      const currentIndex = getSlideIndexForDirection(
+        scrollPercentRef.current,
+        direction,
+      );
       const nextIndex = isNext ? currentIndex + 1 : currentIndex - 1;
       if (nextIndex < 0 || nextIndex >= SLIDE_COUNT) return;
 
@@ -161,7 +211,7 @@ export default function ReportResult() {
 
       window.setTimeout(() => {
         isJumpingRef.current = false;
-      }, 450);
+      }, 600);
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -183,11 +233,7 @@ export default function ReportResult() {
             <p className="reportResultEyebrow">Report</p>
             <h2 className="reportResultTitle">
               AI 개인과제 공유(3분기 개인과제)
-              <span>소개</span>
             </h2>
-            <p className="reportResultLead">
-              아래로 스크롤하면 목표별 결과가 좌우로 넘어갑니다.
-            </p>
           </article>
 
           {REPORT_ITEMS.map((item, index) => (
@@ -199,10 +245,12 @@ export default function ReportResult() {
                 {String(index + 1).padStart(2, "0")} /{" "}
                 {String(REPORT_ITEMS.length).padStart(2, "0")}
               </p>
+
               <div className="reportResultGoal">
                 <strong>{item.goalTitle})</strong>
                 <p>{item.goalText}</p>
               </div>
+
               <div className="reportResultProgress">
                 <strong>진행 결과 및 검증 :</strong>
                 <p>{item.progressText}</p>
