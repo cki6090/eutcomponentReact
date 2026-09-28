@@ -134,7 +134,7 @@ export default function Section0() {
       Math.min(1, (scrollPercent - appearStart) / (appearEnd - appearStart)),
     );
     if (svg) {
-      svg.style.filter = `drop-shadow(0 0 ${Math.round(drawProgress * 20)}px rgba(87, 13, 248, ${(drawProgress * 0.6).toFixed(2)})) drop-shadow(0 0 ${Math.round(drawProgress * 6)}px rgba(67, 155, 255, ${(drawProgress * 0.5).toFixed(2)}))`;
+      svg.style.filter = `drop-shadow(0 0 ${Math.round(drawProgress * 8)}px rgba(165, 180, 252, ${(drawProgress * 0.22).toFixed(2)})) drop-shadow(0 0 ${Math.round(drawProgress * 3)}px rgba(147, 197, 253, ${(drawProgress * 0.15).toFixed(2)}))`;
     }
     wrap.classList.toggle("is-drawn", scrollPercent >= appearEnd);
 

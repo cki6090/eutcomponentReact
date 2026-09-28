@@ -38,7 +38,12 @@ function useSectionScroll() {
 const VIDEO_DURATION = 10;
 const FRAME_COUNT = 240;
 /** 60fps 기준 추종 속도. 너무 낮으면 늦게 따라오고, 1이면 즉시 반응 */
-const FOLLOW = 0.28;
+const FOLLOW = 0.22;
+/** 휠을 멈춘 뒤 관성으로 더 진행할 스크롤 % (대략 한 칸) */
+const COAST_PERCENT = 1.6;
+const COAST_DURATION_MS = 480;
+const COAST_IDLE_MS = 70;
+const COAST_MIN_VELOCITY = 0.002;
 const MAX_CAPTURE_WIDTH = 1920;
 
 function getVideoDisplaySize(videoWidth, videoHeight) {
@@ -78,7 +83,7 @@ function getAverageColor(ctx, width, height) {
   return `rgb(${Math.round(r / count)},${Math.round(g / count)},${Math.round(b / count)})`;
 }
 
-function useScrollVideo(videoSrc, scrollPercent) {
+function useScrollVideo(videoSrc, scrollPercent, sectionRef) {
   const sourceRef = useRef(null);
   const canvasRef = useRef(null);
   const wrapRef = useRef(null);
@@ -174,7 +179,43 @@ function useScrollVideo(videoSrc, scrollPercent) {
   }, [videoSrc]);
 
   const targetPercentRef = useRef(scrollPercent);
+  const velocityRef = useRef(0);
+  const lastPercentRef = useRef(scrollPercent);
+  const lastScrollTimeRef = useRef(performance.now());
+  const coastRef = useRef(null);
+  const isCoastingRef = useRef(false);
+
   useEffect(() => {
+    const handleCancelCoast = () => {
+      if (!isCoastingRef.current) return;
+      isCoastingRef.current = false;
+      coastRef.current = null;
+    };
+    window.addEventListener("wheel", handleCancelCoast, { passive: true });
+    window.addEventListener("touchstart", handleCancelCoast, { passive: true });
+    window.addEventListener("keydown", handleCancelCoast);
+    return () => {
+      window.removeEventListener("wheel", handleCancelCoast);
+      window.removeEventListener("touchstart", handleCancelCoast);
+      window.removeEventListener("keydown", handleCancelCoast);
+    };
+  }, []);
+
+  useEffect(() => {
+    const now = performance.now();
+
+    if (isCoastingRef.current) {
+      lastPercentRef.current = scrollPercent;
+      lastScrollTimeRef.current = now;
+      targetPercentRef.current = scrollPercent;
+      return;
+    }
+
+    const elapsed = Math.max(8, now - lastScrollTimeRef.current);
+    velocityRef.current = (scrollPercent - lastPercentRef.current) / elapsed;
+    lastPercentRef.current = scrollPercent;
+    lastScrollTimeRef.current = now;
+    coastRef.current = null;
     targetPercentRef.current = scrollPercent;
   }, [scrollPercent]);
 
@@ -214,6 +255,46 @@ function useScrollVideo(videoSrc, scrollPercent) {
       const dt = Math.min(2.5, (now - lastTime) / 16.67);
       lastTime = now;
 
+      const idleMs = now - lastScrollTimeRef.current;
+      const sectionEl = sectionRef.current;
+      if (
+        !coastRef.current &&
+        sectionEl &&
+        idleMs > COAST_IDLE_MS &&
+        Math.abs(velocityRef.current) >= COAST_MIN_VELOCITY
+      ) {
+        const realHeight = sectionEl.offsetHeight - window.innerHeight;
+        if (realHeight > 0) {
+          const direction = Math.sign(velocityRef.current);
+          const speedBoost = Math.min(1.2, Math.abs(velocityRef.current) * 220);
+          const coastAmount = COAST_PERCENT + speedBoost * 0.5;
+          const startY = window.scrollY;
+          const endY = startY + direction * ((coastAmount / 100) * realHeight);
+          coastRef.current = {
+            startY,
+            endY,
+            startTime: now,
+          };
+          isCoastingRef.current = true;
+          velocityRef.current = 0;
+        }
+      }
+
+      if (coastRef.current) {
+        const coast = coastRef.current;
+        const progress = Math.min(
+          1,
+          (now - coast.startTime) / COAST_DURATION_MS,
+        );
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const nextY = coast.startY + (coast.endY - coast.startY) * eased;
+        window.scrollTo(0, nextY);
+        if (progress >= 1) {
+          coastRef.current = null;
+          isCoastingRef.current = false;
+        }
+      }
+
       const target = Math.max(
         0,
         Math.min(
@@ -241,8 +322,12 @@ function useScrollVideo(videoSrc, scrollPercent) {
       rafId = requestAnimationFrame(loop);
     };
     rafId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(rafId);
-  }, [ready]);
+    return () => {
+      cancelAnimationFrame(rafId);
+      isCoastingRef.current = false;
+      coastRef.current = null;
+    };
+  }, [ready, sectionRef]);
 
   return { sourceRef, canvasRef, wrapRef };
 }
@@ -253,6 +338,7 @@ export default function Section2({ videoSrc = "/video/scroller3.mp4" }) {
   const { sourceRef, canvasRef, wrapRef } = useScrollVideo(
     videoSrc,
     scrollPercent,
+    sectionRef,
   );
 
   return (

@@ -1,5 +1,6 @@
 "use client";
 import AiBbox from "./aiBbox";
+import ReportResult from "./reportResult";
 import Scroll from "./scroll/scroll";
 import ScrollDownArrowIcon from "./scrollDownArrowIcon";
 import ScrollToTopButton from "./scrollToTopButton";
@@ -29,6 +30,7 @@ export default function Home() {
           </div>
         </div>
         <Scroll />
+        <ReportResult />
       </div>
       <ScrollToTopButton />
     </div>
