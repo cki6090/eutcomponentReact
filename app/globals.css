@@ -1322,7 +1322,8 @@ footer .footer-menu li button {
 }
 
 .reportResultGoal,
-.reportResultProgress {
+.reportResultProgress,
+.reportResultAi {
   display: grid;
   grid-template-columns: minmax(11rem, auto) minmax(0, 42rem);
   gap: 12px 20px;
@@ -1331,7 +1332,8 @@ footer .footer-menu li button {
 }
 
 .reportResultGoal > strong,
-.reportResultProgress > strong {
+.reportResultProgress > strong,
+.reportResultAi > strong {
   font-size: clamp(1.05rem, 1.5vw, 1.2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -1344,13 +1346,16 @@ footer .footer-menu li button {
 }
 
 .reportResultGoal p,
-.reportResultProgress p {
+.reportResultProgress p,
+.reportResultAi p {
   margin: 0;
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   line-height: 1.7;
   color: #1b1b1b;
 }
-
+.reportResultAi p {
+  text-transform: uppercase;
+}
 .reportResultProgress p strong {
   font-weight: 700;
   color: #0f172a;
