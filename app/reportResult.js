@@ -70,10 +70,13 @@ const REPORT_ITEMS = [
     goalAi: "cursor",
     progressText: (
       <>
-        기존 웹표준 HTML/CSS 기반 페이지를 React 구조로 변환하는 작업은{" "}
-        <strong>AI 활용 효과가 높았으며</strong>, HTML·CSS·JavaScript 구조를
-        분석하여 React 컴포넌트 형태로 변환하는 작업이 비교적 안정적으로
-        수행됨을 확인
+        기존 웹표준 HTML/CSS 기반 페이지를 React 구조로 변환하는 작업은 AI 활용
+        효과가 높았으며,{" "}
+        <strong>
+          HTML·CSS·JavaScript 구조를 분석하여 React 컴포넌트 형태로 변환하는
+          작업이 비교적 안정적으로 수행
+        </strong>
+        됨을 확인
       </>
     ),
   },
