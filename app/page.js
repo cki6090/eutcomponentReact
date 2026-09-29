@@ -14,14 +14,9 @@ export default function Home() {
             <h1>
               Project Name
               <br></br>
-              <span>Component Page</span>
+              <span>Scroll Event Page</span>
             </h1>
-            <p>
-              TECHNOLOGY STACK <br></br>
-              React, Next.js, TypeScript, CSS
-              <br></br>
-              NextAuth.js, json-server, axios, recharts
-            </p>
+
             <AiBbox />
           </div>
 

@@ -126,25 +126,25 @@ body {
 }
 .section1 {
   background: #ffffff;
-  min-height: 600vh;
+  min-height: 700vh;
 }
 .section2 {
   background: rgba(234, 238, 242, 1);
-  min-height: 1000vh;
+  min-height: 1100vh;
   cursor: none;
 }
 .section3 {
   background: #fff;
   padding: 300px 0px 0px 0px;
-  min-height: 200vh;
+  min-height: 300vh;
 }
 .section4 {
   background: #fff;
-  min-height: 1000vh;
+  min-height: 1100vh;
 }
 .section5 {
   background: #fff;
-  min-height: 600vh;
+  min-height: 700vh;
 }
 
 /* section0 전체 스크롤 구간만큼 래퍼를 키워야 sticky가 유효 구간을 가짐 */
@@ -1891,7 +1891,7 @@ body {
 
 .section6 {
   background: linear-gradient(180deg, #fff 0%, #f8fafc 50%, #fff 100%);
-  min-height: 1000vh;
+  min-height: 1200vh;
 }
 .section6-sticky {
   position: sticky;
